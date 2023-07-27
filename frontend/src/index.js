@@ -13,11 +13,13 @@ import "./assets/styles/bootstrap.custom.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import MedicineScreen from "./Screens/MedicineScreen";
+import MedicineScreenDetails from "./Screens/MedicineScreenDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<MedicineScreen />} />
+      <Route path="/med/:id" element={<MedicineScreenDetails />} />
     </Route>
   )
 );

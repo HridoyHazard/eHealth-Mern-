@@ -8,21 +8,23 @@ const Header = () => {
     <header>
       <Navbar bg="primary" variant="dark" expand="md" collapseOnSelect>
         <Container>
-          <Navbar.Brand href="/">ProShop</Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand href="/">ProShop</Navbar.Brand>
+          </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <LinkContainer to='/Login'>
+              <LinkContainer to="/Login">
                 <Nav.Link>
                   <FaUser /> Sign In
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/Medicine'>
+              <LinkContainer to="/Medicine">
                 <Nav.Link>
                   <FaCapsules /> Medicine
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/Doctor'>
+              <LinkContainer to="/Doctor">
                 <Nav.Link>
                   <FaStethoscope /> Doctor
                 </Nav.Link>

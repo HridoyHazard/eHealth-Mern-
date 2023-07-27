@@ -16,8 +16,8 @@ main {
   padding-left: 0.5rem;
 }
 
-.product-title {
-  height: 2.5em; /* Set a fixed height */
+.med-title {
+  height: 2em; /* Set a fixed height */
   overflow: hidden; /* Hide overflow content */
   text-overflow: ellipsis; /* Add ellipsis for long text */
   white-space: nowrap; /* Prevent wrapping */
