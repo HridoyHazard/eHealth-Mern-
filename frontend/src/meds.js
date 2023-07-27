@@ -1,5 +1,6 @@
 const meds = [
   {
+    _id:'1',
     name: "B126 (Vitamin B1,B6,B12):",
     image: "/images/vita.jpg",
     description:
@@ -12,6 +13,7 @@ const meds = [
     countInStock: 10,
   },
   {
+    _id:'2',
     name: "Paracetamol",
     image: "/images/para.jpg",
     description:
@@ -24,6 +26,7 @@ const meds = [
     countInStock: 0,
   },
   {
+    _id:'3',
     name: "Cabergoline",
     image: "/images/Cabergol.jpg",
     description:
@@ -36,6 +39,7 @@ const meds = [
     countInStock: 5,
   },
   {
+    _id:'4',
     name: "Civox 500mg",
     image: "/images/Civox.jpg",
     description:
@@ -48,6 +52,7 @@ const meds = [
     countInStock: 11,
   },
   {
+    _id:'5',
     name: "Norium 5 mg",
     image: "/images/Norium.jpg",
     description:
@@ -60,6 +65,7 @@ const meds = [
     countInStock: 7,
   },
   {
+    _id:'6',
     name: "Sergel 20mg",
     image: "/images/Sergel.jpg",
     description:
@@ -72,6 +78,7 @@ const meds = [
     countInStock: 0,
   },
   {
+    _id:'7',
     name: "Alatrol Tablet 10 mg",
     image: "/images/Alatrol.jpg",
     description:
