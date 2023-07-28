@@ -1,5 +1,24 @@
 {
   "dependencies": {
     "react-router-dom": "^6.10.0"
-  }
+  },
+  "name": "ehealth",
+  "version": "2.0.0",
+  "description": "health care",
+  "type":"module",
+  "main": "server.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HridoyHazard/eHealth-Mern-.git"
+  },
+  "author": "Shahadat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HridoyHazard/eHealth-Mern-/issues"
+  },
+  "homepage": "https://github.com/HridoyHazard/eHealth-Mern-#readme"
 }
