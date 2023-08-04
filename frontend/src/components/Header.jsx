@@ -9,16 +9,11 @@ const Header = () => {
       <Navbar bg="primary" variant="dark" expand="md" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand href="/">ProShop</Navbar.Brand>
+            <Navbar.Brand href="/">eHealth</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <LinkContainer to="/Login">
-                <Nav.Link>
-                  <FaUser /> Sign In
-                </Nav.Link>
-              </LinkContainer>
               <LinkContainer to="/Medicine">
                 <Nav.Link>
                   <FaCapsules /> Medicine
@@ -27,6 +22,11 @@ const Header = () => {
               <LinkContainer to="/Doctor">
                 <Nav.Link>
                   <FaStethoscope /> Doctor
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/Login">
+                <Nav.Link>
+                  <FaUser /> Sign In
                 </Nav.Link>
               </LinkContainer>
             </Nav>
