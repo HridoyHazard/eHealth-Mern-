@@ -9,7 +9,10 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js"
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -20,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/HridoyHazard/eHealth-Mern-/issues"
   },
-  "homepage": "https://github.com/HridoyHazard/eHealth-Mern-#readme"
+  "homepage": "https://github.com/HridoyHazard/eHealth-Mern-#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "nodemon": "^3.0.1"
+  }
 }
