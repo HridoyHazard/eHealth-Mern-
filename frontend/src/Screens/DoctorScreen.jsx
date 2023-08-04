@@ -1,22 +1,31 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import doctors from "../doctors.js"
+import Doctor from "../components/Doctor";
 
 const DoctorScreen = () => {
+  const [doctors, setDoctors] = useState([]);
+
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      const { data } = await axios.get(`/api/doctors`);
+      setDoctors(data);
+    };
+
+    fetchDoctors();
+  }, []);
   return (
     <>
       <h1>All Doctor</h1>
       <Row>
         {doctors.map((doctor) => (
           <Col sm={12} md={6} lg={4} xl={3}>
-            <h3>{doctor.name}</h3>
-            <h3>{doctor.degree}</h3>
-            <h3>{doctor.specialist}</h3>
-            <h3>{doctor.chamber}</h3>
+            <Doctor doctor={doctor} />
           </Col>
         ))}
       </Row>
     </>
-  )
-}
+  );
+};
 
-export default DoctorScreen
+export default DoctorScreen;
