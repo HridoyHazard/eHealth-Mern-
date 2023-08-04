@@ -1,8 +1,18 @@
+import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import meds from "../meds";
 import Medicine from "../components/Medicine";
+import axios from "axios"
 
 const MedicineScreen = () => {
+  const [meds, setMeds] = useState([]);
+
+  useEffect(() => {
+    const fetchMeds = async () => {
+      const { data } = await axios.get(`/api/meds`);
+      setMeds(data);
+    };
+    fetchMeds();
+  }, []);
   return (
     <>
       <h1>Latest Medicine</h1>

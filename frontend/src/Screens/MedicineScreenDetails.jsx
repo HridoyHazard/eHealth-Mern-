@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import meds from "../meds";
 import {
   ListGroupItem,
   ListGroup,
@@ -10,10 +9,21 @@ import {
   Image,
 } from "react-bootstrap";
 import Rating from "../components/Rating";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const MedicineScreenDetails = () => {
+  const [med, setMed] = useState([]);
+
   const { id: medId } = useParams();
-  const med = meds.find((p) => p._id === medId);
+
+  useEffect(() => {
+    const fetchMed = async () => {
+      const { data } = await axios.get(`/api/meds/${medId}`);
+      setMed(data);
+    };
+    fetchMed();
+  }, []);
 
   console.log(med);
   return (
@@ -33,8 +43,12 @@ const MedicineScreenDetails = () => {
             <ListGroup.Item>
               <Rating value={med.rating} text={`${med.numReviews} reviews`} />
             </ListGroup.Item>
-            <ListGroupItem><strong>${med.price}</strong></ListGroupItem>
-            <ListGroupItem><strong>{med.description}</strong></ListGroupItem>
+            <ListGroupItem>
+              <strong>${med.price}</strong>
+            </ListGroupItem>
+            <ListGroupItem>
+              <strong>{med.description}</strong>
+            </ListGroupItem>
           </ListGroup>
         </Col>
         <Col md={3}>
