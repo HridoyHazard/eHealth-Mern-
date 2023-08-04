@@ -26,6 +26,7 @@
   "homepage": "https://github.com/HridoyHazard/eHealth-Mern-#readme",
   "devDependencies": {
     "concurrently": "^8.2.0",
+    "dotenv": "^16.3.1",
     "nodemon": "^3.0.1"
   }
 }
