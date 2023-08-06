@@ -3,9 +3,12 @@ import dotenv from 'dotenv'
 import meds from "./data/meds.js";
 import doctors from "./data/doctors.js";
 import bloods from "./data/bloods.js"
+import connectDB from "./config/db.js";
 
 dotenv.config()
 const port = process.env.PORT || 5000;
+
+connectDB();
 
 const app = express();
 
