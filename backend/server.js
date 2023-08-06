@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from 'dotenv'
 import meds from "./data/meds.js";
 import doctors from "./data/doctors.js";
+import bloods from "./data/bloods.js"
 
 dotenv.config()
 const port = process.env.PORT || 5000;
@@ -27,6 +28,13 @@ app.get('/api/doctors', (req,res) => {
 app.get('/api/doctors/:id', (req,res) => {
   const doctor = doctors.find((p) => p._id === req.params.id)
   res.json(doctor);
+})
+app.get('/api/bloods', (req,res) => {
+  res.json(bloods);
+})
+app.get('/api/bloods/:id', (req,res) => {
+  const blood = bloods.find((p) => p._id === req.params.id)
+  res.json(blood);
 })
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

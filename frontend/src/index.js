@@ -16,14 +16,18 @@ import MedicineScreen from "./Screens/MedicineScreen";
 import MedicineScreenDetails from "./Screens/MedicineScreenDetails";
 import DoctorScreen from "./Screens/DoctorScreen";
 import DoctorScreenDetails from "./Screens/DoctorScreenDetails"
+import BloodScreen from "./Screens/BloodScreen";
+import BloodScreenDetails from "./Screens/BloodScreenDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       {/* <Route index={true} path="/" element={<MedicineScreen />} />
       <Route path="/med/:id" element={<MedicineScreenDetails />} /> */}
-      <Route index={true} path="/" element={<DoctorScreen />} />
-      <Route path="/doctor/:id" element={<DoctorScreenDetails />} />
+      {/* <Route index={true} path="/" element={<DoctorScreen />} />
+      <Route path="/doctor/:id" element={<DoctorScreenDetails />} /> */}
+      <Route index={true} path="/" element={<BloodScreen />} />
+      <Route path="/blood/:id" element={<BloodScreenDetails />} />
     </Route>
   )
 );
