@@ -1,6 +1,5 @@
 const doctors = [
   {
-    _id:'1',
     name: "Dr.Md. Nazrul Islam",
     image: "/images/doc1.jpg",
     degree: "MBBS, MCPS(Medicine),MD(Neurology)",
@@ -9,7 +8,6 @@ const doctors = [
     available: "5pm-9pm",
   },
   {
-    _id:'2',
     name: "Dr.Alamgir Chowdhury",
     image: "/images/doc3.jpg",
     degree: "MBBS, MCPS(Medicine),MD(Neurology)",
@@ -18,7 +16,6 @@ const doctors = [
     available: "5pm-9pm",
   },
   {
-    _id:'3',
     name: "Prof.Dr.Mahjuba Umme Salam",
     image: "/images/doc4.jpg",
     degree: "MBBS, FCPS(Medicine)",
@@ -27,7 +24,6 @@ const doctors = [
     available: "5pm-9pm",
   },
   {
-    _id:'4',
     name: "Dr.Shishir Basak",
     image: "/images/doc5.jpg",
     degree: "MBBS,MCPS(Medicine),MD(Cardiology)",
@@ -36,7 +32,6 @@ const doctors = [
     available: "2pm-6pm",
   },
   {
-    _id:'5',
     name: "Dr.Md.Tawhidul Islam Emdad",
     image: "/images/doc6.jpg",
     degree: "MBBS,FCPS,DDV",
@@ -45,7 +40,6 @@ const doctors = [
     available: "3pm-5pm",
   },
   {
-    _id:'6',
     name: "Prof.Dr.Shamsun Nahar Begum",
     image: "/images/doc2.jpg",
     degree: "FCPS (Obs & Gynae)",

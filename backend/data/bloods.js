@@ -1,6 +1,5 @@
 const bloods = [
   {
-    _id: "1",
     name: "Shahadat Hossain",
     image: "/images/hridoy.jpg",
     group: "A+",
@@ -10,7 +9,6 @@ const bloods = [
     contact: "01786251902",
   },
   {
-    _id: "2",
     name: "Gourav Debnath",
     image: "/images/hridoy.jpg",
     group: "A+",
@@ -20,7 +18,6 @@ const bloods = [
     contact: "01914873631",
   },
   {
-    _id: "3",
     name: "Noor Mohammed",
     image: "/images/hridoy.jpg",
     group: "B+",
@@ -30,7 +27,6 @@ const bloods = [
     contact: "01646011745",
   },
   {
-    _id: "4",
     name: "Hasibul Islam",
     image: "/images/hridoy.jpg",
     group: "AB+",
@@ -40,7 +36,6 @@ const bloods = [
     contact: "01749571666",
   },
   {
-    _id: "5",
     name: "Jubayer Chowdhury",
     image: "/images/hridoy.jpg",
     group: "AB+",
@@ -50,7 +45,6 @@ const bloods = [
     contact: "01680711234",
   },
   {
-    _id: "6",
     name: "Mahin Chowdhury",
     image: "/images/hridoy.jpg",
     group: "O-",
@@ -60,7 +54,6 @@ const bloods = [
     contact: "01680714564",
   },
   {
-    _id: "7",
     name: "Mosarof Hossain",
     image: "/images/hridoy.jpg",
     group: "B-",
@@ -70,7 +63,6 @@ const bloods = [
     contact: "01880710427",
   },
   {
-    _id: "8",
     name: "Zahin Bhuiyan",
     image: "/images/hridoy.jpg",
     group: "AB+",
@@ -80,7 +72,6 @@ const bloods = [
     contact: "0187736227",
   },
   {
-    _id: "9",
     name: "Mamun Ahmed",
     image: "/images/hridoy.jpg",
     group: "B+",
@@ -90,7 +81,6 @@ const bloods = [
     contact: "01980710234",
   },
   {
-    _id: "10",
     name: "Nahid Ahmed",
     image: "/images/hridoy.jpg",
     group: "O-",
