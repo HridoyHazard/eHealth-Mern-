@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 import medicineRoutes from "./routes/medicineRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js"
 import bloodRoutes from "./routes/bloodRoutes.js"
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 
 const port = process.env.PORT || 5000;
@@ -22,5 +23,8 @@ app.get("/", (req, res) => {
 app.use("/api/meds", medicineRoutes);
 app.use("/api/doctors", doctorRoutes);
 app.use("/api/bloods", bloodRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

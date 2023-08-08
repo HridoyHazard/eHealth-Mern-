@@ -20,7 +20,8 @@ router.get(
     if (doctor) {
       return res.json(doctor);
     }
-    res.status(404).json({ message: "Medicine Not Found" });
+    res.status(404)
+    throw new Error('Doctors Not Found')
   })
 );
 
