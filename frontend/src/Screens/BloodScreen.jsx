@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-import Blood from "../components/Blood.jsx";
+import Blood from "../components/Blood";
 import axios from "axios";
 
 const BloodScreen = () => {
