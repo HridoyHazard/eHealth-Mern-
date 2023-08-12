@@ -1,8 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
-import doctors from "./data/doctors.js";
-import bloods from "./data/bloods.js";
 import connectDB from "./config/db.js";
 import medicineRoutes from "./routes/medicineRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js"

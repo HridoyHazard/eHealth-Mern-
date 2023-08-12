@@ -11,30 +11,34 @@ import {
 import "./assets/styles/index.css";
 import "./assets/styles/bootstrap.custom.css";
 import App from "./App";
+import { Provider } from "react-redux";
+import store from "./store";
 import reportWebVitals from "./reportWebVitals";
 import MedicineScreen from "./Screens/MedicineScreen";
 import MedicineScreenDetails from "./Screens/MedicineScreenDetails";
 import DoctorScreen from "./Screens/DoctorScreen";
-import DoctorScreenDetails from "./Screens/DoctorScreenDetails"
+import DoctorScreenDetails from "./Screens/DoctorScreenDetails";
 import BloodScreen from "./Screens/BloodScreen";
 import BloodScreenDetails from "./Screens/BloodScreenDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      {/* <Route index={true} path="/" element={<MedicineScreen />} />
-      <Route path="/med/:id" element={<MedicineScreenDetails />} /> */}
+      <Route index={true} path="/" element={<MedicineScreen />} />
+      <Route path="/med/:id" element={<MedicineScreenDetails />} />
       {/* <Route index={true} path="/" element={<DoctorScreen />} />
       <Route path="/doctor/:id" element={<DoctorScreenDetails />} /> */}
-      <Route index={true} path="/" element={<BloodScreen />} />
-      <Route path="/blood/:id" element={<BloodScreenDetails />} />
+      {/* <Route index={true} path="/" element={<BloodScreen />} />
+      <Route path="/blood/:id" element={<BloodScreenDetails />} /> */}
     </Route>
   )
 );
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 reportWebVitals();
