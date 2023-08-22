@@ -9,72 +9,72 @@ import {
   Image,
 } from "react-bootstrap";
 import Rating from "../components/Rating";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useGetMedicineDetailsQuery } from "../slices/medsApiSlice";
 
 const MedicineScreenDetails = () => {
-  const [med, setMed] = useState([]);
-
   const { id: medId } = useParams();
+  const { data: med, isLoading, error } = useGetMedicineDetailsQuery(medId);
 
-  useEffect(() => {
-    const fetchMed = async () => {
-      const { data } = await axios.get(`/api/meds/${medId}`);
-      setMed(data);
-    };
-    fetchMed();
-  }, []);
-
-  console.log(med);
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
-      <Row>
-        <Col md={6}>
-          <Image src={med.image} alt={med.name} fluid />
-        </Col>
-        <Col md={3}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <h3>{med.name}</h3>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Rating value={med.rating} text={`${med.numReviews} reviews`} />
-            </ListGroup.Item>
-            <ListGroupItem>
-              <strong>${med.price}</strong>
-            </ListGroupItem>
-            <ListGroupItem>
-              <strong>{med.description}</strong>
-            </ListGroupItem>
-          </ListGroup>
-        </Col>
-        <Col md={3}>
-          <Card>
-            <ListGroup variant="flush">
-              <ListGroup.Item>
-                <Row>
-                  <Col>Status:</Col>
-                  <Col>
-                    {med.countInStock > 0 ? "In Stock" : "Out Of Stock"}
-                  </Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Button
-                  className="btn-block"
-                  type="button"
-                  disabled={med.countInStock === 0}
-                >
-                  Add To Cart
-                </Button>
-              </ListGroup.Item>
-            </ListGroup>
-          </Card>
-        </Col>
-      </Row>
+      {isLoading ? (
+        <h1>Loading....</h1>
+      ) : error ? (
+        <div>{error?.data?.message || error.error}</div>
+      ) : (
+        <>
+          <Row>
+            <Col md={6}>
+              <Image src={med.image} alt={med.name} fluid />
+            </Col>
+            <Col md={3}>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <h3>{med.name}</h3>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Rating
+                    value={med.rating}
+                    text={`${med.numReviews} reviews`}
+                  />
+                </ListGroup.Item>
+                <ListGroupItem>
+                  <strong>${med.price}</strong>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <strong>{med.description}</strong>
+                </ListGroupItem>
+              </ListGroup>
+            </Col>
+            <Col md={3}>
+              <Card>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Status:</Col>
+                      <Col>
+                        {med.countInStock > 0 ? "In Stock" : "Out Of Stock"}
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Button
+                      className="btn-block"
+                      type="button"
+                      disabled={med.countInStock === 0}
+                    >
+                      Add To Cart
+                    </Button>
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card>
+            </Col>
+          </Row>
+        </>
+      )}
     </>
   );
 };
