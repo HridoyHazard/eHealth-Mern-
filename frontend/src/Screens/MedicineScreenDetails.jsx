@@ -62,7 +62,7 @@ const MedicineScreenDetails = () => {
                   />
                 </ListGroup.Item>
                 <ListGroupItem>
-                  <strong>${med.price}</strong>
+                  <strong>৳{med.price}</strong>
                 </ListGroupItem>
                 <ListGroupItem>
                   <strong>{med.description}</strong>

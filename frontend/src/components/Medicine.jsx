@@ -23,7 +23,7 @@ const Medicine = ({ med }) => {
           />
         </Card.Text>
 
-        <Card.Text as='h3'>${med.price}</Card.Text>
+        <Card.Text as='h3'>৳{med.price}</Card.Text>
       </Card.Body>
     </Card>
   );
