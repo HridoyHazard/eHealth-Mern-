@@ -7,6 +7,7 @@ import doctorRoutes from "./routes/doctorRoutes.js";
 import bloodRoutes from "./routes/bloodRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import cookieParser from "cookie-parser";
 
 const port = process.env.PORT || 5000;
 
@@ -20,6 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.send("Api is running...");
 });
+
+app.use(cookieParser());
 
 app.use("/api/meds", medicineRoutes);
 app.use("/api/users", userRoutes);
