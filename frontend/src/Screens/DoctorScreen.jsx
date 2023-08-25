@@ -19,7 +19,7 @@ const DoctorScreen = () => {
       <h1>All Doctor</h1>
       <Row>
         {doctors.map((doctor) => (
-          <Col sm={12} md={6} lg={4} xl={3}>
+          <Col key={doctor._id} sm={12} md={6} lg={4} xl={3}>
             <Doctor doctor={doctor} />
           </Col>
         ))}
