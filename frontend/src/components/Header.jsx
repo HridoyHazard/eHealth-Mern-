@@ -47,6 +47,11 @@ const Header = () => {
                   <FaStethoscope /> Doctor
                 </Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/Blood">
+                <Nav.Link>
+                  <FaStethoscope /> Blood
+                </Nav.Link>
+              </LinkContainer>
               {userInfo ? (
                 <>
                   <NavDropdown title={userInfo.name} id="username">

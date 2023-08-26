@@ -19,7 +19,7 @@ const BloodScreen = () => {
       <h1>Bloods List</h1>
       <Row>
         {bloods.map((blood) => (
-          <Col sm={12} md={6} lg={4} xl={3}>
+          <Col key={blood._id} sm={12} md={6} lg={4} xl={3}>
             <Blood blood={blood} />
           </Col>
         ))}
