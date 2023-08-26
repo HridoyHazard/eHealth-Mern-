@@ -1,9 +1,16 @@
 import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Container,Badge } from "react-bootstrap";
 import { FaUser, FaCapsules, FaStethoscope } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
+  const { cartItems } = useSelector((state) => state.cart);
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const logoutHandler = () => {
+    console.log("logout successfull");
+  };
   return (
     <header>
       <Navbar bg="primary" variant="dark" expand="md" collapseOnSelect>
@@ -24,11 +31,38 @@ const Header = () => {
                   <FaStethoscope /> Doctor
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/Login">
-                <Nav.Link>
-                  <FaUser /> Sign In
-                </Nav.Link>
-              </LinkContainer>
+              {userInfo ? (
+                <>
+                  <NavDropdown title={userInfo.name} id="username">
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/cart">
+                      <NavDropdown.Item>
+                        Cart
+                        {cartItems.length > 0 && (
+                          <Badge
+                            pill
+                            bg="success"
+                            style={{ marginLeft: "5px" }}
+                          >
+                            {cartItems.reduce((a, c) => a + c.qty, 0)}
+                          </Badge>
+                        )}
+                      </NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </>
+              ) : (
+                <LinkContainer to="/login">
+                  <Nav.Link>
+                    <FaUser /> Sign In
+                  </Nav.Link>
+                </LinkContainer>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
