@@ -16,6 +16,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import reportWebVitals from "./reportWebVitals";
 import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/AdminRoute";
 import MedicineScreen from "./Screens/MedicineScreen";
 import MedicineScreenDetails from "./Screens/MedicineScreenDetails";
 import DoctorScreen from "./Screens/DoctorScreen";
@@ -30,6 +31,7 @@ import PaymentScreen from "./Screens/PaymentScreen";
 import PlaceOrderScreen from "./Screens/PlaceOrderScreen";
 import OrderScreen from "./Screens/OrderScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
+import OrderListScreen from "./Screens/Admin/OrderListScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -50,6 +52,11 @@ const router = createBrowserRouter(
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
         <Route path="/order/:id" element={<OrderScreen />} />
         <Route path="/profile" element={<ProfileScreen />} />
+      </Route>
+      //All Admin Routes
+      <Route path="" element={<AdminRoute />}>
+        <Route path="/admin/orderlist" element={<OrderListScreen />} />
+       
       </Route>
     </Route>
   )
