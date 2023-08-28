@@ -7,6 +7,7 @@ export const medsApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: MEDICINE_URL,
       }),
+      providesTags: ['Medicine'],
       keepUnusedDataFor: 5,
     }),
     getMedicineDetails: builder.query({
@@ -22,6 +23,14 @@ export const medsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Medicine"],
     }),
+    updateMedicine: builder.mutation({
+      query: (data) => ({
+        url: `${MEDICINE_URL}/${data.medId}`,
+        method: 'PUT',
+        body: data,
+      }),
+      invalidatesTags: ['Medicines'],
+    }),
   }),
 });
 
@@ -29,4 +38,5 @@ export const {
   useGetMedicinesQuery,
   useGetMedicineDetailsQuery,
   useCreateMedicineMutation,
+  useUpdateMedicineMutation,
 } = medsApiSlice;

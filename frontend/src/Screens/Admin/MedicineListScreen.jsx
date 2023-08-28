@@ -15,7 +15,6 @@ const MedicineListScreen = () => {
 
   const [createMedicine, { isLoading: loadingCreate }] =
     useCreateMedicineMutation();
-  console.log(meds);
 
   const deleteHandler = async (id) => {
     if (window.confirm("Are you sure")) {
@@ -46,7 +45,7 @@ const MedicineListScreen = () => {
           </Button>
         </Col>
       </Row>
-      
+
       {isLoading ? (
         <Loader />
       ) : error ? (

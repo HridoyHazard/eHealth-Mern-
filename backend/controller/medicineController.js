@@ -42,4 +42,30 @@ const createMedicine = asyncHandler(async (req, res) => {
   res.status(201).json(createdMedicine);
 });
 
-export { getMedicines,getMedicineById, createMedicine };
+// @desc    Update a medicine
+// @route   PUT /api/meds/:id
+// @access  Private/Admin
+const updateMedicine = asyncHandler(async (req, res) => {
+  const { name, price, description, image, brand, category, countInStock } =
+    req.body;
+
+  const med = await Medicine.findById(req.params.id);
+
+  if (med) {
+    med.name = name;
+    med.price = price;
+    med.description = description;
+    med.image = image;
+    med.brand = brand;
+    med.category = category;
+    med.countInStock = countInStock;
+
+    const updatedMedicine = await med.save();
+    res.json(updatedMedicine);
+  } else {
+    res.status(404);
+    throw new Error('Medicine not found');
+  }
+});
+
+export { getMedicines,getMedicineById, createMedicine, updateMedicine };
