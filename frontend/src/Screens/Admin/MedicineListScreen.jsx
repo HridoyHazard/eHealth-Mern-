@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import {
   useGetMedicinesQuery,
   useCreateMedicineMutation,
+  useDeleteMedicineMutation,
 } from "../../slices/medsApiSlice";
 
 const MedicineListScreen = () => {
@@ -16,9 +17,18 @@ const MedicineListScreen = () => {
   const [createMedicine, { isLoading: loadingCreate }] =
     useCreateMedicineMutation();
 
+  const [deleteMedicine, { isLoading: loadingDelete }] =
+    useDeleteMedicineMutation();
+
   const deleteHandler = async (id) => {
     if (window.confirm("Are you sure")) {
-      console.log("delete", id);
+      try {
+        await deleteMedicine(id);
+        toast.success("Medicine Deleted");
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
     }
   };
 
@@ -45,7 +55,8 @@ const MedicineListScreen = () => {
           </Button>
         </Col>
       </Row>
-
+      {loadingCreate && <Loader />}
+      {loadingDelete && <Loader />}
       {isLoading ? (
         <Loader />
       ) : error ? (

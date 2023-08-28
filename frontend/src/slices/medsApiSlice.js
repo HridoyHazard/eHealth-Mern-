@@ -38,6 +38,13 @@ export const medsApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    deleteMedicine: builder.mutation({
+      query: (medId) => ({
+        url: `${MEDICINE_URL}/${medId}`,
+        method: 'DELETE',
+      }),
+      providesTags: ['Medicine'],
+    }),
   }),
 });
 
@@ -47,4 +54,5 @@ export const {
   useCreateMedicineMutation,
   useUpdateMedicineMutation,
   useUploadMedicineImageMutation,
+  useDeleteMedicineMutation,
 } = medsApiSlice;

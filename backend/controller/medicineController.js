@@ -68,4 +68,18 @@ const updateMedicine = asyncHandler(async (req, res) => {
   }
 });
 
-export { getMedicines,getMedicineById, createMedicine, updateMedicine };
+// @desc    Delete a medicine
+// @route   DELETE /api/meds/:id
+// @access  Private/Admin
+const deleteMedicine = asyncHandler(async (req, res) => {
+  const med = await Medicine.findById(req.params.id);
+
+  if (med) {
+    await Medicine.deleteOne({ _id: med._id });
+    res.json({ message: 'Medicine removed' }); 
+  } else {
+    res.status(404);
+    throw new Error('Medicine not found');
+  }
+});
+export { getMedicines,getMedicineById, createMedicine, updateMedicine, deleteMedicine };
