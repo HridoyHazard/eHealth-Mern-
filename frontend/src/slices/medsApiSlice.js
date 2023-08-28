@@ -1,4 +1,4 @@
-import { BASE_URL, MEDICINE_URL } from "../constants";
+import { BASE_URL, MEDICINE_URL, UPLOAD_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
 
 export const medsApiSlice = apiSlice.injectEndpoints({
@@ -7,7 +7,7 @@ export const medsApiSlice = apiSlice.injectEndpoints({
       query: () => ({
         url: MEDICINE_URL,
       }),
-      providesTags: ['Medicine'],
+      providesTags: ["Medicines"],
       keepUnusedDataFor: 5,
     }),
     getMedicineDetails: builder.query({
@@ -26,10 +26,17 @@ export const medsApiSlice = apiSlice.injectEndpoints({
     updateMedicine: builder.mutation({
       query: (data) => ({
         url: `${MEDICINE_URL}/${data.medId}`,
-        method: 'PUT',
+        method: "PUT",
         body: data,
       }),
-      invalidatesTags: ['Medicines'],
+      invalidatesTags: ["Medicines"],
+    }),
+    uploadMedicineImage: builder.mutation({
+      query: (data) => ({
+        url: `${UPLOAD_URL}`,
+        method: "POST",
+        body: data,
+      }),
     }),
   }),
 });
@@ -39,4 +46,5 @@ export const {
   useGetMedicineDetailsQuery,
   useCreateMedicineMutation,
   useUpdateMedicineMutation,
+  useUploadMedicineImageMutation,
 } = medsApiSlice;
