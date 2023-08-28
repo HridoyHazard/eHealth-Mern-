@@ -1,6 +1,6 @@
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button, Alert } from "react-bootstrap";
-import { FaTimes, FaCheckCircle } from "react-icons/fa";
+import { FaTimes, FaCheckCircle, FaCheck } from "react-icons/fa";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { useGetOrdersQuery } from "../../slices/ordersApiSlice";
@@ -39,14 +39,26 @@ const OrderListScreen = () => {
                 <td>${order.totalPrice}</td>
                 <td>
                   {order.isPaid ? (
-                    order.paidAt.substring(0, 10)
+                     <>
+                     <div>
+                       {" "}
+                       <FaCheck style={{color:'green'}} />
+                     </div>
+                     <div>{order.paidAt.substring(0, 10)}</div>
+                   </>
                   ) : (
                     <FaTimes style={{ color: "red" }} />
                   )}
                 </td>
                 <td>
                   {order.isDelivered ? (
-                    order.deliveredAt.substring(0, 10)
+                    <>
+                      <div>
+                        {" "}
+                        <FaCheckCircle style={{color:'green'}} />
+                      </div>
+                      <div>{order.deliveredAt.substring(0, 10)}</div>
+                    </>
                   ) : (
                     <FaTimes style={{ color: "red" }} />
                   )}
