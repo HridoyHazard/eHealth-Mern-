@@ -6,31 +6,30 @@ import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { toast } from "react-toastify";
 import {
-  useUpdateMedicineMutation,
-  useGetMedicineDetailsQuery,
-} from "../../slices/medsApiSlice";
+  useGetDoctorDetailsQuery,
+  useUpdateDoctorMutation,
+} from "../../slices/doctorsApiSlice";
 import { useUploadImageMutation } from "../../slices/uploadApiSlice";
 
-const MedicineEditScreen = () => {
-  const { id: medId } = useParams();
+const DoctorEditScreen = () => {
+  const { id: doctorId } = useParams();
 
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
-  const [brand, setBrand] = useState("");
-  const [category, setCategory] = useState("");
-  const [countInStock, setCountInStock] = useState(0);
-  const [description, setDescription] = useState("");
+  const [degree, setDegree] = useState("");
+  const [specialist, setSpecialist] = useState("");
+  const [chamber, setChamber] = useState("");
+  const [available, setAvailable] = useState("");
 
   const {
-    data: med,
+    data: doctor,
     isLoading,
     error,
     refetch,
-  } = useGetMedicineDetailsQuery(medId);
+  } = useGetDoctorDetailsQuery(doctorId);
 
-  const [updateMedicine, { isLoading: loadingUpdate }] =
-    useUpdateMedicineMutation();
+  const [updateDoctor, { isLoading: loadingUpdate }] =
+    useUpdateDoctorMutation();
 
   const [uploadImage, { isLoading: loadingUpload }] =
     useUploadImageMutation();
@@ -40,35 +39,22 @@ const MedicineEditScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await updateMedicine({
-        medId,
+      await updateDoctor({
+        doctorId,
         name,
-        price,
         image,
-        brand,
-        category,
-        description,
-        countInStock,
+        degree,
+        specialist,
+        chamber,
+        available,
       }).unwrap(); // NOTE: here we need to unwrap the Promise to catch any rejection in our catch block
-      toast.success("Product updated");
+      toast.success("Doctor updated");
       refetch();
-      navigate("/admin/medicinelist");
+      navigate("/admin/doctorlist");
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
   };
-
-  useEffect(() => {
-    if (med) {
-      setName(med.name);
-      setPrice(med.price);
-      setImage(med.image);
-      setBrand(med.brand);
-      setCategory(med.category);
-      setCountInStock(med.countInStock);
-      setDescription(med.description);
-    }
-  }, [med]);
 
   const uploadFileHandler = async (e) => {
     const formData = new FormData();
@@ -82,13 +68,24 @@ const MedicineEditScreen = () => {
     }
   };
 
+  useEffect(() => {
+    if (doctor) {
+      setName(doctor.name);
+      setImage(doctor.image);
+      setDegree(doctor.degree);
+      setSpecialist(doctor.specialist);
+      setChamber(doctor.chamber);
+      setAvailable(doctor.available);
+    }
+  }, [doctor]);
+
   return (
     <>
-      <Link to="/admin/medicinelist" className="btn btn-light my-3">
+      <Link to="/admin/doctorlist" className="btn btn-light my-3">
         Go Back
       </Link>
       <FormContainer>
-        <h1>Edit Product</h1>
+        <h1>Edit Doctor</h1>
         {loadingUpdate && <Loader />}
         {isLoading ? (
           <Loader />
@@ -103,16 +100,6 @@ const MedicineEditScreen = () => {
                 placeholder="Enter name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="price">
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -132,43 +119,43 @@ const MedicineEditScreen = () => {
               {loadingUpload && <Loader />}
             </Form.Group>
 
-            <Form.Group controlId="brand">
-              <Form.Label>Brand</Form.Label>
+            <Form.Group controlId="degree">
+              <Form.Label>Degree</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter brand"
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
+                value={degree}
+                onChange={(e) => setDegree(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId="countInStock">
-              <Form.Label>Count In Stock</Form.Label>
+            <Form.Group controlId="specialist">
+              <Form.Label>Specialist</Form.Label>
               <Form.Control
-                type="number"
+                type="text"
                 placeholder="Enter countInStock"
-                value={countInStock}
-                onChange={(e) => setCountInStock(e.target.value)}
+                value={specialist}
+                onChange={(e) => setSpecialist(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId="category">
-              <Form.Label>Category</Form.Label>
+            <Form.Group controlId="chamber">
+              <Form.Label>Chamber</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter category"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                value={chamber}
+                onChange={(e) => setChamber(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId="description">
-              <Form.Label>Description</Form.Label>
+            <Form.Group controlId="available">
+              <Form.Label>Available</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={available}
+                onChange={(e) => setAvailable(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -186,4 +173,4 @@ const MedicineEditScreen = () => {
   );
 };
 
-export default MedicineEditScreen;
+export default DoctorEditScreen;

@@ -8,48 +8,51 @@ import {
   Button,
   Image,
 } from "react-bootstrap";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useGetBloodDetailsQuery } from "../slices/bloodsApiSlice";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
 
 const BloodScreenDetails = () => {
-  const [blood, setBlood] = useState([]);
-
   const { id: bloodId } = useParams();
 
-  useEffect(() => {
-    const fetchBlood = async () => {
-      const { data } = await axios.get(`/api/bloods/${bloodId}`);
-      setBlood(data);
-    };
-    fetchBlood();
-  }, []);
+  const { data: blood, isLoading, error } = useGetBloodDetailsQuery(bloodId);
 
   return (
     <>
-      <Link className="btn btn-light my-3" to="/">
+      <Link className="btn btn-light my-3" to="/Blood">
         Go Back
       </Link>
-      <Row>
-        <Col md={6}>
-          <Image src={blood.image} alt={blood.name} fluid />
-        </Col>
-        <Col md={3}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
-              <h3>{blood.name}</h3>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <strong>{blood.group}</strong>
-            </ListGroup.Item>
-            <ListGroupItem>
-              <strong>{blood.age}</strong>
-            </ListGroupItem>
-            <ListGroupItem>
-              <strong>{blood.address}</strong>
-            </ListGroupItem>
-          </ListGroup>
-        </Col>
-      </Row>
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant={"danger"}>
+          {error?.data?.message || error.error}
+        </Message>
+      ) : (
+        <>
+          <Row>
+            <Col md={6}>
+              <Image src={blood.image} alt={blood.name} fluid />
+            </Col>
+            <Col md={3}>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <h3>{blood.name}</h3>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <strong>{blood.group}</strong>
+                </ListGroup.Item>
+                <ListGroupItem>
+                  <strong>{blood.age}</strong>
+                </ListGroupItem>
+                <ListGroupItem>
+                  <strong>{blood.address}</strong>
+                </ListGroupItem>
+              </ListGroup>
+            </Col>
+          </Row>
+        </>
+      )}
     </>
   );
 };

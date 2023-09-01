@@ -1,0 +1,110 @@
+import { LinkContainer } from "react-router-bootstrap";
+import { Table, Button, Row, Col } from "react-bootstrap";
+import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
+import Message from "../../components/Message";
+import Loader from "../../components/Loader";
+import { toast } from "react-toastify";
+import {
+  useGetBloodsQuery,
+  useCreateBloodMutation,
+  useDeleteBloodMutation,
+} from "../../slices/bloodsApiSlice";
+
+const BloodListScreen = () => {
+  const { data: bloods, isLoading, error, refetch } = useGetBloodsQuery();
+
+  const [createBlood, { isLoading: loadingCreate }] = useCreateBloodMutation();
+
+  const [deleteBlood, { isLoading: loadingDelete }] = useDeleteBloodMutation();
+
+  const createBloodHandler = async () => {
+    if (window.confirm("Are you sure you want to create a new Donor?")) {
+      try {
+        await createBlood();
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
+  };
+
+  const deleteHandler = async (id) => {
+    if (window.confirm("Are you sure")) {
+      try {
+        await deleteBlood(id);
+        toast.success("Donor Deleted");
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
+  };
+
+  return (
+    <>
+      <Row className="align-items-center">
+        <Col>
+          <h1>Donors</h1>
+        </Col>
+        <Col className="text-end">
+          <Button className="my-3" onClick={createBloodHandler}>
+            <FaPlus /> Create Donor
+          </Button>
+        </Col>
+      </Row>
+      {loadingCreate && <Loader />}
+      {loadingDelete && <Loader />}
+      {isLoading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant="danger">{error.data.message}</Message>
+      ) : (
+        <>
+          <Table striped bordered hover responsive className="table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>Group</th>
+                <th>Last Donate</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {bloods.map((blood) => (
+                <tr key={blood._id}>
+                  <td>{blood._id}</td>
+                  <td>{blood.name}</td>
+                  <td>{blood.group}</td>
+                  <td>{blood.lastdonate}</td>
+                  <td>{blood.age}</td>
+                  <td>{blood.address}</td>
+                  <td>{blood.contact}</td>
+                  <td>
+                    <LinkContainer to={`/admin/blood/${blood._id}/edit`}>
+                      <Button variant="light" className="btn-sm mx-2">
+                        <FaEdit style={{ color: "green" }} />
+                      </Button>
+                    </LinkContainer>
+                    <Button
+                      variant="danger"
+                      className="btn-sm"
+                      onClick={() => deleteHandler(blood._id)}
+                    >
+                      <FaTrash style={{ color: "white" }} />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </>
+      )}
+    </>
+  );
+};
+
+export default BloodListScreen;

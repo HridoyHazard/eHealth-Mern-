@@ -6,6 +6,7 @@ import {
   createMedicine,
   updateMedicine,
   deleteMedicine,
+  createMedicineReview,
 } from "../controller/medicineController.js";
 import { admin, protect } from "../middleware/authMiddleware.js";
 
@@ -15,5 +16,6 @@ router
   .get(getMedicineById)
   .put(protect, admin, updateMedicine)
   .delete(protect, admin, deleteMedicine);
+router.route("/:id/reviews").post(protect, createMedicineReview);
 
 export default router;

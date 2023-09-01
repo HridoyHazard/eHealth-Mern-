@@ -6,69 +6,55 @@ import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
 import { toast } from "react-toastify";
 import {
-  useUpdateMedicineMutation,
-  useGetMedicineDetailsQuery,
-} from "../../slices/medsApiSlice";
+  useGetBloodDetailsQuery,
+  useUpdateBloodMutation,
+} from "../../slices/bloodsApiSlice";
 import { useUploadImageMutation } from "../../slices/uploadApiSlice";
 
-const MedicineEditScreen = () => {
-  const { id: medId } = useParams();
+const BloodEditScreen = () => {
+  const { id: bloodId } = useParams();
 
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
-  const [brand, setBrand] = useState("");
-  const [category, setCategory] = useState("");
-  const [countInStock, setCountInStock] = useState(0);
-  const [description, setDescription] = useState("");
+  const [group, setGroup] = useState("");
+  const [lastdonate, setLastdonate] = useState("");
+  const [age, setAge] = useState(0);
+  const [address, setAddress] = useState("");
+  const [contact, setContact] = useState("");
 
   const {
-    data: med,
+    data: blood,
     isLoading,
     error,
     refetch,
-  } = useGetMedicineDetailsQuery(medId);
+  } = useGetBloodDetailsQuery(bloodId);
 
-  const [updateMedicine, { isLoading: loadingUpdate }] =
-    useUpdateMedicineMutation();
+  const [updateBlood, { isLoading: loadingUpdate }] = useUpdateBloodMutation();
 
-  const [uploadImage, { isLoading: loadingUpload }] =
-    useUploadImageMutation();
+  const [uploadImage, { isLoading: loadingUpload }] = useUploadImageMutation();
 
   const navigate = useNavigate();
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await updateMedicine({
-        medId,
+      await updateBlood({
+        bloodId,
         name,
-        price,
         image,
-        brand,
-        category,
-        description,
-        countInStock,
+        group,
+        lastdonate,
+        age,
+        address,
+        contact,
       }).unwrap(); // NOTE: here we need to unwrap the Promise to catch any rejection in our catch block
-      toast.success("Product updated");
+      toast.success("Blood updated");
       refetch();
-      navigate("/admin/medicinelist");
+      navigate("/admin/bloodlist");
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
   };
-
-  useEffect(() => {
-    if (med) {
-      setName(med.name);
-      setPrice(med.price);
-      setImage(med.image);
-      setBrand(med.brand);
-      setCategory(med.category);
-      setCountInStock(med.countInStock);
-      setDescription(med.description);
-    }
-  }, [med]);
 
   const uploadFileHandler = async (e) => {
     const formData = new FormData();
@@ -82,13 +68,25 @@ const MedicineEditScreen = () => {
     }
   };
 
+  useEffect(() => {
+    if (blood) {
+      setName(blood.name);
+      setImage(blood.image);
+      setGroup(blood.group);
+      setLastdonate(blood.lastdonate);
+      setAge(blood.age);
+      setAddress(blood.address);
+      setContact(blood.contact);
+    }
+  }, [blood]);
+
   return (
     <>
-      <Link to="/admin/medicinelist" className="btn btn-light my-3">
+      <Link to="/admin/bloodlist" className="btn btn-light my-3">
         Go Back
       </Link>
       <FormContainer>
-        <h1>Edit Product</h1>
+        <h1>Edit Donor</h1>
         {loadingUpdate && <Loader />}
         {isLoading ? (
           <Loader />
@@ -103,16 +101,6 @@ const MedicineEditScreen = () => {
                 placeholder="Enter name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="price">
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -132,43 +120,53 @@ const MedicineEditScreen = () => {
               {loadingUpload && <Loader />}
             </Form.Group>
 
-            <Form.Group controlId="brand">
-              <Form.Label>Brand</Form.Label>
+            <Form.Group controlId="degree">
+              <Form.Label>Group</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter brand"
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
+                value={group}
+                onChange={(e) => setGroup(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId="countInStock">
-              <Form.Label>Count In Stock</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter countInStock"
-                value={countInStock}
-                onChange={(e) => setCountInStock(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="category">
-              <Form.Label>Category</Form.Label>
+            <Form.Group controlId="lastdonate">
+              <Form.Label>lastdonate</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter category"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                placeholder="Enter countInStock"
+                value={lastdonate}
+                onChange={(e) => setLastdonate(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group controlId="description">
-              <Form.Label>Description</Form.Label>
+            <Form.Group controlId="age">
+              <Form.Label>age</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter category"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="address">
+              <Form.Label>address</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="contact">
+              <Form.Label>contact</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter description"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -186,4 +184,4 @@ const MedicineEditScreen = () => {
   );
 };
 
-export default MedicineEditScreen;
+export default BloodEditScreen;

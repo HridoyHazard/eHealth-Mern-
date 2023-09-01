@@ -36,11 +36,17 @@ import MedicineListScreen from "./Screens/Admin/MedicineListScreen";
 import MedicineEditScreen from "./Screens/Admin/MedicineEditScreen";
 import UserListScreen from "./Screens/Admin/UserListScreen";
 import UserEditScreen from "./Screens/Admin/UserEditScreen";
+import HomeScreen from "./Screens/HomeScreen";
+import DoctorListScreen from "./Screens/Admin/DoctorListScreen";
+import DoctorEditScreen from "./Screens/Admin/DoctorEditScreen";
+import BloodListScreen from "./Screens/Admin/BloodListScreen";
+import BloodEditScreen from "./Screens/Admin/BloodEditScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true} path="/" element={<MedicineScreen />} />
+      <Route index={true} path="/" element={<HomeScreen />} />
+      <Route path="/Medicine" element={<MedicineScreen />} />
       <Route path="/med/:id" element={<MedicineScreenDetails />} />
       <Route path="/cart" element={<CartScreen />} />
       <Route path="/login" element={<LoginScreen />} />
@@ -64,7 +70,10 @@ const router = createBrowserRouter(
         <Route path="/admin/med/:id/edit" element={<MedicineEditScreen />} />
         <Route path="/admin/userlist" element={<UserListScreen />} />
         <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
-       
+        <Route path="/admin/doctorlist" element={<DoctorListScreen />} />
+        <Route path="/admin/doctor/:id/edit" element={<DoctorEditScreen />} />
+        <Route path="/admin/bloodlist" element={<BloodListScreen />} />
+        <Route path="/admin/blood/:id/edit" element={<BloodEditScreen />} />
       </Route>
     </Route>
   )

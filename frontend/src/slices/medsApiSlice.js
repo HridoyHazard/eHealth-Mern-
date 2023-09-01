@@ -31,19 +31,19 @@ export const medsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Medicines"],
     }),
-    uploadMedicineImage: builder.mutation({
-      query: (data) => ({
-        url: `${UPLOAD_URL}`,
-        method: "POST",
-        body: data,
-      }),
-    }),
     deleteMedicine: builder.mutation({
       query: (medId) => ({
         url: `${MEDICINE_URL}/${medId}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
-      providesTags: ['Medicine'],
+      providesTags: ["Medicine"],
+    }),
+    createReview: builder.mutation({
+      query: (data) => ({
+        url: `${MEDICINE_URL}/${data.medId}/reviews`,
+        method: "POST",
+        body: data,
+      }),
     }),
   }),
 });
@@ -55,4 +55,5 @@ export const {
   useUpdateMedicineMutation,
   useUploadMedicineImageMutation,
   useDeleteMedicineMutation,
+  useCreateReviewMutation,
 } = medsApiSlice;

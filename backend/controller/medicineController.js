@@ -27,15 +27,15 @@ const getMedicineById = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const createMedicine = asyncHandler(async (req, res) => {
   const med = new Medicine({
-    name: 'Sample name',
+    name: "Sample name",
     price: 0,
     user: req.user._id,
-    image: '/images/sample.jpg',
-    brand: 'Sample brand',
-    category: 'Sample category',
+    image: "/images/sample.jpg",
+    brand: "Sample brand",
+    category: "Sample category",
     countInStock: 0,
     numReviews: 0,
-    description: 'Sample description',
+    description: "Sample description",
   });
 
   const createdMedicine = await med.save();
@@ -64,7 +64,7 @@ const updateMedicine = asyncHandler(async (req, res) => {
     res.json(updatedMedicine);
   } else {
     res.status(404);
-    throw new Error('Medicine not found');
+    throw new Error("Medicine not found");
   }
 });
 
@@ -76,10 +76,59 @@ const deleteMedicine = asyncHandler(async (req, res) => {
 
   if (med) {
     await Medicine.deleteOne({ _id: med._id });
-    res.json({ message: 'Medicine removed' }); 
+    res.json({ message: "Medicine removed" });
   } else {
     res.status(404);
-    throw new Error('Medicine not found');
+    throw new Error("Medicine not found");
   }
 });
-export { getMedicines,getMedicineById, createMedicine, updateMedicine, deleteMedicine };
+
+// @desc    Create new review
+// @route   POST /api/meds/:id/reviews
+// @access  Private
+const createMedicineReview = asyncHandler(async (req, res) => {
+  const { rating, comment } = req.body;
+
+  const med = await Medicine.findById(req.params.id);
+
+  if (med) {
+    const alreadyReviewed = med.reviews.find(
+      (r) => r.user.toString() === req.user._id.toString()
+    );
+
+    if (alreadyReviewed) {
+      res.status(400);
+      throw new Error("Medicine already reviewed");
+    }
+
+    const review = {
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+      user: req.user._id,
+    };
+
+    med.reviews.push(review);
+
+    med.numReviews = med.reviews.length;
+
+    med.rating =
+      med.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      med.reviews.length;
+
+    await med.save();
+    res.status(201).json({ message: "Review added" });
+  } else {
+    res.status(404);
+    throw new Error("Medicine not found");
+  }
+});
+
+export {
+  getMedicines,
+  getMedicineById,
+  createMedicine,
+  updateMedicine,
+  deleteMedicine,
+  createMedicineReview,
+};
