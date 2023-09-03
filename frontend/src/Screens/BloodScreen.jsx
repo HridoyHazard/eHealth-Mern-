@@ -9,6 +9,7 @@ const BloodScreen = () => {
 
   return (
     <>
+      <h1>Active Blood Donors</h1>
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -17,7 +18,6 @@ const BloodScreen = () => {
         </Message>
       ) : (
         <>
-          <h1>Bloods List</h1>
           <Row>
             {bloods.map((blood) => (
               <Col key={blood._id} sm={12} md={6} lg={4} xl={3}>

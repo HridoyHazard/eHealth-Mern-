@@ -91,6 +91,7 @@ const OrderScreen = () => {
   const deliverHandler = async () => {
     await deliverOrder(orderId);
     refetch();
+    toast.success("Delivered Successfull");
   };
 
   return isLoading ? (
@@ -99,7 +100,7 @@ const OrderScreen = () => {
     <Message variant="danger">{error.data.message}</Message>
   ) : (
     <>
-      <h1>Order {order._id}</h1>
+      <h1>Order Id: {order._id}</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
@@ -113,10 +114,13 @@ const OrderScreen = () => {
                 <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
               </p>
               <p>
-                <strong>Address:</strong>
-                {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
-                {order.shippingAddress.postalCode},{" "}
-                {order.shippingAddress.country}
+                <strong>Address: </strong>
+                {order.shippingAddress.address},
+                {order.shippingAddress.postalCode}, {order.shippingAddress.city}{" "}
+              </p>
+              <p>
+                <strong>Contact: </strong>
+                {order.shippingAddress.contact}
               </p>
               {order.isDelivered ? (
                 <Message variant="success">
@@ -201,7 +205,7 @@ const OrderScreen = () => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
+              {!order.isPaid && !userInfo.isAdmin && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
 

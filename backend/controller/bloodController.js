@@ -1,5 +1,5 @@
 import asyncHandler from "../middleware/asyncHandler.js";
-import Blood from "../models/bloodModel.js"
+import Blood from "../models/bloodModel.js";
 
 // @desc    Fetch all bloods
 // @route   GET /api/bloods
@@ -44,7 +44,7 @@ const createBlood = asyncHandler(async (req, res) => {
 // @desc    Update a blood
 // @route   PUT /api/bloods/:id
 // @access  Private/Admin
-const updateBlood= asyncHandler(async (req, res) => {
+const updateBlood = asyncHandler(async (req, res) => {
   const { name, image, group, lastdonate, age, address, contact } = req.body;
 
   const blood = await Blood.findById(req.params.id);

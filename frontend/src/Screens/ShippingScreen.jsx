@@ -10,18 +10,20 @@ const ShippingScreen = () => {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
 
-  const [address, setAddress] = useState(shippingAddress?.address || '');
-  const [city, setCity] = useState(shippingAddress?.city || '');
-  const [postalCode, setPostalCode] = useState(shippingAddress?.postalCode || '');
-  const [country, setCountry] = useState(shippingAddress?.country || '');
+  const [address, setAddress] = useState(shippingAddress?.address || "");
+  const [city, setCity] = useState(shippingAddress?.city || "");
+  const [postalCode, setPostalCode] = useState(
+    shippingAddress?.postalCode || ""
+  );
+  const [contact, setContact] = useState(shippingAddress?.contact || "");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAddress({ address, city, postalCode, country }));
-    navigate('/payment');
+    dispatch(saveShippingAddress({ address, city, postalCode, contact }));
+    navigate("/payment");
   };
 
   return (
@@ -43,12 +45,27 @@ const ShippingScreen = () => {
         <Form.Group className="my-2" controlId="city">
           <Form.Label>City</Form.Label>
           <Form.Control
+            as="select"
+            className="rounded-0 shadow"
+            type="text"
+            value={city}
+            required
+            onChange={(e) => setCity(e.target.value)}
+          >
+            <option className="d-none" value="">
+              Select City
+            </option>
+            {["Dhaka", "Sylhet", "Chattogram", "Khulna", "Rajshahi", "Barisal","Rangpur","Mymensingh"].map((option) => (
+              <option key={option}> {option}</option>
+            ))}
+          </Form.Control>
+          {/* <Form.Control
             type="text"
             placeholder="Enter city"
             value={city}
             required
             onChange={(e) => setCity(e.target.value)}
-          ></Form.Control>
+          ></Form.Control> */}
         </Form.Group>
 
         <Form.Group className="my-2" controlId="postalCode">
@@ -62,14 +79,14 @@ const ShippingScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group className="my-2" controlId="country">
-          <Form.Label>Country</Form.Label>
+        <Form.Group className="my-2" controlId="contact">
+          <Form.Label>Contact</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter country"
-            value={country}
+            placeholder="Enter contact"
+            value={contact}
             required
-            onChange={(e) => setCountry(e.target.value)}
+            onChange={(e) => setContact(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
