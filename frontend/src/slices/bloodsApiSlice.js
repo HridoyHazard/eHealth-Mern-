@@ -4,9 +4,11 @@ import { apiSlice } from "./apiSlice";
 export const bloodsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getBloods: builder.query({
-      query: (keyword) => ({
+      query: ({ keyword }) => ({
         url: BLOODS_URL,
-        params: { keyword},
+        params: {
+          keyword,
+        },
       }),
       keepUnusedDataFor: 5,
     }),

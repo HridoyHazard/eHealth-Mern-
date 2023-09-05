@@ -54,6 +54,7 @@ const router = createBrowserRouter(
       <Route path="/Doctor" element={<DoctorScreen />} />
       <Route path="/doctor/:id" element={<DoctorScreenDetails />} />
       <Route path="/Blood" element={<BloodScreen />} />
+      <Route path="/Blood/search/:keyword" element={<BloodScreen />} />
       <Route path="/blood/:id" element={<BloodScreenDetails />} />
       //All Private Routes
       <Route path="" element={<PrivateRoute />}>

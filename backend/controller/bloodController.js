@@ -5,8 +5,15 @@ import Blood from "../models/bloodModel.js";
 // @route   GET /api/bloods
 // @access  Public
 const getBloods = asyncHandler(async (req, res) => {
-  const bloods = await Blood.find({});
-  res.json(bloods);
+  const keyword = req.query.keyword
+    ? { name: { $regex: req.query.keyword, $options: "i" } } && {
+        group: { $regex: req.query.keyword },
+      }
+    : {};
+
+  const bloods = await Blood.find({ ...keyword });
+
+  res.json({ bloods });
 });
 
 // @desc    Fetch single blood
@@ -81,4 +88,4 @@ const deleteBlood = asyncHandler(async (req, res) => {
   }
 });
 
-export { getBloods,getBloodById,createBlood, updateBlood, deleteBlood };
+export { getBloods, getBloodById, createBlood, updateBlood, deleteBlood };
