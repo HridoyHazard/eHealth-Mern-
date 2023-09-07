@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import {
   ListGroupItem,
   ListGroup,
@@ -14,8 +14,16 @@ import Message from "../components/Message";
 
 const MedicineScreenDetails = () => {
   const { id: doctorId } = useParams();
+  const navigate = useNavigate();
 
   const { data: doctor, isLoading, error } = useGetDoctorDetailsQuery(doctorId);
+
+  const chatHandler = () => {
+    navigate(`/login?redirect=/doctor/${doctorId}/chat`);
+  };
+  const appointmentHandler = () => {
+    navigate(`/login?redirect=/doctor/${doctorId}/appointment`);
+  };
 
   return (
     <>
@@ -54,12 +62,20 @@ const MedicineScreenDetails = () => {
               <Card>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
-                    <Button className="btn-block" type="button">
+                    <Button
+                      className="btn-block"
+                      type="button"
+                      onClick={appointmentHandler}
+                    >
                       Get Appoinment
                     </Button>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <Button className="btn-block" type="button">
+                    <Button
+                      className="btn-block"
+                      type="button"
+                      onClick={chatHandler}
+                    >
                       Chat
                     </Button>
                   </ListGroup.Item>

@@ -41,6 +41,8 @@ import DoctorListScreen from "./Screens/Admin/DoctorListScreen";
 import DoctorEditScreen from "./Screens/Admin/DoctorEditScreen";
 import BloodListScreen from "./Screens/Admin/BloodListScreen";
 import BloodEditScreen from "./Screens/Admin/BloodEditScreen";
+import ChatScreen from "./Screens/ChatScreen";
+import AppointmentScreen from "./Screens/AppointmentScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -52,6 +54,8 @@ const router = createBrowserRouter(
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/Doctor" element={<DoctorScreen />} />
+      <Route path="/doctor/:id/chat" element={<ChatScreen />} />
+      <Route path="/doctor/:id/appointment" element={<AppointmentScreen />} />
       <Route path="/doctor/:id" element={<DoctorScreenDetails />} />
       <Route path="/Blood" element={<BloodScreen />} />
       <Route path="/Blood/search/:keyword" element={<BloodScreen />} />
