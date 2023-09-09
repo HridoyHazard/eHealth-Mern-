@@ -20,7 +20,8 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "chat": "nodemon backend/socket",
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run chat\"",
     "data:import": "node backend/seeder.js",
     "data:destroy": "node backend/seeder.js -d"
   },
