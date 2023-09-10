@@ -2,9 +2,11 @@ import React from "react";
 import { useEffect, useRef, useState } from "react";
 import "../../src/assets/styles/chat.css";
 import io from "socket.io-client";
+import { useSelector } from "react-redux";
 
 const ChatScreen = () => {
-  const [state, setState] = useState({ message: "", name: "" });
+  const { userInfo } = useSelector((state) => state.auth);
+  const [state, setState] = useState({ message: "", name: userInfo.name });
   const [chat, setChat] = useState([]);
 
   const socketRef = useRef();
@@ -43,14 +45,14 @@ const ChatScreen = () => {
       <div className="box">
         <form onSubmit={onMessageSubmit}>
           <h1>Message Section</h1>
-          <div className="name-field">
+          {/* <div className="name-field">
             <input
-              name="name"
+              name={userInfo.name}
               onChange={(e) => onTextChange(e)}
-              value={state.name}
+              value={userInfo.name}
               label="Name"
             />
-          </div>
+          </div> */}
           <div>
             <input
               name="message"
