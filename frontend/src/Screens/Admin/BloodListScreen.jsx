@@ -9,9 +9,13 @@ import {
   useCreateBloodMutation,
   useDeleteBloodMutation,
 } from "../../slices/bloodsApiSlice";
+import { useParams } from "react-router-dom";
 
 const BloodListScreen = () => {
-  const { data: bloods, isLoading, error, refetch } = useGetBloodsQuery();
+  const { keyword } = useParams();
+  const { data, isLoading, error, refetch } = useGetBloodsQuery({ keyword });
+
+  console.log(data);
 
   const [createBlood, { isLoading: loadingCreate }] = useCreateBloodMutation();
 
@@ -74,7 +78,7 @@ const BloodListScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {bloods.map((blood) => (
+              {data.bloods.map((blood) => (
                 <tr key={blood._id}>
                   <td>{blood._id}</td>
                   <td>{blood.name}</td>

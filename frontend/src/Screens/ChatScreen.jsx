@@ -1,76 +1,128 @@
-import React from "react";
-import { useEffect, useRef, useState } from "react";
-import "../../src/assets/styles/chat.css";
+import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
+import Image from "../components/Image.jsx";
 import { useSelector } from "react-redux";
+import {
+  Page,
+  MyMessage,
+  MyRow,
+  Form,
+  TextArea,
+  Button,
+  Container,
+  PartnerMessage,
+  PartnerRow,
+  Input,
+  FName,
+  MyName,
+  PartnerName,
+  PartnerFName,
+} from "../utils/chat.styled.js";
 
 const ChatScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
-  const [state, setState] = useState({ message: "", name: userInfo.name });
-  const [chat, setChat] = useState([]);
+  const [yourID, setYourID] = useState();
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState("");
+  const [name, setName] = useState(userInfo.name);
+  const [file, setFile] = useState(null);
 
   const socketRef = useRef();
+
   useEffect(() => {
     socketRef.current = io.connect("http://localhost:4000");
-    socketRef.current.on("message", ({ name, message }) => {
-      setChat([...chat, { name, message }]);
+
+    socketRef.current.on("your id", (id) => {
+      setYourID(id);
+    });
+
+    socketRef.current.on("message", (message) => {
+      console.log("here");
+      setMessages((messages) => [...messages, message]);
     });
     return () => socketRef.current.disconnect();
-  }, [chat]);
+  }, []);
 
-  const onTextChange = (e) => {
-    setState({ ...state, [e.target.name]: e.target.value });
-  };
-
-  const onMessageSubmit = (e) => {
-    const { name, message } = state;
-    socketRef.current.emit("message", { name, message });
+  function sendMessage(e) {
     e.preventDefault();
-    setState({ message: "", name });
-  };
+    if (file) {
+      const messageObject = {
+        id: yourID,
+        type: "file",
+        body: file,
+        mimeType: file.type,
+        fileName: file.name,
+        name: name,
+      };
+      setMessage("");
+      setFile();
+      socketRef.current.emit("send message", messageObject);
+    } else {
+      const messageObject = {
+        body: message,
+        id: yourID,
+        name: name,
+      };
+      setMessage("");
+      socketRef.current.emit("send message", messageObject);
+    }
+  }
 
-  const renderChat = () => {
-    return chat.map(({ name, message }, index) => (
-      <div key={index}>
-        <h2>
-          {name}: <span>{message}</span>
-        </h2>
-      </div>
-    ));
-  };
+  function handleChange(e) {
+    setMessage(e.target.value);
+  }
 
+  function selectFile(e) {
+    setMessage(e.target.files[0].name);
+    setFile(e.target.files[0]);
+  }
+  function renderMessage(message, index) {
+    if (message.type === "file") {
+      const blob = new Blob([message.body], { type: message.type });
+      if (message.id === yourID) {
+        return (
+          <MyRow key={index}>
+            <Image fileName={message.fileName} blob={blob} />
+            <FName>{message.name}</FName>
+          </MyRow>
+        );
+      }
+      return (
+        <PartnerRow key={index}>
+          <Image fileName={message.fileName} blob={blob} />
+          <PartnerFName>{message.name}</PartnerFName>{" "}
+        </PartnerRow>
+      );
+    }
+    if (message.id === yourID) {
+      return (
+        <MyRow key={index}>
+          <MyMessage>{message.body}</MyMessage> <br />
+          <MyName>{message.name}</MyName>
+        </MyRow>
+      );
+    }
+    return (
+      <PartnerRow key={index}>
+        <PartnerMessage>{message.body}</PartnerMessage> <br />
+        <PartnerName>{message.name}</PartnerName>
+      </PartnerRow>
+    );
+  }
   return (
-    <>
-      <h1>Chat With Your Doctor Now</h1>
-      <div className="box">
-        <form onSubmit={onMessageSubmit}>
-          <h1>Message Section</h1>
-          {/* <div className="name-field">
-            <input
-              name={userInfo.name}
-              onChange={(e) => onTextChange(e)}
-              value={userInfo.name}
-              label="Name"
-            />
-          </div> */}
-          <div>
-            <input
-              name="message"
-              onChange={(e) => onTextChange(e)}
-              value={state.message}
-              id="outlined-multiline-static"
-              variant="outlined"
-              label="Message"
-            />
-          </div>
-          <button>Send Message</button>
-        </form>
-        <div className="render-chat">
-          <h1>Conversation</h1>
-          {renderChat()}
-        </div>
-      </div>
-    </>
+    <Page>
+      <h1>Chat</h1>
+      <Container>{messages.map(renderMessage)}</Container>
+      <Form onSubmit={sendMessage}>
+        <TextArea
+          value={message}
+          onChange={handleChange}
+          placeholder="write text here..."
+        />
+        <Input type="file" onChange={selectFile} />
+        <Button>Send</Button>
+      </Form>
+    </Page>
   );
 };
 

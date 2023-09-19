@@ -13,6 +13,8 @@ import {
 const DoctorListScreen = () => {
   const { data: doctors, isLoading, error, refetch } = useGetDoctorsQuery();
 
+  console.log(doctors)
+
   const [createDoctor, { isLoading: loadingCreate }] =
     useCreateDoctorMutation();
 

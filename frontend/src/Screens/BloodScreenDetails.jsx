@@ -48,6 +48,9 @@ const BloodScreenDetails = () => {
                 <ListGroupItem>
                   <strong>{blood.address}</strong>
                 </ListGroupItem>
+                <ListGroupItem>
+                  <strong>{blood.contact}</strong>
+                </ListGroupItem>
               </ListGroup>
             </Col>
           </Row>

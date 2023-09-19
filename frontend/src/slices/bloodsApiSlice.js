@@ -11,6 +11,7 @@ export const bloodsApiSlice = apiSlice.injectEndpoints({
         },
       }),
       keepUnusedDataFor: 5,
+      providesTags: ["Bloods"],
     }),
     getBloodDetails: builder.query({
       query: (bloodId) => ({
