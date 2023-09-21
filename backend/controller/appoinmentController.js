@@ -35,14 +35,25 @@ const addAppointmentItems = asyncHandler(async (req, res) => {
 // @route   GET /api/appointments/mine
 // @access  Private
 const getMyAppointments = asyncHandler(async (req, res) => {
-  res.send("get my appointments");
+  const appointments = await Appointment.find({ user: req.user._id });
+  res.status(200).json(appointments);
 });
 
 // @desc    Get appointment by ID
 // @route   GET /api/appointments/:id
 // @access  Private
 const getAppointmentById = asyncHandler(async (req, res) => {
-  res.send("get appointment by id");
+  const appointment = await Appointment.findById(req.params.id).populate(
+    "user",
+    "name email"
+  );
+
+  if (appointment) {
+    res.status(200).json(appointment);
+  } else {
+    res.status(404);
+    throw new Error("Appointment not found");
+  }
 });
 
 // @desc    Update appointment to paid

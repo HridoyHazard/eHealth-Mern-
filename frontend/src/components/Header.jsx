@@ -9,6 +9,7 @@ import { logout } from "../slices/authSlice";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
+  const { doctorInfo } = useSelector((state) => state.choice);
   const { userInfo } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
@@ -68,6 +69,20 @@ const Header = () => {
                             style={{ marginLeft: "5px" }}
                           >
                             {cartItems.reduce((a, c) => a + c.qty, 0)}
+                          </Badge>
+                        )}
+                      </NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/placeappointment">
+                      <NavDropdown.Item>
+                        Appointment
+                        {doctorInfo.length > 0 && (
+                          <Badge
+                            pill
+                            bg="success"
+                            style={{ marginLeft: "5px" }}
+                          >
+                            *
                           </Badge>
                         )}
                       </NavDropdown.Item>

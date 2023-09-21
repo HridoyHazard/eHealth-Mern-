@@ -43,6 +43,8 @@ import BloodListScreen from "./Screens/Admin/BloodListScreen";
 import BloodEditScreen from "./Screens/Admin/BloodEditScreen";
 import ChatScreen from "./Screens/ChatScreen";
 import AppointmentScreen from "./Screens/AppointmentScreen";
+import AppointmentAddress from "./Screens/AppointmentAddress";
+import PlaceAppointmentScreen from "./Screens/PlaceAppointmentScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -60,14 +62,18 @@ const router = createBrowserRouter(
       <Route path="/Blood" element={<BloodScreen />} />
       <Route path="/Blood/search/:keyword" element={<BloodScreen />} />
       <Route path="/blood/:id" element={<BloodScreenDetails />} />
+
       //All Private Routes
       <Route path="" element={<PrivateRoute />}>
         <Route path="/shipping" element={<ShippingScreen />} />
         <Route path="/payment" element={<PaymentScreen />} />
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
+        <Route path="/placeappointment" element={<PlaceAppointmentScreen />} />
+        <Route path="/appointmentaddress" element={<AppointmentAddress />} />
         <Route path="/order/:id" element={<OrderScreen />} />
         <Route path="/profile" element={<ProfileScreen />} />
       </Route>
+      
       //All Admin Routes
       <Route path="" element={<AdminRoute />}>
         <Route path="/admin/orderlist" element={<OrderListScreen />} />

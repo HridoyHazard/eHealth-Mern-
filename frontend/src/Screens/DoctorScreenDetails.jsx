@@ -11,18 +11,24 @@ import {
 import { useGetDoctorDetailsQuery } from "../slices/doctorsApiSlice";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { addToChoice } from "../slices/choiceSlice";
+import { useDispatch } from "react-redux";
 
 const MedicineScreenDetails = () => {
   const { id: doctorId } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { data: doctor, isLoading, error } = useGetDoctorDetailsQuery(doctorId);
 
+  const appointmentHandler = () => {
+    // navigate(`/login?redirect=/doctor/${doctorId}/appointment`);
+    dispatch(addToChoice({ ...doctor }));
+    navigate(`/appointmentaddress`);
+  };
+
   const chatHandler = () => {
     navigate(`/login?redirect=/doctor/${doctorId}/chat`);
-  };
-  const appointmentHandler = () => {
-    navigate(`/login?redirect=/doctor/${doctorId}/appointment`);
   };
 
   return (

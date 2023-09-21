@@ -14,6 +14,7 @@ export const MyRow = styled.div`
   margin-top: 10px;
   position: relative;
   // background-color: grey;
+  // flex-direction: column; dia dekha lagbe kaj hoy naki pore diye 
 `;
 
 export const MyMessage = styled.div`

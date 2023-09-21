@@ -11,7 +11,7 @@ const appointmentSchema = mongoose.Schema(
       {
         name: { type: String, required: true },
         image: { type: String, required: true },
-        chamber: { type: Number, required: true },
+        chamber: { type: String, required: true },
         doctor: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
@@ -22,29 +22,6 @@ const appointmentSchema = mongoose.Schema(
     address: {
       address: { type: String, required: true },
       contact: { type: String, required: true },
-    },
-    paymentMethod: {
-      type: String,
-      required: true,
-    },
-    paymentResult: {
-      id: { type: String },
-      status: { type: String },
-      update_time: { type: String },
-      email_address: { type: String },
-    },
-    appointmentsFee: {
-      type: Number,
-      required: true,
-      default: 0.0,
-    },
-    isPaid: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    paidAt: {
-      type: Date,
     },
     isApproved: {
       type: Boolean,
