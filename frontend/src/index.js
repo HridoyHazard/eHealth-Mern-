@@ -46,6 +46,7 @@ import AppointmentScreen from "./Screens/AppointmentScreen";
 import AppointmentAddress from "./Screens/AppointmentAddress";
 import PlaceAppointmentScreen from "./Screens/PlaceAppointmentScreen";
 
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -57,7 +58,6 @@ const router = createBrowserRouter(
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/Doctor" element={<DoctorScreen />} />
       <Route path="/doctor/:id/chat" element={<ChatScreen />} />
-      <Route path="/doctor/:id/appointment" element={<AppointmentScreen />} />
       <Route path="/doctor/:id" element={<DoctorScreenDetails />} />
       <Route path="/Blood" element={<BloodScreen />} />
       <Route path="/Blood/search/:keyword" element={<BloodScreen />} />
@@ -72,6 +72,7 @@ const router = createBrowserRouter(
         <Route path="/appointmentaddress" element={<AppointmentAddress />} />
         <Route path="/order/:id" element={<OrderScreen />} />
         <Route path="/profile" element={<ProfileScreen />} />
+        <Route path="/appointment/:id" element={<AppointmentScreen />} />
       </Route>
       
       //All Admin Routes

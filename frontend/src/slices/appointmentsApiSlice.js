@@ -10,7 +10,23 @@ export const appointmentsApiSlice = apiSlice.injectEndpoints({
         body: { ...appointment },
       }),
     }),
+    getAppointmentDetails: builder.query({
+      query: (id) => ({
+        url: `${APPOINTMENTS_URL}/${id}`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
+    getMyAppointments: builder.query({
+      query: () => ({
+        url: `${APPOINTMENTS_URL}/mine`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
-export const { useCreateAppointmentMutation } = appointmentsApiSlice;
+export const {
+  useCreateAppointmentMutation,
+  useGetAppointmentDetailsQuery,
+  useGetMyAppointmentsQuery,
+} = appointmentsApiSlice;

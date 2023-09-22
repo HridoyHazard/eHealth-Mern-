@@ -12,6 +12,8 @@ const appointmentSchema = mongoose.Schema(
         name: { type: String, required: true },
         image: { type: String, required: true },
         chamber: { type: String, required: true },
+        specialist: { type: String, required: true },
+        available: { type: String, required: true },
         doctor: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,

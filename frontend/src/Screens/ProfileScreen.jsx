@@ -10,6 +10,7 @@ import Loader from "../components/Loader";
 import { useProfileMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { useGetMyOrdersQuery } from "../slices/ordersApiSlice";
+import { useGetMyAppointmentsQuery } from "../slices/appointmentsApiSlice";
 
 const ProfileScreen = () => {
   const [name, setName] = useState("");
@@ -20,6 +21,8 @@ const ProfileScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
+
+  const { data: appointments } = useGetMyAppointmentsQuery();
 
   const [updateProfile, { isLoading: loadingUpdateProfile }] =
     useProfileMutation();
@@ -53,7 +56,7 @@ const ProfileScreen = () => {
 
   return (
     <Row>
-      <Col md={3}>
+      <Col md={2}>
         <h2>User Profile</h2>
 
         <Form onSubmit={submitHandler}>
@@ -124,7 +127,7 @@ const ProfileScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {orders?.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
@@ -145,12 +148,12 @@ const ProfileScreen = () => {
                   <td>
                     {order.isDelivered ? (
                       <>
-                     <div>
-                        {" "}
-                        <FaCheckCircle style={{color:'green'}} />
-                      </div>
-                      <div>{order.deliveredAt.substring(0, 10)}</div>
-                    </>
+                        <div>
+                          {" "}
+                          <FaCheckCircle style={{ color: "green" }} />
+                        </div>
+                        <div>{order.deliveredAt.substring(0, 10)}</div>
+                      </>
                     ) : (
                       <FaTimes style={{ color: "red" }} />
                     )}
@@ -167,6 +170,55 @@ const ProfileScreen = () => {
             </tbody>
           </Table>
         )}
+        <>
+          <h2>My Appointments</h2>
+          {isLoading ? (
+            <Loader />
+          ) : error ? (
+            <Message variant="danger">
+              {error?.data?.message || error.error}
+            </Message>
+          ) : (
+            <Table striped hover responsive className="table-sm">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>DATE</th>
+                  <th>Approved</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {appointments?.map((appointment) => (
+                  <tr key={appointment._id}>
+                    <td>{appointment._id}</td>
+                    <td>{appointment.createdAt.substring(0, 10)}</td>
+                    <td>
+                      {appointment.isApproved ? (
+                        <>
+                          <div>
+                            {" "}
+                            <FaCheck style={{ color: "green" }} />
+                          </div>
+                          <div>{appointment.ApprovedAt.substring(0, 10)}</div>
+                        </>
+                      ) : (
+                        <FaTimes style={{ color: "red" }} />
+                      )}
+                    </td>
+                    <td>
+                      <LinkContainer to={`/appointment/${appointment._id}`}>
+                        <Button className="btn-sm" variant="light">
+                          Details
+                        </Button>
+                      </LinkContainer>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
+        </>
       </Col>
     </Row>
   );

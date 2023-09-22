@@ -5,7 +5,7 @@ import Appointment from "../models/appointmentModel.js";
 // @route   POST /api/appointments
 // @access  Private
 const addAppointmentItems = asyncHandler(async (req, res) => {
-  const { appointmentItems, address, paymentMethod, appointmentsFee } =
+  const { appointmentItems, address,  } =
     req.body;
 
   if (appointmentItems && appointmentItems.length === 0) {
@@ -20,8 +20,6 @@ const addAppointmentItems = asyncHandler(async (req, res) => {
       })),
       user: req.user._id,
       address,
-      paymentMethod,
-      appointmentsFee,
     });
 
     const createdAppointment = await appointment.save();
@@ -56,15 +54,8 @@ const getAppointmentById = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update appointment to paid
-// @route   PUT /api/appointments/:id/pay
-// @access  Private
-const updateAppointmentToPaid = asyncHandler(async (req, res) => {
-  res.send("update appointment to paid");
-});
-
-// @desc    Update appointment to delivered
-// @route   GET /api/appointments/:id/deliver
+// @desc    Update appointment to approved
+// @route   GET /api/appointments/:id/approve 
 // @access  Private/Admin
 const updateAppointmentToApproved = asyncHandler(async (req, res) => {
   res.send("update appointment to approved");
@@ -74,14 +65,14 @@ const updateAppointmentToApproved = asyncHandler(async (req, res) => {
 // @route   GET /api/appointments
 // @access  Private/Admin
 const getAppointments = asyncHandler(async (req, res) => {
-  res.send("get all appointments");
+  const appointments = await Appointment.find({}).populate('user', 'id name');
+  res.json(appointments);
 });
 
 export {
   addAppointmentItems,
   getMyAppointments,
   getAppointmentById,
-  updateAppointmentToPaid,
   updateAppointmentToApproved,
   getAppointments,
 };

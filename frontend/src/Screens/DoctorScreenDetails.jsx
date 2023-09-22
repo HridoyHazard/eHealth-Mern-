@@ -62,6 +62,9 @@ const MedicineScreenDetails = () => {
                 <ListGroupItem>
                   <strong>{doctor.specialist}</strong>
                 </ListGroupItem>
+                <ListGroupItem>
+                  <strong>{doctor.available}</strong>
+                </ListGroupItem>
               </ListGroup>
             </Col>
             <Col md={3}>

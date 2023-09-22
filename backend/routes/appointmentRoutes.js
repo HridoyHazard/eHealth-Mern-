@@ -4,7 +4,6 @@ import {
   addAppointmentItems,
   getMyAppointments,
   getAppointmentById,
-  updateAppointmentToPaid,
   updateAppointmentToApproved,
   getAppointments,
 } from "../controller/appoinmentController.js";
@@ -16,7 +15,6 @@ router
   .get(protect, admin, getAppointments);
 router.route("/mine").get(protect, getMyAppointments);
 router.route("/:id").get(protect, getAppointmentById);
-router.route("/:id/pay").put(protect, updateAppointmentToPaid);
 router.route("/:id/approve").put(protect, admin, updateAppointmentToApproved);
 
 export default router;
