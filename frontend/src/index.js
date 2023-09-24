@@ -45,6 +45,7 @@ import ChatScreen from "./Screens/ChatScreen";
 import AppointmentScreen from "./Screens/AppointmentScreen";
 import AppointmentAddress from "./Screens/AppointmentAddress";
 import PlaceAppointmentScreen from "./Screens/PlaceAppointmentScreen";
+import AppointmentListScreen from "./Screens/Admin/AppointmentListScreen";
 
 
 const router = createBrowserRouter(
@@ -78,6 +79,7 @@ const router = createBrowserRouter(
       //All Admin Routes
       <Route path="" element={<AdminRoute />}>
         <Route path="/admin/orderlist" element={<OrderListScreen />} />
+        <Route path="/admin/appointmentlist" element={<AppointmentListScreen />} />
         <Route path="/admin/medicinelist" element={<MedicineListScreen />} />
         <Route path="/admin/med/:id/edit" element={<MedicineEditScreen />} />
         <Route path="/admin/userlist" element={<UserListScreen />} />

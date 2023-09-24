@@ -27,6 +27,7 @@ const ProfileScreen = () => {
   const [updateProfile, { isLoading: loadingUpdateProfile }] =
     useProfileMutation();
 
+  console.log(appointments);
   useEffect(() => {
     setName(userInfo.name);
     setEmail(userInfo.email);
@@ -184,6 +185,7 @@ const ProfileScreen = () => {
                 <tr>
                   <th>ID</th>
                   <th>DATE</th>
+                  <th>Doctor Name</th>
                   <th>Approved</th>
                   <th></th>
                 </tr>
@@ -194,11 +196,16 @@ const ProfileScreen = () => {
                     <td>{appointment._id}</td>
                     <td>{appointment.createdAt.substring(0, 10)}</td>
                     <td>
+                      {appointment.appointmentItems.map((items) => (
+                        <div>{items.name}</div>
+                      ))}
+                    </td>
+                    <td>
                       {appointment.isApproved ? (
                         <>
                           <div>
                             {" "}
-                            <FaCheck style={{ color: "green" }} />
+                            <FaCheckCircle style={{ color: "green" }} />
                           </div>
                           <div>{appointment.ApprovedAt.substring(0, 10)}</div>
                         </>

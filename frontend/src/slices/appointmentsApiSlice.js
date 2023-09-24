@@ -22,6 +22,18 @@ export const appointmentsApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    getAppointments: builder.query({
+      query: () => ({
+        url: APPOINTMENTS_URL,
+      }),
+      keepUnusedDataFor: 5,
+    }),
+    approveAppointment: builder.mutation({
+      query: (appointmentId) => ({
+        url: `${APPOINTMENTS_URL}/${appointmentId}/approve`,
+        method: "PUT",
+      }),
+    }),
   }),
 });
 
@@ -29,4 +41,6 @@ export const {
   useCreateAppointmentMutation,
   useGetAppointmentDetailsQuery,
   useGetMyAppointmentsQuery,
+  useGetAppointmentsQuery,
+  useApproveAppointmentMutation,
 } = appointmentsApiSlice;

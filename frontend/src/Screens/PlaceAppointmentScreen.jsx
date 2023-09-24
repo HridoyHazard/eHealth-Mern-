@@ -1,7 +1,15 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
+import {
+  Button,
+  Row,
+  Col,
+  ListGroup,
+  Image,
+  Card,
+  ListGroupItem,
+} from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -60,7 +68,7 @@ const PlaceAppointmentScreen = () => {
               )}
             </ListGroup.Item>
             <ListGroup.Item>
-              <h2>Appintment Doctor</h2>
+              <h2>Doctor Information</h2>
               {choice.doctorInfo.length === 0 ? (
                 <Message>Your Appointment is empty</Message>
               ) : (
@@ -80,6 +88,18 @@ const PlaceAppointmentScreen = () => {
                           <Link to={`/doctor/${item._id}`}>{item.name}</Link>
                         </Col>
                       </Row>
+                      <br />
+                      <p>
+                        <strong>Specialist: </strong> {item.specialist}
+                      </p>
+                      <br />
+                      <p>
+                        <strong>Degree: </strong> {item.degree}
+                      </p>
+                      <br />
+                      <p>
+                        <strong>Chamber: </strong> {item.chamber}
+                      </p>
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
@@ -91,13 +111,45 @@ const PlaceAppointmentScreen = () => {
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2>Appointment Summary</h2>
               </ListGroup.Item>
-              <ListGroup.Item>
-                {error && (
-                  <Message variant="danger">{error.data.message}</Message>
-                )}
-              </ListGroup.Item>
+              <ListGroupItem>
+                <Row>
+                  <Col>Name</Col>
+                  <Col>{choice.Address.name}</Col>
+                </Row>
+                <br />
+                <Row>
+                  <Col>Contact Info</Col>
+                  <Col>{choice.Address.contact}</Col>
+                </Row>
+                <br />
+                <Row>
+                  <Col>Address</Col>
+                  <Col>{choice.Address.address}</Col>
+                </Row>
+              </ListGroupItem>
+              {choice.doctorInfo.map((item, index) => (
+                <ListGroup.Item key={index}>
+                  <Row>
+                    <Col>Chamber</Col>
+                    <Col>{item.chamber}</Col>
+                  </Row>
+                  <br />
+                  <Row>
+                    <Col>Available</Col>
+                    <Col>{item.available}</Col>
+                  </Row>
+                  <br />
+                  <Row>
+                    <Col>Specialist</Col>
+                    <Col>{item.specialist}</Col>
+                  </Row>
+                </ListGroup.Item>
+              ))}
+              {error && (
+                <Message variant="danger">{error.data.message}</Message>
+              )}
               <ListGroup.Item>
                 <Button
                   type="button"

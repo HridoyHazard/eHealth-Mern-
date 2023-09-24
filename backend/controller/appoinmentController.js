@@ -58,7 +58,19 @@ const getAppointmentById = asyncHandler(async (req, res) => {
 // @route   GET /api/appointments/:id/approve 
 // @access  Private/Admin
 const updateAppointmentToApproved = asyncHandler(async (req, res) => {
-  res.send("update appointment to approved");
+  const appointment = await Appointment.findById(req.params.id);
+
+  if (appointment) {
+    appointment.isApproved = true;
+    appointment.ApprovedAt = Date.now();
+
+    const updatedAppointment = await appointment.save();
+
+    res.json(updatedAppointment);
+  } else {
+    res.status(404);
+    throw new Error('Order not found');
+  }
 });
 
 // @desc    Get all appointments

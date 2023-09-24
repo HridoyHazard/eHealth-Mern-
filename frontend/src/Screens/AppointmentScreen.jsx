@@ -1,12 +1,13 @@
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { useGetAppointmentDetailsQuery } from "../slices/appointmentsApiSlice";
+import {
+  useGetAppointmentDetailsQuery,
+  useApproveAppointmentMutation,
+} from "../slices/appointmentsApiSlice";
 
 const AppointmentScreen = () => {
   const { id: appointmentId } = useParams();
@@ -18,8 +19,16 @@ const AppointmentScreen = () => {
     error,
   } = useGetAppointmentDetailsQuery(appointmentId);
 
+  const [approveAppointment, { isLoading: loadingApprove }] =
+    useApproveAppointmentMutation();
+
   const { userInfo } = useSelector((state) => state.auth);
-  console.log(appointment);
+
+  const approveAppointmentHandler = async () => {
+    await approveAppointment(appointmentId);
+    refetch();
+    toast.success("Approved Successfull");
+  };
   return isLoading ? (
     <Loader />
   ) : error ? (
@@ -49,9 +58,9 @@ const AppointmentScreen = () => {
                 <strong>Contact: </strong>
                 {appointment.address.contact}
               </p>
-              {appointment.isDelivered ? (
+              {appointment.isApproved ? (
                 <Message variant="success">
-                  Approved on {appointment.deliveredAt}
+                  Approved on {appointment.ApprovedAt.substr(0, 10)}
                 </Message>
               ) : (
                 <Message variant="danger">Not Approved</Message>
@@ -71,11 +80,23 @@ const AppointmentScreen = () => {
                         <Image src={item.image} alt={item.name} fluid rounded />
                       </Col>
                       <Col>
-                        <Link to={`/appointment/${item.doctor}`}>
+                        <Link to={`/doctor/${item.doctor}`}>
                           {item.name}
                         </Link>
                       </Col>
                     </Row>
+                    <br />
+                    <p>
+                      <strong>Specialist: </strong> {item.specialist}
+                    </p>
+                    <br />
+                    <p>
+                      <strong>Degree: </strong> {item.degree}
+                    </p>
+                    <br />
+                    <p>
+                      <strong>Chamber: </strong> {item.chamber}
+                    </p>
                   </ListGroup.Item>
                 ))}
               </ListGroup>
@@ -112,12 +133,16 @@ const AppointmentScreen = () => {
                 </ListGroup.Item>
               ))}
 
-              {/* {loadingApprove && <Loader />} */}
+              {loadingApprove && <Loader />}
 
-              {userInfo && userInfo.isAdmin && (
+              {userInfo && userInfo.isAdmin && !appointment.isApproved && (
                 <ListGroup.Item>
-                  <Button type="button" className="btn btn-block">
-                    Mark As Delivered
+                  <Button
+                    type="button"
+                    className="btn btn-block"
+                    onClick={approveAppointmentHandler}
+                  >
+                    Mark As Approved
                   </Button>
                 </ListGroup.Item>
               )}
