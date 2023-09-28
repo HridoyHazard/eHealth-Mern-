@@ -1,18 +1,19 @@
 #home-icon {
     margin-top: 100px;
-    margin-right: 100px;
     margin-left: 100px;
+    margin-right: 100px;
   }
   .box {
     position: relative;
-    padding: 0 20px 25px 20px;
     background-size: cover;
     background-position: center;
     color: black;
     background-color: #ffffff;
     text-align: center;
     height: 100%;
-    margin-top: -100px;
+    width: 400px;
+    margin-top: -60px;
+    margin-bottom: 10rem;
   }
   
   p {

@@ -8,9 +8,9 @@ import {
   Button,
   Image,
 } from "react-bootstrap";
-import { useGetBloodDetailsQuery } from "../slices/bloodsApiSlice";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
+import { useGetBloodDetailsQuery } from "../../slices/bloodsApiSlice";
+import Message from "../../components/Message";
+import Loader from "../../components/Loader";
 
 const BloodScreenDetails = () => {
   const { id: bloodId } = useParams();

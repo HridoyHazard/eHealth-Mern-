@@ -10,8 +10,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
-import Message from "../components/Message";
-import { addToCart, removeFromCart } from "../slices/cartSlice";
+import Message from "../../components/Message";
+import { addToCart, removeFromCart } from "../../slices/cartSlice";
 
 const CartScreen = () => {
   const dispatch = useDispatch();

@@ -9,17 +9,17 @@ import {
   Image,
   Form,
 } from "react-bootstrap";
-import Rating from "../components/Rating";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
+import Rating from "../../components/Rating";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
 import { useState } from "react";
-import { addToCart } from "../slices/cartSlice";
+import { addToCart } from "../../slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import {
   useGetMedicineDetailsQuery,
   useCreateReviewMutation,
-} from "../slices/medsApiSlice";
+} from "../../slices/medsApiSlice";
 
 const MedicineScreenDetails = () => {
   const { id: medId } = useParams();

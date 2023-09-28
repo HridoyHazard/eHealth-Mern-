@@ -17,19 +17,22 @@ import store from "./store";
 import reportWebVitals from "./reportWebVitals";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
-import MedicineScreen from "./Screens/MedicineScreen";
-import MedicineScreenDetails from "./Screens/MedicineScreenDetails";
-import DoctorScreen from "./Screens/DoctorScreen";
-import DoctorScreenDetails from "./Screens/DoctorScreenDetails";
-import BloodScreen from "./Screens/BloodScreen";
-import BloodScreenDetails from "./Screens/BloodScreenDetails";
-import CartScreen from "./Screens/CartScreen";
+import MedicineScreen from "./Screens/Medicine/MedicineScreen";
+import MedicineScreenDetails from "./Screens/Medicine/MedicineScreenDetails";
+import DoctorScreen from "./Screens/Doctor/DoctorScreen";
+import DoctorScreenDetails from "./Screens/Doctor/DoctorScreenDetails";
+import BloodScreen from "./Screens/Blood/BloodScreen";
+import BloodScreenDetails from "./Screens/Blood/BloodScreenDetails";
+import CartScreen from "./Screens/Order And Cart/CartScreen";
 import LoginScreen from "./Screens/LoginScreen";
 import RegisterScreen from "./Screens/RegisterScreen";
-import ShippingScreen from "./Screens/ShippingScreen";
-import PaymentScreen from "./Screens/PaymentScreen";
-import PlaceOrderScreen from "./Screens/PlaceOrderScreen";
-import OrderScreen from "./Screens/OrderScreen";
+import ShippingScreen from "./Screens/Order And Cart/ShippingScreen";
+import PaymentScreen from "./Screens/Order And Cart/PaymentScreen";
+import PlaceOrderScreen from "./Screens/Order And Cart/PlaceOrderScreen";
+import OrderScreen from "./Screens/Order And Cart/OrderScreen";
+import AppointmentScreen from "./Screens/Appointment/AppointmentScreen";
+import AppointmentAddress from "./Screens/Appointment/AppointmentAddress";
+import PlaceAppointmentScreen from "./Screens/Appointment/PlaceAppointmentScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
 import OrderListScreen from "./Screens/Admin/OrderListScreen";
 import MedicineListScreen from "./Screens/Admin/MedicineListScreen";
@@ -42,9 +45,8 @@ import DoctorEditScreen from "./Screens/Admin/DoctorEditScreen";
 import BloodListScreen from "./Screens/Admin/BloodListScreen";
 import BloodEditScreen from "./Screens/Admin/BloodEditScreen";
 import ChatScreen from "./Screens/ChatScreen";
-import AppointmentScreen from "./Screens/AppointmentScreen";
-import AppointmentAddress from "./Screens/AppointmentAddress";
-import PlaceAppointmentScreen from "./Screens/PlaceAppointmentScreen";
+
+
 import AppointmentListScreen from "./Screens/Admin/AppointmentListScreen";
 
 

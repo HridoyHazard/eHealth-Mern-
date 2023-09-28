@@ -1,8 +1,8 @@
 import { Col, Row } from "react-bootstrap";
-import Medicine from "../components/Medicine";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import { useGetMedicinesQuery } from "../slices/medsApiSlice";
+import Medicine from "../../components/Medicine";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
+import { useGetMedicinesQuery } from "../../slices/medsApiSlice";
 
 const MedicineScreen = () => {
   const { data: meds, isLoading, error } = useGetMedicinesQuery();

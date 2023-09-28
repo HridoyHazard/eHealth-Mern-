@@ -1,10 +1,10 @@
 import { Col, Row } from "react-bootstrap";
-import Blood from "../components/Blood";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import { useGetBloodsQuery } from "../slices/bloodsApiSlice";
+import Blood from "../../components/Blood";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
+import { useGetBloodsQuery } from "../../slices/bloodsApiSlice";
 import { useParams } from "react-router-dom";
-import SearchBox from "../components/SearchBox";
+import SearchBox from "../../components/SearchBox";
 
 
 const BloodScreen = () => {

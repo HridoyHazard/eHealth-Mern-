@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import FormContainer from "../components/FormContainer";
-import AppointmentSteps from "../components/AppointmentSteps";
+import AppointmentSteps from "../../components/AppointmentSteps";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { saveAddress } from "../slices/choiceSlice";
+import { saveAddress } from "../../slices/choiceSlice";
+import FormContainer from "../../components/FormContainer";
 
 const AppointmentAddress = () => {
   const choice = useSelector((state) => state.choice);

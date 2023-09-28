@@ -11,11 +11,11 @@ import {
   ListGroupItem,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import { useCreateAppointmentMutation } from "../slices/appointmentsApiSlice";
-import { cleardoctorInfo } from "../slices/choiceSlice";
-import AppointmentSteps from "../components/AppointmentSteps";
+import Message from "../../components/Message";
+import Loader from "../../components/Loader";
+import { useCreateAppointmentMutation } from "../../slices/appointmentsApiSlice";
+import { cleardoctorInfo } from "../../slices/choiceSlice";
+import AppointmentSteps from "../../components/AppointmentSteps";
 
 const PlaceAppointmentScreen = () => {
   const navigate = useNavigate();

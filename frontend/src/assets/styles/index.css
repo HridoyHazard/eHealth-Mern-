@@ -1,5 +1,6 @@
 main {
   min-height: 80vh;
+  overflow: hidden;
 }
 .container {
   max-width: 100%;

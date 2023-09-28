@@ -1,8 +1,8 @@
 import { Col, Row } from "react-bootstrap";
-import Doctor from "../components/Doctor";
-import { useGetDoctorsQuery } from "../slices/doctorsApiSlice";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
+import Doctor from "../../components/Doctor";
+import { useGetDoctorsQuery } from "../../slices/doctorsApiSlice";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
 
 const DoctorScreen = () => {
   const { data: doctors, isLoading, error } = useGetDoctorsQuery();

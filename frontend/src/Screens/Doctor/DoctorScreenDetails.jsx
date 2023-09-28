@@ -8,10 +8,10 @@ import {
   Button,
   Image,
 } from "react-bootstrap";
-import { useGetDoctorDetailsQuery } from "../slices/doctorsApiSlice";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import { addToChoice } from "../slices/choiceSlice";
+import { useGetDoctorDetailsQuery } from "../../slices/doctorsApiSlice";
+import Loader from "../../components/Loader";
+import Message from "../../components/Message";
+import { addToChoice } from "../../slices/choiceSlice";
 import { useDispatch } from "react-redux";
 
 const MedicineScreenDetails = () => {
