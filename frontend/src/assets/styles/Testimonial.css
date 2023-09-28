@@ -1,0 +1,33 @@
+.testimonial {
+  margin-top: 50px;
+  width: 100%;
+  height: 600px;
+  box-sizing: border-box;
+  margin-left: 30px;
+  padding-left: 30px;
+}
+.testimonial .card {
+  width: 600px;
+  height: 450px;
+  border-radius: 20px;
+}
+
+.score {
+  display: inline-block;
+  font-size: 30px;
+  color: #ccc;
+  position: relative;
+}
+.score::before,
+.score span::before {
+  content: "\2605\2605\2605\2605\2605";
+  display: block;
+}
+.score span {
+  color: gold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}

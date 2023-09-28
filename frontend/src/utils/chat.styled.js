@@ -14,12 +14,12 @@ export const MyRow = styled.div`
   margin-top: 10px;
   position: relative;
   // background-color: grey;
-  // flex-direction: column; dia dekha lagbe kaj hoy naki pore diye 
+  // flex-direction: column; dia dekha lagbe kaj hoy naki pore diye
 `;
 
 export const MyMessage = styled.div`
   width: 45%;
-  background-color:grey ;
+  background-color: grey;
   color: white;
   padding: 10px;
   margin-right: 5px;
@@ -33,7 +33,7 @@ export const PartnerRow = styled(MyRow)`
 
 export const PartnerMessage = styled.div`
   width: 45%;
-  background-color:grey ;
+  background-color: grey;
   color: white;
   padding: 10px;
   margin-left: 5px;
@@ -126,3 +126,13 @@ export const Form = styled.form`
   display: grid;
 `;
 
+export const Item = styled.div`
+  display: flex,
+  justify-content: center,
+  align-items: center,
+  height: 250px,
+  width: 100%,
+  color: #fff,
+  margin: 0 15px,
+  font-size: 4em,
+`;

@@ -6,6 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
+import images01 from "../images/icon/eHealth.svg";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -29,11 +30,11 @@ const Header = () => {
     }
   };
   return (
-    <header>
-      <Navbar bg="primary" variant="dark" expand="md" collapseOnSelect>
+    <header >
+      <Navbar style={{ background: "linear-gradient(170deg, rgb(0, 198, 167), rgb(30, 77, 146))" }} variant="dark" expand="md" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand href="/">eHealth</Navbar.Brand>
+            <Navbar.Brand>eHealth</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -118,6 +119,9 @@ const Header = () => {
                   </LinkContainer>
                   <LinkContainer to="/admin/doctorlist">
                     <NavDropdown.Item>Doctors</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/chat">
+                    <NavDropdown.Item>Chat</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
               )}

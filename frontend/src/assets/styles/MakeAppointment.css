@@ -1,0 +1,73 @@
+.make-appointment{
+    background-image: url(../../images/appointmentBg.png );
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 420px;
+    background-position:center;
+}
+
+.make-appointment::before{
+    content:  "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgb(36, 41, 73);
+    opacity: .8;
+    top: 0;
+}
+.front{
+	z-index: 1;
+	position: relative;
+}
+
+.make-appointment img{
+    height: 550px;
+    transform: translateY(-130px);
+}
+.contact1-form-btn1 {
+    max-width: 200px;
+	height: 50px;
+	border-radius: 25px;
+	background: #009bff;
+	font-family: Montserrat-Bold;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #fff;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+  
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+  }
+ 
+.contact1-form-btn1 i {
+	margin-left: 7px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+  }
+  
+  .contact1-form-btn1:hover {
+	background: #333333;
+  }
+  
+  .contact1-form-btn1:hover i {
+	-webkit-transform: translateX(10px);
+	-moz-transform: translateX(10px);
+	-ms-transform: translateX(10px);
+	-o-transform: translateX(10px);
+	transform: translateX(10px);
+  }
+  
+

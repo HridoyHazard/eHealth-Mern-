@@ -1,0 +1,38 @@
+.site-header {
+  padding-top: 70px;
+  width: 100%;
+  max-height: 600px;
+  background: linear-gradient(57deg, #00C6A7 , #1E4D92 ); 
+  clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 0% 100%);
+}
+
+
+.appoinmentButton {
+  padding: 10px 45px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  background-image: linear-gradient(to right, #649bff, #0070fa, #649bff);
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.row {
+  margin: 0;
+}
+
+.main_header_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: white;
+}
+.main_header_right {
+  padding-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}

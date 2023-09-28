@@ -1,6 +1,9 @@
 main {
   min-height: 80vh;
 }
+.container {
+  max-width: 100%;
+}
 
 .rating span {
   margin: 0.1rem;

@@ -88,6 +88,7 @@ const router = createBrowserRouter(
         <Route path="/admin/doctor/:id/edit" element={<DoctorEditScreen />} />
         <Route path="/admin/bloodlist" element={<BloodListScreen />} />
         <Route path="/admin/blood/:id/edit" element={<BloodEditScreen />} />
+        <Route path="/admin/chat" element={<ChatScreen />} />
       </Route>
     </Route>
   )
