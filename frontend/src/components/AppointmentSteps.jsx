@@ -1,40 +1,27 @@
-import React from 'react';
-import { Nav } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import React from "react";
+import { Link } from "react-router-dom";
+import StepProgressBar from "react-step-progress";
+import "../assets/styles/steps.css";
 
-const AppointmentSteps = ({ step1, step2, step3 }) => {
+const AppointmentSteps = ({ steps }) => {
   return (
-    <Nav className='justify-content-center mb-4'>
-      <Nav.Item>
-        {step1 ? (
-          <LinkContainer to='/login'>
-            <Nav.Link>Sign In</Nav.Link>
-          </LinkContainer>
-        ) : (
-          <Nav.Link disabled>Sign In</Nav.Link>
-        )}
-      </Nav.Item>
-
-      <Nav.Item>
-        {step2 ? (
-          <LinkContainer to='/appointmentaddress'>
-            <Nav.Link>Patient Info</Nav.Link>
-          </LinkContainer>
-        ) : (
-          <Nav.Link disabled>Patient Info</Nav.Link>
-        )}
-      </Nav.Item>
-
-      <Nav.Item>
-        {step3 ? (
-          <LinkContainer to='/placeappointment'>
-            <Nav.Link>Place Appointment</Nav.Link>
-          </LinkContainer>
-        ) : (
-          <Nav.Link disabled>Place Appointment</Nav.Link>
-        )}
-      </Nav.Item>
-    </Nav>
+    <StepProgressBar
+      startingStep={steps}
+      steps={[
+        {
+          label: <Link to="/login">Login</Link>,
+        },
+        {
+          label: <Link to="/appointmentdate">Date & Time</Link>,
+        },
+        {
+          label: <Link to="/appointmentaddress">Patient Info</Link>,
+        },
+        {
+          label: <Link to="/placeappointment">Place Appointment</Link>,
+        },
+      ]}
+    />
   );
 };
 

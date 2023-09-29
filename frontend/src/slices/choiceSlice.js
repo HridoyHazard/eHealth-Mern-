@@ -3,7 +3,7 @@ import { updateChoice } from "../utils/choiceUtils";
 
 const initialState = localStorage.getItem("choice")
   ? JSON.parse(localStorage.getItem("choice"))
-  : { doctorInfo: [], Address: {} };
+  : { doctorInfo: [], DateNTime: {}, Address: {} };
 
 const choiceSlice = createSlice({
   name: "choice",
@@ -21,17 +21,34 @@ const choiceSlice = createSlice({
       }
       return updateChoice(state);
     },
+    saveDateNTime: (state, action) => {
+      state.DateNTime = action.payload;
+      return updateChoice(state);
+    },
     saveAddress: (state, action) => {
       state.Address = action.payload;
       return updateChoice(state);
     },
-
     cleardoctorInfo: (state) => {
       state.doctorInfo = [];
       return updateChoice(state);
     },
+    clearAddress: (state) => {
+      state.Address = {};
+      return updateChoice(state);
+    },
+    clearDateNTime: (state) => {
+      state.DateNTime = {};
+      return updateChoice(state);
+    },
   },
 });
-export const { addToChoice, saveAddress, cleardoctorInfo } =
-  choiceSlice.actions;
+export const {
+  addToChoice,
+  saveDateNTime,
+  saveAddress,
+  clearAddress,
+  clearDateNTime,
+  cleardoctorInfo,
+} = choiceSlice.actions;
 export default choiceSlice.reducer;

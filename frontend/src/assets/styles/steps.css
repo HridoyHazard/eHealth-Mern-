@@ -1,0 +1,176 @@
+._53Ji7 {
+    padding: 2rem;
+  }
+  ._53Ji7, ._53Ji7 * {
+    box-sizing: border-box;
+  }
+  ._1Lo2h {
+    margin: 0 0 1rem 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  ._2Jtxm {
+    list-style: none;
+    position: relative;
+    text-align: center;
+    flex: 1 1 auto;
+    position: relative;
+  }
+  
+  ._2Jtxm::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 3px;
+    width: 100%;
+    right: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+    background: linear-gradient(to left, #e7eaf3 50%, #4db193 50%);
+      background-size: 200% 100%;
+    background-position: right bottom;
+    transition: background-position 200ms ease-in-out;
+  }
+  ._2Jtxm:first-child::before {
+    content: none;
+  }
+  ._2Jtxm ._2kL0S,
+  ._2Jtxm ._2JvrO {
+    background-color: #e7eaf3;
+    color: var(--text-normal);
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 2.5rem;
+    display: inline-flex;
+    transform-origin: center;
+    align-items: center;
+    justify-content: center;
+  }
+  ._2kL0S, ._2JvrO {
+    transition: background-color 250ms ease;
+  }
+  ._2Jtxm ._1hzhf {
+    color: var(--text-normal);
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  ._2Jtxm ._1ixJ3 {
+    display: block;
+  }
+  ._2Jtxm._2ZUAI ._2JvrO {
+    background-color: #4db193;
+    color: white;
+    -webkit-animation: _3SDnc 400ms ease-in-out forwards;
+            animation: _3SDnc 400ms ease-in-out forwards;
+  }
+  ._2Jtxm._2ZUAI ._2JvrO:hover {
+    background-color: #42997f;
+  }
+  ._2Jtxm._35Ago ._2kL0S {
+    background-color: #387cf6;
+    color: white;
+    -webkit-animation: _JAh3L 400ms ease forwards;
+            animation: _JAh3L 400ms ease forwards;
+  }
+  ._2Jtxm._35Ago ._2kL0S:hover {
+    background-color: #316ddb;
+  }
+  ._2Jtxm._2ZUAI::before,
+  ._2Jtxm._35Ago::before,
+  ._2Jtxm._1CcaK::before {
+    background-position: left bottom;
+  }
+  ._2Jtxm._1CcaK ._2JvrO {
+    color: white;
+    background-color: #bb392d;
+    -webkit-animation: _1ujce 350ms ease-in-out forwards;
+            animation: _1ujce 350ms ease-in-out forwards;
+  }
+  ._2_g61 {
+    padding: 1rem;
+  }
+  ._3uApM {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  ._2pGos {
+    display: none;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+  }
+  ._3CDiP {
+    display: none;
+    border: 1px solid #d1d9eb;
+  }
+  ._3CDiP:hover {
+    display: none;
+    background-color: #f3f7ff;
+    box-shadow: 0px 3px 6px 0 rgba(190, 201, 228, 0.3);
+  }
+  
+  ._hsN1w {
+    background-color: #397cf6;
+    border: 1px solid #397cf6;
+    color: white;
+  }
+  ._hsN1w:hover {
+    background-color: #316ddb;
+    border: 1px solid #316ddb;
+    box-shadow: 0px 3px 6px 0 rgba(57, 124, 246, 0.3);
+  }
+  ._2pGos._2RWmX {
+    pointer-events: none;
+    -webkit-filter: opacity(0.7);
+            filter: opacity(0.7);
+    cursor: default;
+  }
+  
+  @-webkit-keyframes _JAh3L {
+    0% { transform: scale(1); }
+    10% { transform: scale(0.975); }
+    40% { transform: scale(1.4); }
+    50%, 100% { transform: scale(1.2); }
+  }
+  
+  @keyframes _JAh3L {
+    0% { transform: scale(1); }
+    10% { transform: scale(0.975); }
+    40% { transform: scale(1.4); }
+    50%, 100% { transform: scale(1.2); }
+  }
+  @-webkit-keyframes _3SDnc {
+    0% { transform: scale(1.2); }
+    35%, 100% { transform: scale(1); }
+  }
+  @keyframes _3SDnc {
+    0% { transform: scale(1.2); }
+    35%, 100% { transform: scale(1); }
+  }
+  @-webkit-keyframes _1ujce {
+    0% { transform: translateX(0); }
+    15% { transform: translateX(0.2rem); }
+    30%, 60% { transform: translateX(-0.4rem); }
+    45%, 75% { transform: translateX(0.4rem); }
+    90% { transform: translateX(-0.2rem); }
+    100% { transform: translateX(0); }
+  }
+  @keyframes _1ujce {
+    0% { transform: translateX(0); }
+    15% { transform: translateX(0.2rem); }
+    30%, 60% { transform: translateX(-0.4rem); }
+    45%, 75% { transform: translateX(0.4rem); }
+    90% { transform: translateX(-0.2rem); }
+    100% { transform: translateX(0); }
+  }
+  

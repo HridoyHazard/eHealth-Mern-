@@ -24,7 +24,7 @@ const MedicineScreenDetails = () => {
   const appointmentHandler = () => {
     // navigate(`/login?redirect=/doctor/${doctorId}/appointment`);
     dispatch(addToChoice({ ...doctor }));
-    navigate(`/appointmentaddress`);
+    navigate(`/appointmentdate`);
   };
 
   const chatHandler = () => {

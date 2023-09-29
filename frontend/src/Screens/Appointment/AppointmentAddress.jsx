@@ -14,17 +14,18 @@ const AppointmentAddress = () => {
   const [address, setAddress] = useState(Address.address || "");
   const [contact, setContact] = useState(Address.contact || "");
 
-  const nagivate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveAddress({ address, name, contact }));
-    nagivate("/placeappointment");
+    navigate("/placeappointment");
   };
   return (
     <FormContainer>
-      <AppointmentSteps step1 step2 />
+      <AppointmentSteps steps={2} />
+      <br />
       <h1>Patient Info</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="my-2" controlId="name">

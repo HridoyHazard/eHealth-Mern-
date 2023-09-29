@@ -19,33 +19,46 @@ import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
 import MedicineScreen from "./Screens/Medicine/MedicineScreen";
 import MedicineScreenDetails from "./Screens/Medicine/MedicineScreenDetails";
+
 import DoctorScreen from "./Screens/Doctor/DoctorScreen";
 import DoctorScreenDetails from "./Screens/Doctor/DoctorScreenDetails";
+
 import BloodScreen from "./Screens/Blood/BloodScreen";
 import BloodScreenDetails from "./Screens/Blood/BloodScreenDetails";
+
 import CartScreen from "./Screens/Order And Cart/CartScreen";
+
 import LoginScreen from "./Screens/LoginScreen";
 import RegisterScreen from "./Screens/RegisterScreen";
+
 import ShippingScreen from "./Screens/Order And Cart/ShippingScreen";
 import PaymentScreen from "./Screens/Order And Cart/PaymentScreen";
 import PlaceOrderScreen from "./Screens/Order And Cart/PlaceOrderScreen";
 import OrderScreen from "./Screens/Order And Cart/OrderScreen";
+
 import AppointmentScreen from "./Screens/Appointment/AppointmentScreen";
 import AppointmentAddress from "./Screens/Appointment/AppointmentAddress";
 import PlaceAppointmentScreen from "./Screens/Appointment/PlaceAppointmentScreen";
+import AppointmentDate from "./Screens/Appointment/AppointmentDate";
+
 import ProfileScreen from "./Screens/ProfileScreen";
 import OrderListScreen from "./Screens/Admin/OrderListScreen";
+//Medicine
 import MedicineListScreen from "./Screens/Admin/MedicineListScreen";
 import MedicineEditScreen from "./Screens/Admin/MedicineEditScreen";
+
 import UserListScreen from "./Screens/Admin/UserListScreen";
 import UserEditScreen from "./Screens/Admin/UserEditScreen";
+
 import HomeScreen from "./Screens/HomeScreen";
+
 import DoctorListScreen from "./Screens/Admin/DoctorListScreen";
 import DoctorEditScreen from "./Screens/Admin/DoctorEditScreen";
+
 import BloodListScreen from "./Screens/Admin/BloodListScreen";
 import BloodEditScreen from "./Screens/Admin/BloodEditScreen";
-import ChatScreen from "./Screens/ChatScreen";
 
+import ChatScreen from "./Screens/ChatScreen";
 
 import AppointmentListScreen from "./Screens/Admin/AppointmentListScreen";
 
@@ -73,6 +86,7 @@ const router = createBrowserRouter(
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
         <Route path="/placeappointment" element={<PlaceAppointmentScreen />} />
         <Route path="/appointmentaddress" element={<AppointmentAddress />} />
+        <Route path="/appointmentdate" element={<AppointmentDate />} />
         <Route path="/order/:id" element={<OrderScreen />} />
         <Route path="/profile" element={<ProfileScreen />} />
         <Route path="/appointment/:id" element={<AppointmentScreen />} />
