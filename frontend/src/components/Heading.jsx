@@ -17,7 +17,7 @@ const Heading = () => {
           <div className="col-md-10 col-12 mx-auto">
             <div className="row">
               <div className="col-md-5 col-12 main_header_left">
-                <section class="left-sec">
+                <section className="left-sec">
                   <h3> We Are Here For Your Care</h3>
                   <h1>
                     {" "}

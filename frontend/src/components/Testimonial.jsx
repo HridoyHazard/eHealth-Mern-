@@ -21,7 +21,7 @@ const Testimonial = () => {
   };
   
   return (
-    <div class="testimonial">
+    <div className="testimonial">
       <h1 className="text-center pb-3">Testimonial</h1>
       <Carousel
         showDots={true}
@@ -41,7 +41,7 @@ const Testimonial = () => {
                 />
               </div>
               <h5 className="font-weight-bold">Teresa May</h5>
-              <div class="score">
+              <div className="score">
                 <span style={{ width: "88%" }}></span>
               </div>
               <p className="mb-2">
@@ -65,7 +65,7 @@ const Testimonial = () => {
                 />
               </div>
               <h5 className="font-weight-bold">Alexa Horwitz</h5>
-              <div class="score">
+              <div className="score">
                 <span style={{ width: "88%" }}></span>
               </div>
               <p className="mb-2">
@@ -90,7 +90,7 @@ const Testimonial = () => {
                 />
               </div>
               <h5 className="font-weight-bold">Maggie McLoan</h5>
-              <div class="score">
+              <div className="score">
                 <span style={{ width: "88%" }}></span>
               </div>
               <p className="mb-2">
@@ -115,7 +115,7 @@ const Testimonial = () => {
                 />
               </div>
               <h5 className="font-weight-bold">Maggie McLoan</h5>
-              <div class="score">
+              <div className="score">
                 <span style={{ width: "88%" }}></span>
               </div>
               <p className="mb-2">
@@ -140,7 +140,7 @@ const Testimonial = () => {
                 />
               </div>
               <h5 className="font-weight-bold">Maggie McLoan</h5>
-              <div class="score">
+              <div className="score">
                 <span style={{ width: "88%" }}></span>
               </div>
               <p className="mb-2">

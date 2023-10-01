@@ -3,7 +3,7 @@ import { updateChoice } from "../utils/choiceUtils";
 
 const initialState = localStorage.getItem("choice")
   ? JSON.parse(localStorage.getItem("choice"))
-  : { doctorInfo: [], DateNTime: {}, Address: {} };
+  : { doctorInfo: [], DateTime: {}, Address: {} };
 
 const choiceSlice = createSlice({
   name: "choice",
@@ -21,8 +21,8 @@ const choiceSlice = createSlice({
       }
       return updateChoice(state);
     },
-    saveDateNTime: (state, action) => {
-      state.DateNTime = action.payload;
+    saveDateTime: (state, action) => {
+      console.log(state.DateTime);
       return updateChoice(state);
     },
     saveAddress: (state, action) => {
@@ -33,19 +33,12 @@ const choiceSlice = createSlice({
       state.doctorInfo = [];
       return updateChoice(state);
     },
-    clearAddress: (state) => {
-      state.Address = {};
-      return updateChoice(state);
-    },
-    clearDateNTime: (state) => {
-      state.DateNTime = {};
-      return updateChoice(state);
-    },
   },
 });
+
 export const {
   addToChoice,
-  saveDateNTime,
+  saveDateTime,
   saveAddress,
   clearAddress,
   clearDateNTime,

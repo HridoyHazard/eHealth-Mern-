@@ -8,23 +8,24 @@ import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
 } from "@material-ui/pickers";
-import { saveDateNTime } from "../../slices/choiceSlice";
+import { saveDateTime } from "../../slices/choiceSlice";
 import DateFnsUtils from "@date-io/date-fns";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const AppointmentDate = () => {
   const choice = useSelector((state) => state.choice);
-  const { DateNTime } = choice;
-  const [selectedDate, setSelectedDate] = useState(DateNTime.selectedDate || "");
-  const [selectedTime, setSelectedTime] = useState(DateNTime.selectedTime || "");
-  
+  const { DateTime } = choice;
+
+  const [selectedDate, setSelectedDate] = useState(DateTime.selectedDate || "");
+  const [selectedTime, setSelectedTime] = useState(DateTime.selectedTime || "");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveDateNTime({ selectedDate, selectedTime }));
+    dispatch(saveDateTime({ selectedDate, selectedTime }));
     navigate("/appointmentaddress");
   };
 
@@ -58,7 +59,7 @@ const AppointmentDate = () => {
                     disableToolbar
                     margin="normal"
                     id="date-picker-dialog"
-                    label="Select The Date"
+                    placeholder="Select The Date"
                     format="MM/dd/yyyy"
                     value={selectedDate}
                     onChange={(date) => handleDateChange(date)}
@@ -69,17 +70,16 @@ const AppointmentDate = () => {
                 </Grid>
                 <Grid container>
                   <KeyboardTimePicker
-                    label="Select The Time"
-                    placeholder="08:00 AM"
+                    placeholder="Select The Time"
                     mask="__:__ _M"
                     value={selectedTime}
                     onChange={(time) => handleTimeChange(time)}
                   />
                 </Grid>
               </MuiPickersUtilsProvider>
-              <div class="d-grid gap-2 d-md-block mt-5 ml-5">
+              <div className="d-grid gap-2 d-md-block mt-5 ml-5">
                 <button
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   type="submit"
                   onClick={submitHandler}
                 >
