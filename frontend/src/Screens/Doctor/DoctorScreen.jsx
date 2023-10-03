@@ -3,6 +3,7 @@ import Doctor from "../../components/Doctor";
 import { useGetDoctorsQuery } from "../../slices/doctorsApiSlice";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
+import "../../assets/styles/doctor.css";
 
 const DoctorScreen = () => {
   const { data: doctors, isLoading, error } = useGetDoctorsQuery();
@@ -17,14 +18,26 @@ const DoctorScreen = () => {
         </Message>
       ) : (
         <>
-          <h1>All Doctor</h1>
+          <section id="ourdoctor">
+            <div className="doctor_container my-3 py-5 text-center">
+              <div className="row  mb-5">
+                <div className="col">
+                  <h1 className="doctorh1">All Doctors</h1>
+                </div>
+              </div>
+              <div className="row">
+                {doctors.map((doctor) => {
+                  return <Doctor key={doctor._id} doctor={doctor}></Doctor>;
+                })}
+              </div>
+            </div>
+          </section>
+          {/* <h1>All Doctor</h1>
           <Row>
             {doctors.map((doctor) => (
-              <Col key={doctor._id} sm={12} md={6} lg={4} xl={3}>
-                <Doctor doctor={doctor} />
-              </Col>
+              <Doctor doctor={doctor} />
             ))}
-          </Row>
+          </Row> */}
         </>
       )}
     </>
