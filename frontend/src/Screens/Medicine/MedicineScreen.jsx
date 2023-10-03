@@ -11,17 +11,17 @@ const MedicineScreen = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant={'danger'}>{error?.data?.message || error.error}</Message>
+        <Message variant={"danger"}>
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
         <>
-          <h1>Latest Medicine</h1>
-          <Row>
+        <h2 className="text-center mt-4">Latest Medicine</h2>
+          <div className="d-flex justify-content-around row">
             {meds.map((med) => (
-              <Col key={med._id} sm={12} md={6} lg={4} xl={3}>
-                <Medicine med={med} />
-              </Col>
+              <Medicine med={med} />
             ))}
-          </Row>
+          </div>
         </>
       )}
     </>
