@@ -6,7 +6,6 @@ import { useGetBloodsQuery } from "../../slices/bloodsApiSlice";
 import { useParams } from "react-router-dom";
 import SearchBox from "../../components/SearchBox";
 
-
 const BloodScreen = () => {
   const { keyword } = useParams();
 
@@ -23,14 +22,11 @@ const BloodScreen = () => {
         </Message>
       ) : (
         <>
-        <SearchBox />
-          <Row>
-            {data.bloods.length>0 && data.bloods.map((blood) => (
-              <Col key={blood._id} sm={12} md={6} lg={4} xl={3}>
-                <Blood blood={blood} />
-              </Col>
-            ))}
-          </Row>
+          <SearchBox />
+          <div className="d-flex justify-content-around row">
+            {data.bloods.length > 0 &&
+              data.bloods.map((blood) => <Blood blood={blood} />)}
+          </div>
         </>
       )}
     </>
