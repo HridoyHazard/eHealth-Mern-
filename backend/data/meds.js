@@ -1,17 +1,5 @@
 const meds = [
   {
-    name: "B126 (Vitamin B1,B6,B12):",
-    image: "/images/vita.jpg",
-    description:
-      "Vitamin B1, B6 & B12 is indicated for the treatment of vitamin B1, B6 & B12 deficiency syndrome.It is also indicated for the supportive treatment of neuritis & non-inflammatory diseases of the nerves",
-    brand: "Popular Pharmaceuticals Ltd.",
-    price: 400,
-    category: "Pain",
-    rating:4.3,
-    numReviews:12,
-    countInStock: 10,
-  },
-  {
     name: "Paracetamol",
     image: "/images/para.jpg",
     description:
@@ -19,8 +7,8 @@ const meds = [
     brand: "Square Pharmaceuticals Ltd.",
     price: 450,
     category: "Pain",
-    rating:4.3,
-    numReviews:12,
+    rating: 4.3,
+    numReviews: 12,
     countInStock: 0,
   },
   {
@@ -29,10 +17,10 @@ const meds = [
     description:
       "It is indicated for the treatment of hyperprolactinemic disorders, either idiopathic or due to pituitary adenomas. It is used to stop breast milk production (lactation) soon after childbirth, stillbirth, abortion or miscarriage. It can also be used to treat other conditions caused by hormonal disturbance which can result in high levels of prolactin being produced. This includes high levels of prolactin caused by tumours of the pituitary gland in both men and women.",
     brand: "Popular Pharmaceuticals Ltd.",
-    price: 80, 
+    price: 80,
     category: "Pain",
-    rating:4.3,
-    numReviews:12,
+    rating: 4.3,
+    numReviews: 12,
     countInStock: 5,
   },
   {
@@ -43,8 +31,8 @@ const meds = [
     brand: "Popular Pharmaceuticals Ltd.",
     price: 337,
     category: "Pain",
-    rating:4.3,
-    numReviews:12,
+    rating: 4.3,
+    numReviews: 12,
     countInStock: 11,
   },
   {
@@ -55,8 +43,8 @@ const meds = [
     brand: "Eskayef Pharmaceuticals Ltd.",
     price: 400,
     category: "Pain",
-    rating:4.3,
-    numReviews:12,
+    rating: 4.3,
+    numReviews: 12,
     countInStock: 7,
   },
   {
@@ -67,8 +55,8 @@ const meds = [
     brand: "Healthcare Pharmaceuticals Ltd.",
     price: 700,
     category: "Relax",
-    rating:4.3,
-    numReviews:12,
+    rating: 4.3,
+    numReviews: 12,
     countInStock: 0,
   },
   {
@@ -79,8 +67,68 @@ const meds = [
     brand: "Square Pharmaceuticals Ltd.",
     price: 452,
     category: "Pain",
-    rating:4.3,
-    numReviews:12,
+    rating: 4.3,
+    numReviews: 12,
+    countInStock: 7,
+  },
+  {
+    name: "Flugal 150",
+    image: "/images/Flugal.jpg",
+    description:
+      "Vaginal candidiasis, oropharyngeal & esophageal candidiasis, and cryptococcal meningitis are all treated with fluconazole. It can also be used to treat candida infections in the urinary tract, peritonitis, and systemic candida infections (including candidemia, disseminated candidiasis and pneumonia).",
+    brand: "Square Pharmaceuticals Ltd.",
+    price: 212,
+    category: "Fluconazole",
+    rating: 4.3,
+    numReviews: 12,
+    countInStock: 7,
+  },
+  {
+    name: "Algicid",
+    image: "/images/Flugal.jpg",
+    description:
+      "Treatment of symptoms of gastroesophageal reflux such as acid regurgitation, heartburn and indigestion (related to reflux), for example, following meals, or during pregnancy, or in patients with symptoms related to reflux oesophagitis.",
+    brand: "Incepta Pharmaceuticals Ltd.",
+    price: 48,
+    category: "constipation",
+    rating: 4.3,
+    numReviews: 12,
+    countInStock: 7,
+  },
+  {
+    name: "Tufnil",
+    image: "/images/Tufnil.png",
+    description:
+      "Tolfenamic acid is used to treat migraine headaches and is also recommended for use as an analgesic in the treatment of post-operative pain and fever.",
+    brand: "SK+F",
+    price: 96,
+    category: "Headache",
+    rating: 4.3,
+    numReviews: 12,
+    countInStock: 7,
+  },
+  {
+    name: "Xeldrin 20mg",
+    image: "/images/xeldin.png",
+    description:
+      "Xeldrin 20mg Capsule is an anti-ulcer medicine used to treat conditions where the stomach produces too much acid. Stomach and duodenal ulcers, gastroesophageal reflux disease (GERD), and Zollinger-Ellison syndrome are certain problems caused by high levels of stomach acid. It relieves stress ulcers and also acidity due to the intake of painkillers.",
+    brand: "ACI Limited",
+    price: 48,
+    category: "Gastric",
+    rating: 4.3,
+    numReviews: 12,
+    countInStock: 7,
+  },
+  {
+    name: "Amodis 500",
+    image: "/images/amodis.png",
+    description:
+      "The prevention of post-operative infections due to anaerobic bacteria (particularly species of bacteroides and anaerobic streptococci),The treatment of septicaemia, bacteraemia, peritonitis, brain abscess, pelvic abscess, pelvic cellulitis and post-operative wound infections caused by anaerobes.In the treatment of urogenital trichomoniasis.Bacterial vaginosis (also known as non-specific vaginitis).",
+    brand: "Square Pharmaceuticals Ltd.",
+    price: 18,
+    category: "Diarrhea",
+    rating: 4.3,
+    numReviews: 12,
     countInStock: 7,
   },
 ];

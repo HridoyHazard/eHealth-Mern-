@@ -1,10 +1,10 @@
-import { Col, Row } from "react-bootstrap";
 import Blood from "../../components/Blood";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import { useGetBloodsQuery } from "../../slices/bloodsApiSlice";
 import { useParams } from "react-router-dom";
 import SearchBox from "../../components/SearchBox";
+import FormContainer from "../../components/FormContainer";
 
 const BloodScreen = () => {
   const { keyword } = useParams();
@@ -13,7 +13,7 @@ const BloodScreen = () => {
 
   return (
     <>
-      <h1>Active Blood Donors</h1>
+      <h1 className="text-center"></h1>
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -22,8 +22,10 @@ const BloodScreen = () => {
         </Message>
       ) : (
         <>
-          <SearchBox />
-          <div className="d-flex justify-content-around row">
+          <FormContainer>
+            <SearchBox />
+          </FormContainer>
+          <div className="d-flex justify-content-center row mb-4">
             {data.bloods.length > 0 &&
               data.bloods.map((blood) => <Blood blood={blood} />)}
           </div>

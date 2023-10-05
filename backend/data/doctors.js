@@ -1,7 +1,7 @@
 const doctors = [
   {
     name: "Dr.Md. Nazrul Islam",
-    image: "/images/doc1.jpg",
+    image: "/images/nazmul.jpg",
     degree: "MBBS, MCPS(Medicine),MD(Neurology)",
     specialist: "Neuro Medicine ",
     chamber: "Mount Adora Hospital",
@@ -9,7 +9,7 @@ const doctors = [
   },
   {
     name: "Dr.Alamgir Chowdhury",
-    image: "/images/doc3.jpg",
+    image: "/images/alamgir.jpg",
     degree: "MBBS, MCPS(Medicine),MD(Neurology)",
     specialist: "Kidney Diseases & Medicine.",
     chamber: "Mount Adora Hospital",
@@ -17,7 +17,7 @@ const doctors = [
   },
   {
     name: "Prof.Dr.Mahjuba Umme Salam",
-    image: "/images/doc4.jpg",
+    image: "/images/salam.jpg",
     degree: "MBBS, FCPS(Medicine)",
     specialist: "Medicine",
     chamber: "Medinova Medical Services Ltd",
@@ -25,7 +25,7 @@ const doctors = [
   },
   {
     name: "Dr.Shishir Basak",
-    image: "/images/doc5.jpg",
+    image: "/images/basak.jpg",
     degree: "MBBS,MCPS(Medicine),MD(Cardiology)",
     specialist: "Medicine and Cardiology",
     chamber: "Mount Adora Hospital",
@@ -33,7 +33,7 @@ const doctors = [
   },
   {
     name: "Dr.Md.Tawhidul Islam Emdad",
-    image: "/images/doc6.jpg",
+    image: "/images/emdad.jpg",
     degree: "MBBS,FCPS,DDV",
     specialist: "Skin,Allergy and Sexual Diseases",
     chamber: "Popular Medical Center Ltd",
@@ -41,10 +41,18 @@ const doctors = [
   },
   {
     name: "Prof.Dr.Shamsun Nahar Begum",
-    image: "/images/doc2.jpg",
+    image: "/images/nahar.jpg",
     degree: "FCPS (Obs & Gynae)",
     specialist: "Obs & Gynae Specialist & Surgeon",
     chamber: "Al Haramain Hospital Private Limited",
+    available: "7pm-12pm",
+  },
+  {
+    name: "Dr.Nurul Huda Nayeem",
+    image: "/images/nurul.png",
+    degree: "MBBS, BCS (Health), FCPS (ENT), MCPS (ENT)",
+    specialist: "ENT (Ear, Nose, Throat) Specialist & Head Neck Laser Surgeon",
+    chamber: "NJL ENT Centre",
     available: "7pm-12pm",
   },
 ];

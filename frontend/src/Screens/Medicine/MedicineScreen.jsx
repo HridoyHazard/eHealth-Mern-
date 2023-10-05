@@ -17,7 +17,7 @@ const MedicineScreen = () => {
       ) : (
         <>
         <h2 className="text-center mt-4">Latest Medicine</h2>
-          <div className="d-flex justify-content-around row">
+          <div className="d-flex justify-content-center row mb-4">
             {meds.map((med) => (
               <Medicine med={med} />
             ))}

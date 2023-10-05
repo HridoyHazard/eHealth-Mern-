@@ -20,7 +20,7 @@ const DoctorScreen = () => {
         <>
           <section id="ourdoctor">
             <div className="doctor_container my-3 py-5 text-center">
-              <div className="row  mb-5">
+              <div className="row  mb-3">
                 <div className="col">
                   <h1 className="doctorh1">All Doctors</h1>
                 </div>

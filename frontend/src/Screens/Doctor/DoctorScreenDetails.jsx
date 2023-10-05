@@ -13,6 +13,7 @@ import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import { addToChoice } from "../../slices/choiceSlice";
 import { useDispatch } from "react-redux";
+import { Container } from "react-bootstrap";
 
 const MedicineScreenDetails = () => {
   const { id: doctorId } = useParams();
@@ -44,33 +45,40 @@ const MedicineScreenDetails = () => {
         </Message>
       ) : (
         <>
-          <Row>
-            <Col md={6}>
-              <Image src={doctor.image} alt={doctor.name} fluid />
-            </Col>
-            <Col md={3}>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <h3>{doctor.name}</h3>
-                </ListGroup.Item>
-                <ListGroup.Item>
+          <Container>
+            <Row>
+              <Col md={3}>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.9436812455024!2d91.85047709678955!3d24.899902600000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37505536be64db9b%3A0x2c59a9310eef1711!2sMedinova%20Medical%20Services%20Ltd.!5e0!3m2!1sen!2sbd!4v1696529349591!5m2!1sen!2sbd"
+                  width="580"
+                  height="400"
+                  style={{ border: "0" }}
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </Col>
+              <Col md={3} style={{ marginLeft: "16rem" }}>
+                <ListGroup
+                  variant="flush"
+                  className="h-100 d-flex align-items-center justify-content-center"
+                >
+                  <h3>{doctor.name}</h3> <span>({doctor.specialist})</span>
                   <strong>{doctor.degree}</strong>
-                </ListGroup.Item>
-                <ListGroupItem>
                   <strong>{doctor.chamber}</strong>
-                </ListGroupItem>
-                <ListGroupItem>
                   <strong>{doctor.specialist}</strong>
-                </ListGroupItem>
-                <ListGroupItem>
                   <strong>{doctor.available}</strong>
-                </ListGroupItem>
-              </ListGroup>
-            </Col>
-            <Col md={3}>
-              <Card>
-                <ListGroup variant="flush">
-                  <ListGroup.Item>
+                </ListGroup>
+              </Col>
+              <Col md={3}>
+                <Image
+                  src={doctor.image}
+                  alt={doctor.name}
+                  width={300}
+                  className="mb-3"
+                />
+                <div style={{ marginLeft: "4rem" }}>
+                  <ListGroup.Item className="mb-3">
                     <Button
                       className="btn-block"
                       type="button"
@@ -79,7 +87,7 @@ const MedicineScreenDetails = () => {
                       Get Appoinment
                     </Button>
                   </ListGroup.Item>
-                  <ListGroup.Item>
+                  <ListGroup.Item className="mx-5">
                     <Button
                       className="btn-block"
                       type="button"
@@ -88,10 +96,14 @@ const MedicineScreenDetails = () => {
                       Chat
                     </Button>
                   </ListGroup.Item>
-                </ListGroup>
-              </Card>
-            </Col>
-          </Row>
+                </div>
+              </Col>
+
+              {/* <Col md={3}>
+                
+              </Col> */}
+            </Row>
+          </Container>
         </>
       )}
     </>

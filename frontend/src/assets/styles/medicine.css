@@ -2,7 +2,8 @@
   position: relative;
   width: 270px;
   height: 320px;
-  margin-top: 3.5rem;
+  /* margin-top: 3.5rem; */
+  margin: 3.5rem 1rem;
   border: 0.1rem #c0c0c0 solid;
   background: white;
   border-radius: 10px;
