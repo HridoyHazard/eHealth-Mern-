@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import FormContainer from "../../components/FormContainer";
@@ -10,6 +10,7 @@ import {
   useUpdateDoctorMutation,
 } from "../../slices/doctorsApiSlice";
 import { useUploadImageMutation } from "../../slices/uploadApiSlice";
+import "../../assets/styles/doctoredit.css";
 
 const DoctorEditScreen = () => {
   const { id: doctorId } = useParams();
@@ -32,8 +33,7 @@ const DoctorEditScreen = () => {
   const [updateDoctor, { isLoading: loadingUpdate }] =
     useUpdateDoctorMutation();
 
-  const [uploadImage, { isLoading: loadingUpload }] =
-    useUploadImageMutation();
+  const [uploadImage, { isLoading: loadingUpload }] = useUploadImageMutation();
 
   const navigate = useNavigate();
 
@@ -84,103 +84,107 @@ const DoctorEditScreen = () => {
 
   return (
     <>
-      <Link to="/admin/doctorlist" className="btn btn-light my-3">
+      <Link to="/admin/doctorlist" className="btn btn-dark mx-3 my-3">
         Go Back
       </Link>
-      <FormContainer>
-        <h1>Edit Doctor</h1>
-        {loadingUpdate && <Loader />}
-        {isLoading ? (
-          <Loader />
-        ) : error ? (
-          <Message variant="danger">{error.data.message}</Message>
-        ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId="name">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="name"
-                placeholder="Enter name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+      <div className="d-flex justify-content-center">
+        <div className="DoctorEditCard mb-5">
+          <div className="DoctorBx">
+            <h1>Edit Doctor</h1>
+            {loadingUpdate && <Loader />}
+            {isLoading ? (
+              <Loader />
+            ) : error ? (
+              <Message variant="danger">{error.data.message}</Message>
+            ) : (
+              <Form onSubmit={submitHandler}>
+                <Form.Group controlId="name" className="mb-2">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type="name"
+                    placeholder="Enter name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-            <Form.Group controlId="image">
-              <Form.Label>Image</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter image url"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-              ></Form.Control>
-              <Form.Control
-                label="Choose File"
-                onChange={uploadFileHandler}
-                type="file"
-              ></Form.Control>
-              {loadingUpload && <Loader />}
-            </Form.Group>
+                <Form.Group controlId="image" className="mb-2">
+                  <Form.Label>Image</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter image url"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                  ></Form.Control>
+                  <Form.Control
+                    label="Choose File"
+                    onChange={uploadFileHandler}
+                    type="file"
+                  ></Form.Control>
+                  {loadingUpload && <Loader />}
+                </Form.Group>
 
-            <Form.Group controlId="degree">
-              <Form.Label>Degree</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter brand"
-                value={degree}
-                onChange={(e) => setDegree(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+                <Form.Group controlId="degree" className="mb-2">
+                  <Form.Label>Degree</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter brand"
+                    value={degree}
+                    onChange={(e) => setDegree(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-            <Form.Group controlId="specialist">
-              <Form.Label>Specialist</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter countInStock"
-                value={specialist}
-                onChange={(e) => setSpecialist(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+                <Form.Group controlId="specialist" className="mb-2">
+                  <Form.Label>Specialist</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter countInStock"
+                    value={specialist}
+                    onChange={(e) => setSpecialist(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-            <Form.Group controlId="chamber">
-              <Form.Label>Chamber</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter category"
-                value={chamber}
-                onChange={(e) => setChamber(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="chamber">
-              <Form.Label>Tag</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter category"
-                value={tag}
-                onChange={(e) => setTag(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+                <Form.Group controlId="chamber" className="mb-2">
+                  <Form.Label>Chamber</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter category"
+                    value={chamber}
+                    onChange={(e) => setChamber(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
+                <Form.Group controlId="tag" className="mb-2">
+                  <Form.Label>Tag</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter category"
+                    value={tag}
+                    onChange={(e) => setTag(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-            <Form.Group controlId="available">
-              <Form.Label>Available</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter description"
-                value={available}
-                onChange={(e) => setAvailable(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+                <Form.Group controlId="available" className="mb-2">
+                  <Form.Label>Available</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter description"
+                    value={available}
+                    onChange={(e) => setAvailable(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
 
-            <Button
-              type="submit"
-              variant="primary"
-              style={{ marginTop: "1rem" }}
-            >
-              Update
-            </Button>
-          </Form>
-        )}
-      </FormContainer>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  style={{ marginTop: "1rem", marginLeft: "6rem" }}
+                >
+                  Update
+                </Button>
+              </Form>
+            )}
+          </div>
+        </div>
+      </div>
     </>
   );
 };
