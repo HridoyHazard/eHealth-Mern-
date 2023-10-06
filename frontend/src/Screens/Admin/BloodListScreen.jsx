@@ -9,10 +9,11 @@ import {
   useCreateBloodMutation,
   useDeleteBloodMutation,
 } from "../../slices/bloodsApiSlice";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const BloodListScreen = () => {
   const { keyword } = useParams();
+  const navigate = useNavigate();
   const { data, isLoading, error, refetch } = useGetBloodsQuery({ keyword });
 
   console.log(data);
@@ -24,8 +25,8 @@ const BloodListScreen = () => {
   const createBloodHandler = async () => {
     if (window.confirm("Are you sure you want to create a new Donor?")) {
       try {
-        await createBlood();
-        refetch();
+        const blood = await createBlood();
+        navigate(`/admin/blood/${blood.data._id}/edit`);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }

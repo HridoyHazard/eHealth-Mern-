@@ -1,7 +1,7 @@
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button, Row, Col } from "react-bootstrap";
 import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
@@ -12,6 +12,7 @@ import {
 } from "../../slices/medsApiSlice";
 
 const MedicineListScreen = () => {
+  const navigate = useNavigate();
   const { data: meds, isLoading, error, refetch } = useGetMedicinesQuery();
 
   const [createMedicine, { isLoading: loadingCreate }] =
@@ -35,8 +36,8 @@ const MedicineListScreen = () => {
   const createMedicineHandler = async () => {
     if (window.confirm("Are you sure you want to create a new product?")) {
       try {
-        await createMedicine();
-        refetch();
+        const medicine = await createMedicine();
+        navigate(`/admin/med/${medicine.data._id}/edit`);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
