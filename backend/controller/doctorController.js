@@ -33,6 +33,7 @@ const createDoctor = asyncHandler(async (req, res) => {
     degree: "Sample degree",
     specialist: "Sample specialist",
     chamber: "Sample chamber",
+    tag: "Sample tag",
     available: "Sample available",
   });
 

@@ -5,6 +5,7 @@ const doctors = [
     degree: "MBBS, MCPS(Medicine),MD(Neurology)",
     specialist: "Neuro Medicine ",
     chamber: "Mount Adora Hospital",
+    tag:"mount",
     available: "5pm-9pm",
   },
   {
@@ -13,6 +14,7 @@ const doctors = [
     degree: "MBBS, MCPS(Medicine),MD(Neurology)",
     specialist: "Kidney Diseases & Medicine.",
     chamber: "Mount Adora Hospital",
+    tag:"mount",
     available: "5pm-9pm",
   },
   {
@@ -21,6 +23,7 @@ const doctors = [
     degree: "MBBS, FCPS(Medicine)",
     specialist: "Medicine",
     chamber: "Medinova Medical Services Ltd",
+    tag:"medinova",
     available: "5pm-9pm",
   },
   {
@@ -28,7 +31,8 @@ const doctors = [
     image: "/images/basak.jpg",
     degree: "MBBS,MCPS(Medicine),MD(Cardiology)",
     specialist: "Medicine and Cardiology",
-    chamber: "Mount Adora Hospital",
+    chamber: "Al Haramain Hospital Private Limited",
+    tag:"alharamain",
     available: "2pm-6pm",
   },
   {
@@ -37,6 +41,7 @@ const doctors = [
     degree: "MBBS,FCPS,DDV",
     specialist: "Skin,Allergy and Sexual Diseases",
     chamber: "Popular Medical Center Ltd",
+    tag:"popular",
     available: "3pm-5pm",
   },
   {
@@ -45,14 +50,16 @@ const doctors = [
     degree: "FCPS (Obs & Gynae)",
     specialist: "Obs & Gynae Specialist & Surgeon",
     chamber: "Al Haramain Hospital Private Limited",
+    tag:"alharamain",
     available: "7pm-12pm",
   },
   {
     name: "Dr.Nurul Huda Nayeem",
     image: "/images/nurul.png",
-    degree: "MBBS, BCS (Health), FCPS (ENT), MCPS (ENT)",
-    specialist: "ENT (Ear, Nose, Throat) Specialist & Head Neck Laser Surgeon",
+    degree: "MBBS,BCS(Health),FCPS(ENT),MCPS(ENT)",
+    specialist: "ENT Specialist & Head Neck Laser Surgeon",
     chamber: "NJL ENT Centre",
+    tag:"njl",
     available: "7pm-12pm",
   },
 ];

@@ -19,6 +19,7 @@ const DoctorEditScreen = () => {
   const [degree, setDegree] = useState("");
   const [specialist, setSpecialist] = useState("");
   const [chamber, setChamber] = useState("");
+  const [tag, setTag] = useState("");
   const [available, setAvailable] = useState("");
 
   const {
@@ -46,6 +47,7 @@ const DoctorEditScreen = () => {
         degree,
         specialist,
         chamber,
+        tag,
         available,
       }).unwrap(); // NOTE: here we need to unwrap the Promise to catch any rejection in our catch block
       toast.success("Doctor updated");
@@ -75,6 +77,7 @@ const DoctorEditScreen = () => {
       setDegree(doctor.degree);
       setSpecialist(doctor.specialist);
       setChamber(doctor.chamber);
+      setTag(doctor.tag);
       setAvailable(doctor.available);
     }
   }, [doctor]);
@@ -146,6 +149,15 @@ const DoctorEditScreen = () => {
                 placeholder="Enter category"
                 value={chamber}
                 onChange={(e) => setChamber(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="chamber">
+              <Form.Label>Tag</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter category"
+                value={tag}
+                onChange={(e) => setTag(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

@@ -9,13 +9,15 @@ import {
   useCreateDoctorMutation,
   useDeleteDoctorMutation,
 } from "../../slices/doctorsApiSlice";
+import {useNavigate} from 'react-router-dom'
+import { useEffect } from "react";
 
 const DoctorListScreen = () => {
   const { data: doctors, isLoading, error, refetch } = useGetDoctorsQuery();
 
-  console.log(doctors)
+  const navigate = useNavigate();
 
-  const [createDoctor, { isLoading: loadingCreate }] =
+  const [createDoctor, { isLoading: loadingCreate}] =
     useCreateDoctorMutation();
 
   const [deleteDoctor, { isLoading: loadingDelete }] =
@@ -26,6 +28,7 @@ const DoctorListScreen = () => {
       try {
         await createDoctor();
         refetch();
+        navigate(`/admin/doctor/${createDoctor._id}/edit`)
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }

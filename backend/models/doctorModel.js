@@ -27,6 +27,10 @@ const doctorSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    tag: {
+      type: String,
+      required: true,
+    },
     available: {
       type: String,
       required: true,
