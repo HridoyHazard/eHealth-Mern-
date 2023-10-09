@@ -63,7 +63,7 @@ const MedicineScreenDetails = () => {
 
   const addToCartHandler = () => {
     dispatch(addToCart({ ...med, qty }));
-    navigate("/cart");
+    toast.success("Item added to cart");
   };
 
   return (

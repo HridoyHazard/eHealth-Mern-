@@ -32,12 +32,6 @@ const DoctorScreen = () => {
               </div>
             </div>
           </section>
-          {/* <h1>All Doctor</h1>
-          <Row>
-            {doctors.map((doctor) => (
-              <Doctor doctor={doctor} />
-            ))}
-          </Row> */}
         </>
       )}
     </>

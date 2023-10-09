@@ -7,7 +7,19 @@ import {
   Card,
   Button,
   Image,
+  Container,
 } from "react-bootstrap";
+import {
+  MDBCol,
+  MDBContainer,
+  MDBRow,
+  MDBCard,
+  MDBCardText,
+  MDBCardBody,
+  MDBCardImage,
+  MDBTypography,
+  MDBIcon,
+} from "mdb-react-ui-kit";
 import { useGetBloodDetailsQuery } from "../../slices/bloodsApiSlice";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
@@ -17,11 +29,10 @@ const BloodScreenDetails = () => {
 
   const { data: blood, isLoading, error } = useGetBloodDetailsQuery(bloodId);
 
+  console.log(blood);
+
   return (
     <>
-      <Link className="btn btn-light my-3" to="/Blood">
-        Go Back
-      </Link>
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -29,32 +40,90 @@ const BloodScreenDetails = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <>
-          <Row>
-            <Col md={6}>
-              <Image src={blood.image} alt={blood.name} fluid />
-            </Col>
-            <Col md={3}>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <h3>{blood.name}</h3>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <strong>{blood.group}</strong>
-                </ListGroup.Item>
-                <ListGroupItem>
-                  <strong>{blood.age}</strong>
-                </ListGroupItem>
-                <ListGroupItem>
-                  <strong>{blood.address}</strong>
-                </ListGroupItem>
-                <ListGroupItem>
-                  <strong>{blood.contact}</strong>
-                </ListGroupItem>
-              </ListGroup>
-            </Col>
-          </Row>
-        </>
+        <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
+          <Link className="btn btn-dark mx-3 my-3" to="/Blood">
+            Go Back
+          </Link>
+          <MDBContainer className="py-5 h-100">
+            <MDBRow className="justify-content-center align-items-center h-80">
+              <MDBCol lg="10" className="mb-4 mb-lg-0">
+                <MDBCard className="mb-3" style={{ borderRadius: ".5rem" }}>
+                  <MDBRow className="g-0">
+                    <MDBCol
+                      md="4"
+                      className="gradient-custom text-center text-white"
+                      style={{
+                        borderTopLeftRadius: ".5rem",
+                        borderBottomLeftRadius: ".5rem",
+                      }}
+                    >
+                      <MDBCardImage
+                        src={blood.image}
+                        alt="Avatar"
+                        className="my-0"
+                        style={{ width: "100%", height: "100%" }}
+                        fluid
+                      />
+
+                    </MDBCol>
+                    <MDBCol md="8">
+                      <MDBCardBody className="p-4">
+                        <MDBTypography tag="h6">
+                          Donor Information
+                        </MDBTypography>
+                        <hr className="mt-0 mb-1" />
+                        <MDBRow className="pt-0">
+                          <MDBCol size="6" className="mb-3">
+                            <MDBTypography tag="h6" className="mb-2">Name</MDBTypography>
+                            <MDBCardText className="text-muted">
+                              {blood.name}
+                            </MDBCardText>
+                          </MDBCol>
+                          <MDBCol size="6" className="mb-3">
+                            <MDBTypography tag="h6"className="mb-2">Phone</MDBTypography>
+                            <MDBCardText className="text-muted">
+                              {blood.contact}
+                            </MDBCardText>
+                          </MDBCol>
+                          <MDBCol size="6" className="mb-3">
+                            <MDBTypography tag="h6" className="mb-2" >Blood Group</MDBTypography>
+                            <MDBCardText className="text-muted">
+                              {blood.group}
+                            </MDBCardText>
+                          </MDBCol>
+                          <MDBCol size="6" className="mb-3">
+                            <MDBTypography tag="h6"className="mb-2">Age</MDBTypography>
+                            <MDBCardText className="text-muted">
+                              {blood.age}
+                            </MDBCardText>
+                          </MDBCol>
+                          <MDBCol size="6" className="mb-3">
+                            <MDBTypography tag="h6"className="mb-2">Address</MDBTypography>
+                            <MDBCardText className="text-muted">
+                              {blood.address}
+                            </MDBCardText>
+                          </MDBCol>
+                        </MDBRow>
+
+                        <div className="d-flex justify-content-end">
+                          <a href="#!">
+                            <MDBIcon fab icon="facebook me-3" size="lg" />
+                          </a>
+                          <a href="#!">
+                            <MDBIcon fab icon="twitter me-3" size="lg" />
+                          </a>
+                          <a href="#!">
+                            <MDBIcon fab icon="instagram me-3" size="lg" />
+                          </a>
+                        </div>
+                      </MDBCardBody>
+                    </MDBCol>
+                  </MDBRow>
+                </MDBCard>
+              </MDBCol>
+            </MDBRow>
+          </MDBContainer>
+        </section>
       )}
     </>
   );

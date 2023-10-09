@@ -49,10 +49,12 @@ const PlaceAppointmentScreen = () => {
   return (
     <>
       <Container>
+      {choice.doctorInfo.length !== 0 && ( 
         <FormContainer>
           <AppointmentSteps steps={3} />
         </FormContainer>
-        <Row>
+      )}
+        <Row className="mt-3">
           <Col md={8}>
             <ListGroup variant="flush">
               <ListGroup.Item>
@@ -118,6 +120,7 @@ const PlaceAppointmentScreen = () => {
                 <ListGroup.Item>
                   <h2>Appointment Summary</h2>
                 </ListGroup.Item>
+                {choice.doctorInfo.length !== 0 && (
                 <ListGroupItem>
                   <Row>
                     <Col>Name</Col>
@@ -134,6 +137,7 @@ const PlaceAppointmentScreen = () => {
                     <Col>{choice.Address.address}</Col>
                   </Row>
                 </ListGroupItem>
+                )}
                 {choice.doctorInfo.map((item, index) => (
                   <ListGroup.Item key={index}>
                     <Row>
@@ -155,6 +159,7 @@ const PlaceAppointmentScreen = () => {
                 {error && (
                   <Message variant="danger">{error.data.message}</Message>
                 )}
+
                 <ListGroup.Item>
                   <Button
                     type="button"
