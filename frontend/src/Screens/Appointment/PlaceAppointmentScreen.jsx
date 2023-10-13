@@ -41,6 +41,7 @@ const PlaceAppointmentScreen = () => {
         address: choice.Address,
       }).unwrap();
       dispatch(cleardoctorInfo());
+      dispatch(clearAddress());
       navigate(`/appointment/${res._id}`);
     } catch (err) {
       toast.error(err);

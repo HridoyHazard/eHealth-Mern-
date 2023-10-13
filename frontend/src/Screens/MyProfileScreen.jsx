@@ -9,10 +9,11 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { useProfileMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
-import { useGetMyOrdersQuery } from "../slices/ordersApiSlice";
-import { useGetMyAppointmentsQuery } from "../slices/appointmentsApiSlice";
+import { useGetMyOrdersQuery, useGetOrdersQuery } from "../slices/ordersApiSlice";
+import { useGetMyAppointmentsQuery, useGetAppointmentsQuery } from "../slices/appointmentsApiSlice";
+import { useGetMyRequestsQuery, useGetRequestsQuery } from "../slices/requestbloodSlice";
 
-const ProfileScreen = () => {
+const MyProfileScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,12 +23,22 @@ const ProfileScreen = () => {
 
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
 
-  const { data: appointments } = useGetMyAppointmentsQuery();
+  const {
+    data: appointments,
+    isAppointmentLoading,
+    Appointmenterror,
+  } = useGetMyAppointmentsQuery();
+
+  const {
+    data: requests,
+    isRequestLoading,
+    Requesterror,
+  } = useGetMyRequestsQuery();
 
   const [updateProfile, { isLoading: loadingUpdateProfile }] =
     useProfileMutation();
 
-  console.log(appointments);
+  console.log(requests);
   useEffect(() => {
     setName(userInfo.name);
     setEmail(userInfo.email);
@@ -58,7 +69,7 @@ const ProfileScreen = () => {
   return (
     <Row>
       <Col md={2}>
-        <h2>User Profile</h2>
+        <h2>{userInfo.name} Profile</h2>
 
         <Form onSubmit={submitHandler}>
           <Form.Group className="my-2" controlId="name">
@@ -173,13 +184,13 @@ const ProfileScreen = () => {
         )}
         <>
           <h2>My Appointments</h2>
-          {isLoading ? (
-            <Loader />
-          ) : error ? (
-            <Message variant="danger">
-              {error?.data?.message || error.error}
-            </Message>
-          ) : (
+          {isAppointmentLoading ? (
+          <Loader />
+        ) : Appointmenterror ? (
+          <Message variant="danger">
+            {Appointmenterror?.data?.message || Appointmenterror.error}
+          </Message>
+        ) : (
             <Table striped hover responsive className="table-sm">
               <thead>
                 <tr>
@@ -226,9 +237,76 @@ const ProfileScreen = () => {
             </Table>
           )}
         </>
+        <>
+          <h2>My Blood Requests</h2>
+          {isRequestLoading ? (
+          <Loader />
+        ) : Requesterror ? (
+          <Message variant="danger">
+            {Requesterror?.data?.message || Requesterror.error}
+          </Message>
+        ) : (
+            <Table striped hover responsive className="table-sm">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>DATE</th>
+                  <th>Patient Name</th>
+                  <th>Blood Group</th>
+                  <th>Hospital</th>
+                  <th>Approved</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {requests?.map((request) => (
+                  <tr key={request._id}>
+                    <td>{request._id}</td>
+                    <td>{request.createdAt.substring(0, 10)}</td>
+                    <td>
+                      {request.requestItems.map((items) => (
+                        <div>{items.name}</div>
+                      ))}
+                    </td>
+                    <td>
+                      {request.requestItems.map((items) => (
+                        <div>{items.group}</div>
+                      ))}
+                    </td>
+                    <td>
+                      {request.requestItems.map((items) => (
+                        <div>{items.hospital}</div>
+                      ))}
+                    </td>
+                    <td>
+                      {request.isApproved ? (
+                        <>
+                          <div>
+                            {" "}
+                            <FaCheckCircle style={{ color: "green" }} />
+                          </div>
+                          <div>{request.ApprovedAt.substring(0, 10)}</div>
+                        </>
+                      ) : (
+                        <FaTimes style={{ color: "red" }} />
+                      )}
+                    </td>
+                    <td>
+                      <LinkContainer to={`/request/${request._id}`}>
+                        <Button className="btn-sm" variant="light">
+                          Details
+                        </Button>
+                      </LinkContainer>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
+        </>
       </Col>
     </Row>
   );
 };
 
-export default ProfileScreen;
+export default MyProfileScreen;

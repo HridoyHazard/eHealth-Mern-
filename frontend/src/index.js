@@ -1,5 +1,5 @@
 import React from "react";
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import ReactDOM from "react-dom/client";
 import {
@@ -8,8 +8,8 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import '../src/assets/styles/index.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "../src/assets/styles/index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/index.css";
 import "./assets/styles/bootstrap.custom.css";
 import App from "./App";
@@ -27,6 +27,9 @@ import DoctorScreenDetails from "./Screens/Doctor/DoctorScreenDetails";
 
 import BloodScreen from "./Screens/Blood/BloodScreen";
 import BloodScreenDetails from "./Screens/Blood/BloodScreenDetails";
+import RequestBlood from "./Screens/Blood/RequestBlood";
+import RequestBloodScreen from "./Screens/Blood/RequestBloodScreen";
+import RequestBloodListScreen from "./Screens/Admin/RequestBloodListScreen";
 
 import CartScreen from "./Screens/Order And Cart/CartScreen";
 
@@ -43,7 +46,8 @@ import AppointmentAddress from "./Screens/Appointment/AppointmentAddress";
 import PlaceAppointmentScreen from "./Screens/Appointment/PlaceAppointmentScreen";
 import AppointmentDate from "./Screens/Appointment/AppointmentDate";
 
-import ProfileScreen from "./Screens/ProfileScreen";
+import MyProfileScreen from "./Screens/MyProfileScreen";
+import AdminProfile from "./Screens/Admin/AdminProfile";
 import OrderListScreen from "./Screens/Admin/OrderListScreen";
 //Medicine
 import MedicineListScreen from "./Screens/Admin/MedicineListScreen";
@@ -64,7 +68,6 @@ import ChatScreen from "./Screens/ChatScreen";
 
 import AppointmentListScreen from "./Screens/Admin/AppointmentListScreen";
 
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -80,7 +83,6 @@ const router = createBrowserRouter(
       <Route path="/Blood" element={<BloodScreen />} />
       <Route path="/Blood/search/:keyword" element={<BloodScreen />} />
       <Route path="/blood/:id" element={<BloodScreenDetails />} />
-
       //All Private Routes
       <Route path="" element={<PrivateRoute />}>
         <Route path="/shipping" element={<ShippingScreen />} />
@@ -90,14 +92,23 @@ const router = createBrowserRouter(
         <Route path="/appointmentaddress" element={<AppointmentAddress />} />
         <Route path="/appointmentdate" element={<AppointmentDate />} />
         <Route path="/order/:id" element={<OrderScreen />} />
-        <Route path="/profile" element={<ProfileScreen />} />
+        <Route path="/myprofile" element={<MyProfileScreen />} />
         <Route path="/appointment/:id" element={<AppointmentScreen />} />
+        <Route path="/requestblood" element={<RequestBlood />} />
+        <Route path="/request/:id" element={<RequestBloodScreen />} />
+
       </Route>
-      
       //All Admin Routes
       <Route path="" element={<AdminRoute />}>
         <Route path="/admin/orderlist" element={<OrderListScreen />} />
-        <Route path="/admin/appointmentlist" element={<AppointmentListScreen />} />
+        <Route
+          path="/admin/appointmentlist"
+          element={<AppointmentListScreen />}
+        />
+        <Route
+          path="/admin/requestlist"
+          element={<RequestBloodListScreen />}
+        />
         <Route path="/admin/medicinelist" element={<MedicineListScreen />} />
         <Route path="/admin/med/:id/edit" element={<MedicineEditScreen />} />
         <Route path="/admin/userlist" element={<UserListScreen />} />
@@ -107,6 +118,7 @@ const router = createBrowserRouter(
         <Route path="/admin/bloodlist" element={<BloodListScreen />} />
         <Route path="/admin/blood/:id/edit" element={<BloodEditScreen />} />
         <Route path="/admin/chat" element={<ChatScreen />} />
+        <Route path="/admin/profile" element={<AdminProfile />} />
       </Route>
     </Route>
   )

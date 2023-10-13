@@ -11,6 +11,8 @@ import User from "./models/userModel.js";
 import connectDB from "./config/db.js";
 import Doctor from "./models/doctorModel.js";
 import Blood from "./models/bloodModel.js";
+import Appointment from "./models/appointmentModel.js";
+import RequestBlood from "./models/requestModel.js";
 
 
 
@@ -25,6 +27,7 @@ const importData = async () => {
     await Doctor.deleteMany();
     await Blood.deleteMany();
     await User.deleteMany();
+    
 
     const createdUsers = await User.insertMany(users);
 
@@ -60,6 +63,9 @@ const destroyData = async () => {
     await Doctor.deleteMany();
     await Blood.deleteMany();
     await User.deleteMany();
+    await Appointment.deleteMany();
+    await RequestBlood.deleteMany();
+
 
     console.log("Data Destroyed!".red.inverse);
     process.exit();

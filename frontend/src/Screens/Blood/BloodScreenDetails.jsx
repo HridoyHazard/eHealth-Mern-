@@ -29,8 +29,6 @@ const BloodScreenDetails = () => {
 
   const { data: blood, isLoading, error } = useGetBloodDetailsQuery(bloodId);
 
-  console.log(blood);
-
   return (
     <>
       {isLoading ? (

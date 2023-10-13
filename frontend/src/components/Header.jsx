@@ -30,8 +30,16 @@ const Header = () => {
     }
   };
   return (
-    <header >
-      <Navbar style={{ background: "linear-gradient(170deg, rgb(0, 198, 167), rgb(30, 77, 146))" }} variant="dark" expand="md" collapseOnSelect>
+    <header>
+      <Navbar
+        style={{
+          background:
+            "linear-gradient(170deg, rgb(0, 198, 167), rgb(30, 77, 146))",
+        }}
+        variant="dark"
+        expand="md"
+        collapseOnSelect
+      >
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>eHealth</Navbar.Brand>
@@ -54,76 +62,92 @@ const Header = () => {
                   <FaStethoscope /> Blood
                 </Nav.Link>
               </LinkContainer>
-              {userInfo ? (
-                <>
-                  <NavDropdown title={userInfo.name} id="username">
-                    <LinkContainer to="/profile">
-                      <NavDropdown.Item>Profile</NavDropdown.Item>
-                    </LinkContainer>
-                    <LinkContainer to="/cart">
-                      <NavDropdown.Item>
-                        Cart
-                        {cartItems.length > 0 && (
-                          <Badge
-                            pill
-                            bg="success"
-                            style={{ marginLeft: "5px" }}
-                          >
-                            {cartItems.reduce((a, c) => a + c.qty, 0)}
-                          </Badge>
-                        )}
-                      </NavDropdown.Item>
-                    </LinkContainer>
-                    <LinkContainer to="/placeappointment">
-                      <NavDropdown.Item>
-                        Appointment
-                        {doctorInfo.length > 0 && (
-                          <Badge
-                            pill
-                            bg="success"
-                            style={{ marginLeft: "5px" }}
-                          >
-                            *
-                          </Badge>
-                        )}
-                      </NavDropdown.Item>
-                    </LinkContainer>
-                    <NavDropdown.Item onClick={logoutHandler}>
-                      Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </>
-              ) : (
+              {!userInfo ? (
                 <LinkContainer to="/login">
                   <Nav.Link>
                     <FaUser /> Sign In
                   </Nav.Link>
                 </LinkContainer>
-              )}
-              {userInfo && userInfo.isAdmin && (
-                <NavDropdown title="Admin" id="adminmenu">
-                  <LinkContainer to="/admin/medicinelist">
-                    <NavDropdown.Item>Medicines</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/orderlist">
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/appointmentlist">
-                    <NavDropdown.Item>Appointments</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/userlist">
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/bloodlist">
-                    <NavDropdown.Item>Bloods</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/doctorlist">
-                    <NavDropdown.Item>Doctors</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to="/admin/chat">
-                    <NavDropdown.Item>Chat</NavDropdown.Item>
-                  </LinkContainer>
-                </NavDropdown>
+              ) : userInfo && userInfo.isAdmin ? (
+                <>
+                  <NavDropdown title={userInfo.name} id="username">
+                    <LinkContainer to="/admin/profile">
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+
+                  <NavDropdown title="Admin" id="adminmenu">
+                    <LinkContainer to="/admin/medicinelist">
+                      <NavDropdown.Item>Medicines</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/orderlist">
+                      <NavDropdown.Item>Orders</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/appointmentlist">
+                      <NavDropdown.Item>Appointments</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/requestlist">
+                      <NavDropdown.Item>Blood Request</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/userlist">
+                      <NavDropdown.Item>Users</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/bloodlist">
+                      <NavDropdown.Item>Bloods</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/doctorlist">
+                      <NavDropdown.Item>Doctors</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/admin/chat">
+                      <NavDropdown.Item>Chat</NavDropdown.Item>
+                    </LinkContainer>
+                  </NavDropdown>
+                </>
+              ) : (
+                userInfo &&
+                !userInfo.isAdmin && (
+                  <>
+                    <NavDropdown title={userInfo.name} id="username">
+                      <LinkContainer to="/myprofile">
+                        <NavDropdown.Item>Profile</NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/cart">
+                        <NavDropdown.Item>
+                          Cart
+                          {cartItems.length > 0 && (
+                            <Badge
+                              pill
+                              bg="success"
+                              style={{ marginLeft: "5px" }}
+                            >
+                              {cartItems.reduce((a, c) => a + c.qty, 0)}
+                            </Badge>
+                          )}
+                        </NavDropdown.Item>
+                      </LinkContainer>
+                      <LinkContainer to="/placeappointment">
+                        <NavDropdown.Item>
+                          Appointment
+                          {doctorInfo.length > 0 && (
+                            <Badge
+                              pill
+                              bg="success"
+                              style={{ marginLeft: "5px" }}
+                            >
+                              *
+                            </Badge>
+                          )}
+                        </NavDropdown.Item>
+                      </LinkContainer>
+                      <NavDropdown.Item onClick={logoutHandler}>
+                        Logout
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </>
+                )
               )}
             </Nav>
           </Navbar.Collapse>
