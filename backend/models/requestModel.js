@@ -20,7 +20,7 @@ const requestSchema = mongoose.Schema(
     ],
     availableDonor: [
       {
-        number: { type: Number },
+        number: { type: String },
       }
     ],
     isApproved: {

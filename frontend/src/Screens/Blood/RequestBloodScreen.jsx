@@ -9,12 +9,13 @@ import {
   useGetRequestDetailsQuery,
   useApproveRequestMutation,
   useDonorNumberMutation,
+  useGetRequestsQuery,
 } from "../../slices/requestbloodSlice";
 import { MDBInput } from "mdb-react-ui-kit";
 
 const RequestBloodScreen = () => {
   const { id: requestId } = useParams();
-  const [Number, setNumber] = useState("");
+  const [DonorNumber, setDonorNumber] = useState("");
 
   const [donorNumber, { isLoading: loadingNumber }] = useDonorNumberMutation();
 
@@ -31,7 +32,7 @@ const RequestBloodScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   const approveAppointmentHandler = async () => {
-    await donorNumber({ availableDonor: [{ number: Number }] });
+    await donorNumber({ availableDonor: DonorNumber, id: requestId });
     await approveRequest(requestId);
     refetch();
     toast.success("Approved Successfull");
@@ -104,8 +105,8 @@ const RequestBloodScreen = () => {
                     size="lg"
                     id="form1"
                     type="text"
-                    value={Number}
-                    onChange={(e) => setNumber(e.target.value)}
+                    value={DonorNumber}
+                    onChange={(e) => setDonorNumber(e.target.value)}
                   />
                   <Button
                     type="button"
@@ -125,9 +126,13 @@ const RequestBloodScreen = () => {
                     <Message variant="success">
                       Approved on {request.ApprovedAt.substr(0, 10)}
                     </Message>
-                    <Message variant="success">
-                      Available Donor Number: {Number}
-                    </Message>
+                    {request.availableDonor.map((item, index) => (
+                      <ListGroup.Item key={index}>
+                        <Message variant="success">
+                          Available Donor Number: {item.number}
+                        </Message>
+                      </ListGroup.Item>
+                    ))}
                   </>
                 ) : (
                   <Message variant="danger">Not Approved</Message>

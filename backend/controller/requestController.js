@@ -27,14 +27,11 @@ const addRequestDonor = asyncHandler(async (req, res) => {
 // @route   POST /api/request/:id
 // @access  Admin
 const availableDonor = asyncHandler(async (req, res) => {
-
   const { availableDonor } = req.body;
 
-  console.log(req.body)
-
   const request = await RequestBlood.findByIdAndUpdate(
-    req.params.id,
-    { $push: { availableDonor: availableDonor } },
+    req.body.id,
+    { $push: { availableDonor: { number: availableDonor } } },
     { new: true }
   );
 
