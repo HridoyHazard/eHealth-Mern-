@@ -21,7 +21,30 @@ const addRequestDonor = asyncHandler(async (req, res) => {
     const createdRequest = await request.save();
     res.status(201).json(createdRequest);
   }
-  res.send("add Request Blood");
+});
+
+// @desc    Create new donor number
+// @route   POST /api/request/:id
+// @access  Admin
+const availableDonor = asyncHandler(async (req, res) => {
+
+  const { availableDonor } = req.body;
+
+  console.log(req.body)
+
+  const request = await RequestBlood.findByIdAndUpdate(
+    req.params.id,
+    { $push: { availableDonor: availableDonor } },
+    { new: true }
+  );
+
+  if (request) {
+    // const updatedRequest = await request.save();
+    res.status(201).json(request);
+  } else {
+    res.status(404);
+    throw new Error("Request not found");
+  }
 });
 
 // @desc    Get logged in user requests
@@ -30,7 +53,6 @@ const addRequestDonor = asyncHandler(async (req, res) => {
 const getMyRequests = asyncHandler(async (req, res) => {
   const requests = await RequestBlood.find({ user: req.user._id });
   res.status(200).json(requests);
-  res.send("get my requests");
 });
 
 // @desc    Get request by ID
@@ -48,7 +70,6 @@ const getRequestById = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Request not found");
   }
-  res.send("get request by id");
 });
 
 // @desc    Update appointment to approved
@@ -68,7 +89,6 @@ const updateRequestToApproved = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Request not found");
   }
-  res.send("update request to approved");
 });
 
 // @desc    Get all appointments
@@ -77,7 +97,6 @@ const updateRequestToApproved = asyncHandler(async (req, res) => {
 const getRequests = asyncHandler(async (req, res) => {
   const requests = await RequestBlood.find({}).populate("user", "id name");
   res.json(requests);
-  res.send("get requests");
 });
 
 export {
@@ -86,4 +105,5 @@ export {
   getRequestById,
   getRequests,
   updateRequestToApproved,
+  availableDonor,
 };

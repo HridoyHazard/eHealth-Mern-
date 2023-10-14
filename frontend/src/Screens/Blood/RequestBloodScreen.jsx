@@ -8,13 +8,15 @@ import Loader from "../../components/Loader";
 import {
   useGetRequestDetailsQuery,
   useApproveRequestMutation,
+  useDonorNumberMutation,
 } from "../../slices/requestbloodSlice";
 import { MDBInput } from "mdb-react-ui-kit";
 
 const RequestBloodScreen = () => {
   const { id: requestId } = useParams();
-
   const [Number, setNumber] = useState("");
+
+  const [donorNumber, { isLoading: loadingNumber }] = useDonorNumberMutation();
 
   const {
     data: request,
@@ -29,6 +31,7 @@ const RequestBloodScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   const approveAppointmentHandler = async () => {
+    await donorNumber({ availableDonor: [{ number: Number }] });
     await approveRequest(requestId);
     refetch();
     toast.success("Approved Successfull");

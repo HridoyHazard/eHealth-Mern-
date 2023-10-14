@@ -18,6 +18,11 @@ const requestSchema = mongoose.Schema(
         hospital: { type: String },
       },
     ],
+    availableDonor: [
+      {
+        number: { type: Number },
+      }
+    ],
     isApproved: {
       type: Boolean,
       required: true,

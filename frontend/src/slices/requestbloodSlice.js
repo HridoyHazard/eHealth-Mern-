@@ -10,6 +10,13 @@ export const requestbloodApiSlice = apiSlice.injectEndpoints({
         body: { ...request },
       }),
     }),
+    donorNumber: builder.mutation({
+      query: (number) => ({
+        url: `${REQUESTS_URL}/available`,
+        method: "POST",
+        body: { ...number },
+      }),
+    }),
     getRequestDetails: builder.query({
       query: (id) => ({
         url: `${REQUESTS_URL}/${id}`,
@@ -43,4 +50,5 @@ export const {
   useGetMyRequestsQuery,
   useGetRequestsQuery,
   useApproveRequestMutation,
+  useDonorNumberMutation,
 } = requestbloodApiSlice;
