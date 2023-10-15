@@ -19,6 +19,7 @@ import store from "./store";
 import reportWebVitals from "./reportWebVitals";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
+
 import MedicineScreen from "./Screens/Medicine/MedicineScreen";
 import MedicineScreenDetails from "./Screens/Medicine/MedicineScreenDetails";
 
@@ -30,6 +31,9 @@ import BloodScreenDetails from "./Screens/Blood/BloodScreenDetails";
 import RequestBlood from "./Screens/Blood/RequestBlood";
 import RequestBloodScreen from "./Screens/Blood/RequestBloodScreen";
 import RequestBloodListScreen from "./Screens/Admin/RequestBloodListScreen";
+
+import ContactUS from "./Screens/ContactUS";
+import AboutUs from "./Screens/AboutUs";
 
 import CartScreen from "./Screens/Order And Cart/CartScreen";
 
@@ -81,8 +85,11 @@ const router = createBrowserRouter(
       <Route path="/doctor/:id/chat" element={<ChatScreen />} />
       <Route path="/doctor/:id" element={<DoctorScreenDetails />} />
       <Route path="/Blood" element={<BloodScreen />} />
+      <Route path="/Contactus" element={<ContactUS />} />
+      <Route path="/Aboutus" element={<AboutUs />} />
       <Route path="/Blood/search/:keyword" element={<BloodScreen />} />
       <Route path="/blood/:id" element={<BloodScreenDetails />} />
+
       //All Private Routes
       <Route path="" element={<PrivateRoute />}>
         <Route path="/shipping" element={<ShippingScreen />} />

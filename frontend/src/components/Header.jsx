@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Container, Badge } from "react-bootstrap";
-import { FaUser, FaCapsules, FaStethoscope } from "react-icons/fa";
+import { FaUser, FaCapsules, FaStethoscope,FaAddressBook,FaTty } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -60,6 +60,16 @@ const Header = () => {
               <LinkContainer to="/Blood">
                 <Nav.Link>
                   <FaStethoscope /> Blood
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/Contactus">
+                <Nav.Link>
+                  <FaTty /> Contact Us
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/Aboutus">
+                <Nav.Link>
+                  <FaAddressBook/> About Us
                 </Nav.Link>
               </LinkContainer>
               {!userInfo ? (
