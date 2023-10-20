@@ -16,6 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 const AppointmentDate = () => {
   const choice = useSelector((state) => state.choice);
   const { DateTime } = choice;
+  // const minTime = new Date("8/3/2023 5:00 PM");
+  // const maxTime = new Date("8/3/23 11:30 PM");
 
   const [selectedDate, setSelectedDate] = useState(DateTime.selectedDate || "");
   const [selectedTime, setSelectedTime] = useState(DateTime.selectedTime || "");
@@ -26,16 +28,15 @@ const AppointmentDate = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveDateTime({ selectedDate, selectedTime }));
+    console.log(selectedDate, selectedTime);
     navigate("/appointmentaddress");
   };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    console.log(selectedDate);
   };
   const handleTimeChange = (time) => {
     setSelectedTime(time);
-    console.log(selectedTime);
   };
   return (
     <>

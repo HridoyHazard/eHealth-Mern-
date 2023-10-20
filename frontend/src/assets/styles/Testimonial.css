@@ -1,14 +1,11 @@
 .testimonial {
   margin-top: 50px;
-  width: 100%;
   height: 600px;
-  box-sizing: border-box;
-  padding-left: 30px;
 }
 .testimonial .card {
-  width: 600px;
-  height: 450px;
+  width: 400px;
   border-radius: 20px;
+  margin: 0px 20px;
 }
 
 .score {

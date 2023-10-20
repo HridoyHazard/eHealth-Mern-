@@ -1,6 +1,8 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
+import nodemailer from "nodemailer";
+import jwt from "jsonwebtoken";
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -22,6 +24,77 @@ const authUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid email or password");
   }
   res.send("Auth user");
+});
+
+// @desc    forget user password & get token
+// @route   POST /api/users/forgetpassword
+// @access  Public
+const forgetPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email: email });
+
+  if (!user) {
+    console.log("User not existed");
+    return res.send({ Status: "User not existed" });
+  }
+  const token = jwt.sign({ id: user._id }, "jwt_secret_key", {
+    expiresIn: "1d",
+  });
+
+  console.log(user);
+  console.log(token);
+  console.log(req.body);
+
+  var transporter = nodemailer.createTransport({
+    service: "gmail",
+    requireTLS: true,
+    auth: {
+      user: "fardeenazwad12@gmail.com",
+      pass: "wqgm svpt txub wzns",
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  var mailOptions = {
+    from: "fardeenazwad12@gmail.com",
+    to: "hridoyhazard47@gmail.com",
+    subject: "Reset Password Link",
+    text: `http://localhost:3000/resetpassword/${user._id}/${token}`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent" + info.response);
+      return res.send({ Status: "Success" });
+    }
+  });
+});
+
+const resetPassword = asyncHandler(async (req, res) => {
+  const { id, token } = req.params;
+  const { password } = req.body;
+
+  console.log(req.body);
+
+  jwt.verify(token, "jwt_secret_key", (err, decoded) => {
+    if (err) {
+      return res.json({ Status: "Error with token" });
+    } else {
+      bcrypt
+        .hash(password, 10)
+        .then((hash) => {
+          User.findByIdAndUpdate({ _id: id }, { password: hash })
+            .then((u) => res.send({ Status: "Success" }))
+            .catch((err) => res.send({ Status: err }));
+        })
+        .catch((err) => res.send({ Status: err }));
+    }
+  });
+  res.send("Reset Password");
 });
 
 // @desc    Register a new user
@@ -127,7 +200,6 @@ const getUsers = asyncHandler(async (req, res) => {
 // @route   DELETE /api/users/:id
 // @access  Private/Admin
 const deleteUser = asyncHandler(async (req, res) => {
-  
   const user = await User.findById(req.params.id);
 
   if (user) {
@@ -147,13 +219,13 @@ const deleteUser = asyncHandler(async (req, res) => {
 // @route   GET /api/users/:id
 // @access  Private/Admin
 const getUserById = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id).select('-password');
+  const user = await User.findById(req.params.id).select("-password");
 
   if (user) {
     res.json(user);
   } else {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 });
 // @desc    Update user
@@ -177,12 +249,14 @@ const updateUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 });
 
 export {
   authUser,
+  forgetPassword,
+  resetPassword,
   registerUser,
   logoutUser,
   getUserProfile,

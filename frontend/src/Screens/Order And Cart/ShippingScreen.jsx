@@ -35,7 +35,7 @@ const ShippingScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAddress({ address, city, postalCode, contact }));
+    dispatch(saveShippingAddress({ name, address, city, postalCode, contact }));
     navigate("/payment");
   };
 
@@ -157,7 +157,7 @@ const ShippingScreen = () => {
                         <MDBCol md="6" className="mb-4">
                           <MDBInput
                             label="Contact Number"
-                            type="number"
+                            type="text"
                             className="mb-4"
                             size="lg"
                             value={contact}

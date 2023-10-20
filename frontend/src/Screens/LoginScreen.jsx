@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
-import FormContainer from "../components/FormContainer";
 import images01 from "../images/loginCover.jpg";
 
 import { useLoginMutation } from "../slices/usersApiSlice";
@@ -44,52 +43,6 @@ const LoginScreen = () => {
   };
 
   return (
-    // <section className="login">
-    //   <Container className="mt-5">
-    //     <FormContainer>
-    //       <h1>Sign In</h1>
-
-    //       <Form onSubmit={submitHandler}>
-    //         <Form.Group className="my-2" controlId="email">
-    //           <Form.Label>Email Address</Form.Label>
-    //           <Form.Control
-    //             type="email"
-    //             placeholder="Enter email"
-    //             value={email}
-    //             onChange={(e) => setEmail(e.target.value)}
-    //           ></Form.Control>
-    //         </Form.Group>
-
-    //         <Form.Group className="my-2" controlId="password">
-    //           <Form.Label>Password</Form.Label>
-    //           <Form.Control
-    //             type="password"
-    //             placeholder="Enter password"
-    //             value={password}
-    //             onChange={(e) => setPassword(e.target.value)}
-    //           ></Form.Control>
-    //         </Form.Group>
-
-    //         <Button disabled={isLoading} type="submit" variant="primary">
-    //           Sign In
-    //         </Button>
-
-    //         {isLoading && <Loader />}
-    //       </Form>
-
-    //       <Row className="py-3">
-    //         <Col>
-    //           New Customer?{" "}
-    //           <Link
-    //             to={redirect ? `/register?redirect=${redirect}` : "/register"}
-    //           >
-    //             Register
-    //           </Link>
-    //         </Col>
-    //       </Row>
-    //     </FormContainer>
-    //   </Container>
-    // </section>
     <div
       className="drow"
       style={{ minHeight: "864px", backgroundColor: "#172b4d" }}
@@ -102,7 +55,12 @@ const LoginScreen = () => {
                 src={images01}
                 alt=""
                 width={600}
-                style={{ borderRadius: "30px", paddingTop: "10px" }}
+                style={{
+                  borderRadius: "30px",
+                  paddingTop: "2.5rem",
+                  // animation:
+                  //   "up-down 2s ease-in-out infinite alternate-reverse both",
+                }}
               />
             </div>
             <div className="col-lg-5 col-md-7">
@@ -143,39 +101,41 @@ const LoginScreen = () => {
                   </div>
                   <Form onSubmit={submitHandler}>
                     <Form.Group className="my-2" controlId="email">
-                      <div className="input-group input-group-merge input-group-alternative">
-                        <div className="input-group-prepend pt-1">
-                          <span className="input-group-text">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
                             <span className="fa fa-user"></span>
                           </span>
                         </div>
                         <Form.Control
-                          type="email"
-                          placeholder="Email Address"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          className="form-control"
+                          type="email"
+                          id="email"
+                          class="form-control"
                           name="email"
+                          placeholder="Email Address"
                           required="required"
                         ></Form.Control>
                       </div>
                     </Form.Group>
+
                     <Form.Group className="my-2" controlId="password">
-                      <div className="input-group input-group-merge input-group-alternative">
-                        <div className="input-group-prepend pt-1">
+                      <div className="input-group">
+                        <div className="input-group-prepend">
                           <span className="input-group-text">
                             <i className="fa fa-lock"></i>
                           </span>
                         </div>
                         <Form.Control
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
                           type="password"
                           className="form-control"
                           name="password"
-                          placeholder="Enter Password"
+                          placeholder="Password"
                           required="required"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
+                        ></Form.Control>
                       </div>
                     </Form.Group>
                     <div className="custom-control custom-control-alternative custom-checkbox">
@@ -220,6 +180,15 @@ const LoginScreen = () => {
                   Register here
                 </Link>
               </div>
+              <div className="text-light text-center">
+                <Link
+                  className="text-light"
+                  to={redirect ? `/forgetpassword?redirect=${redirect}` : "/forgetpassword"}
+                >
+                  Forget Password?
+                </Link>
+              </div>
+              
             </div>
           </div>
         </div>

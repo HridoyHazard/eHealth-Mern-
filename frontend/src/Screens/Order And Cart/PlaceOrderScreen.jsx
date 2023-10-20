@@ -35,6 +35,7 @@ const PlaceOrderScreen = () => {
   }, [cart.paymentMethod, cart.shippingAddress.address, navigate]);
 
   const dispatch = useDispatch();
+  
   const placeOrderHandler = async () => {
     try {
       const res = await createOrder({
@@ -43,7 +44,6 @@ const PlaceOrderScreen = () => {
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
       }).unwrap();
       dispatch(clearCartItems());
@@ -131,12 +131,7 @@ const PlaceOrderScreen = () => {
                     <Col>৳{cart.shippingPrice}</Col>
                   </Row>
                 </ListGroup.Item>
-                <ListGroup.Item>
-                  <Row>
-                    <Col>Tax</Col>
-                    <Col>৳{cart.taxPrice}</Col>
-                  </Row>
-                </ListGroup.Item>
+
                 <ListGroup.Item>
                   <Row>
                     <Col>Total</Col>

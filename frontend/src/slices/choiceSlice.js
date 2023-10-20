@@ -22,13 +22,22 @@ const choiceSlice = createSlice({
       return updateChoice(state);
     },
     saveDateTime: (state, action) => {
-      console.log(state.DateTime);
+      state.DateTime = action.payload;
       return updateChoice(state);
     },
     saveAddress: (state, action) => {
       state.Address = action.payload;
       return updateChoice(state);
     },
+    clearAddress: (state) => {
+      state.Address = [];
+      return updateChoice(state);
+    },
+    clearDateNTime: (state) => {
+      state.DateTime = [];
+      return updateChoice(state);
+    },
+
     cleardoctorInfo: (state) => {
       state.doctorInfo = [];
       return updateChoice(state);

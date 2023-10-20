@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import "../src/assets/styles/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/styles/index.css";
+// import "./assets/styles/index.css";
 import "./assets/styles/bootstrap.custom.css";
 import App from "./App";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
@@ -71,6 +71,8 @@ import BloodEditScreen from "./Screens/Admin/BloodEditScreen";
 import ChatScreen from "./Screens/ChatScreen";
 
 import AppointmentListScreen from "./Screens/Admin/AppointmentListScreen";
+import ForgetPassword from "./Screens/ForgetPassword";
+import ResetPassword from "./Screens/ResetPassword";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -89,6 +91,8 @@ const router = createBrowserRouter(
       <Route path="/Aboutus" element={<AboutUs />} />
       <Route path="/Blood/search/:keyword" element={<BloodScreen />} />
       <Route path="/blood/:id" element={<BloodScreenDetails />} />
+      <Route path="/forgetpassword" element={<ForgetPassword />} />
+      <Route path="/resetpassword/:id/:token" element={<ResetPassword />} />
 
       //All Private Routes
       <Route path="" element={<PrivateRoute />}>

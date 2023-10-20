@@ -15,9 +15,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { useCreateAppointmentMutation } from "../../slices/appointmentsApiSlice";
-import { cleardoctorInfo, clearAddress, clearDateNTime } from "../../slices/choiceSlice";
+import {
+  cleardoctorInfo,
+  clearAddress,
+  clearDateNTime,
+} from "../../slices/choiceSlice";
 import AppointmentSteps from "../../components/AppointmentSteps";
 import FormContainer from "../../components/FormContainer";
+import { List } from "@material-ui/core";
 
 const PlaceAppointmentScreen = () => {
   const navigate = useNavigate();
@@ -40,21 +45,31 @@ const PlaceAppointmentScreen = () => {
         appointmentItems: choice.doctorInfo,
         address: choice.Address,
       }).unwrap();
-      dispatch(cleardoctorInfo());
-      dispatch(clearAddress());
+      dispatch(clearDateNTime(), dispatch(cleardoctorInfo()));
       navigate(`/appointment/${res._id}`);
     } catch (err) {
       toast.error(err);
     }
   };
+
+  const currentHour = new Date(choice.DateTime.selectedTime);
+  const startHour = new Date();
+  startHour.setHours(17, 59, 0);
+  const endHour = new Date();
+  endHour.setHours(23, 30, 0);
+
+  // console.log(currentHour.getHours());
+  // console.log(startHour.getHours());
+  // console.log(endHour.getHours());
+
   return (
     <>
       <Container>
-      {choice.doctorInfo.length !== 0 && ( 
-        <FormContainer>
-          <AppointmentSteps steps={3} />
-        </FormContainer>
-      )}
+        {choice.doctorInfo.length !== 0 && (
+          <FormContainer>
+            <AppointmentSteps steps={3} />
+          </FormContainer>
+        )}
         <Row className="mt-3">
           <Col md={8}>
             <ListGroup variant="flush">
@@ -72,7 +87,21 @@ const PlaceAppointmentScreen = () => {
                     <br></br>
                     <strong>Contact: </strong>
                     {choice.Address.contact}
+                    <br></br>
                   </p>
+                )}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                {currentHour.getHours() >= startHour.getHours() &&
+                currentHour.getHours() < endHour.getHours() ? (
+                  <Message variant="success">
+                    Your Appointment is between Doctor Schedule You Can Take The
+                    Appointment
+                  </Message>
+                ) : (
+                  <Message variant="danger">
+                    Your Appointment is not between Doctor Schedule
+                  </Message>
                 )}
               </ListGroup.Item>
               <ListGroup.Item>
@@ -122,22 +151,22 @@ const PlaceAppointmentScreen = () => {
                   <h2>Appointment Summary</h2>
                 </ListGroup.Item>
                 {choice.doctorInfo.length !== 0 && (
-                <ListGroupItem>
-                  <Row>
-                    <Col>Name</Col>
-                    <Col>{choice.Address.name}</Col>
-                  </Row>
-                  <br />
-                  <Row>
-                    <Col>Contact Info</Col>
-                    <Col>{choice.Address.contact}</Col>
-                  </Row>
-                  <br />
-                  <Row>
-                    <Col>Address</Col>
-                    <Col>{choice.Address.address}</Col>
-                  </Row>
-                </ListGroupItem>
+                  <ListGroupItem>
+                    <Row>
+                      <Col>Name</Col>
+                      <Col>{choice.Address.name}</Col>
+                    </Row>
+                    <br />
+                    <Row>
+                      <Col>Contact Info</Col>
+                      <Col>{choice.Address.contact}</Col>
+                    </Row>
+                    <br />
+                    <Row>
+                      <Col>Address</Col>
+                      <Col>{choice.Address.address}</Col>
+                    </Row>
+                  </ListGroupItem>
                 )}
                 {choice.doctorInfo.map((item, index) => (
                   <ListGroup.Item key={index}>

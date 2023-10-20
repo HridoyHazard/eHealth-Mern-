@@ -86,7 +86,7 @@ const CartScreen = () => {
                                   src={item.image}
                                   fluid
                                   className="rounded-3"
-                                  alt="Cotton T-shirt"
+                                  alt="Sample photo"
                                 />
                               </MDBCol>
                               <MDBCol md="3" lg="3" xl="3">

@@ -1,5 +1,6 @@
 import React from "react";
 import { CDBSidebarFooter, CDBLink, CDBBox, CDBBtn, CDBIcon } from "cdbreact";
+import logo from "../images/ehealth.svg";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
@@ -14,14 +15,14 @@ const Footer = () => {
         display="flex"
         flex="column"
         className="mx-auto py-5"
-        style={{ width: "90%" }}
+        style={{ width: "80%" }}
       >
         <CDBBox display="flex" justifyContent="between" className="flex-wrap">
           <CDBBox>
-            <a href="/" className="d-flex align-items-center p-0 text-dark">
-              <img alt="logo" src="logo" width="30px" />
-              <span className="ms-3 h5 font-weight-bold">eHealth</span>
-            </a>
+            <p className="h5 mb-4" style={{ fontWeight: "600" }}>
+              <img alt="logo" src={logo} width="30px" /> eHealth
+            </p>
+
             <p className="my-3" style={{ width: "250px" }}>
               We are creating High Quality Resources and tools to Aid developers
               during the developement of their projects

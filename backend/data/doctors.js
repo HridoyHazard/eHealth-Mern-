@@ -15,7 +15,7 @@ const doctors = [
     specialist: "Kidney Diseases & Medicine.",
     chamber: "Mount Adora Hospital",
     tag:"mount",
-    available: "5pm-9pm",
+    available: "5pm-11pm",
   },
   {
     name: "Prof.Dr.Mahjuba Umme Salam",

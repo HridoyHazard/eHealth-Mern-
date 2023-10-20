@@ -118,6 +118,7 @@ const RequestBloodScreen = () => {
                 </ListGroup.Item>
               )}
               {loadingRequest && <Loader />}
+              {loadingNumber && <Loader />}
             </ListGroup>
             <ListGroup>
               <ListGroup.Item>
@@ -127,11 +128,9 @@ const RequestBloodScreen = () => {
                       Approved on {request.ApprovedAt.substr(0, 10)}
                     </Message>
                     {request.availableDonor.map((item, index) => (
-                      <ListGroup.Item key={index}>
-                        <Message variant="success">
-                          Available Donor Number: {item.number}
-                        </Message>
-                      </ListGroup.Item>
+                      <Message variant="success">
+                        Available Donor Number: {item.number}
+                      </Message>
                     ))}
                   </>
                 ) : (
