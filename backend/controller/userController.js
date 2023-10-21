@@ -3,6 +3,7 @@ import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -78,10 +79,13 @@ const resetPassword = asyncHandler(async (req, res) => {
   const { id, token } = req.params;
   const { password } = req.body;
 
-  console.log(req.body);
+  console.log(token);
+
+  console.log(password);
 
   jwt.verify(token, "jwt_secret_key", (err, decoded) => {
     if (err) {
+      console.log(err);
       return res.json({ Status: "Error with token" });
     } else {
       bcrypt
@@ -94,7 +98,6 @@ const resetPassword = asyncHandler(async (req, res) => {
         .catch((err) => res.send({ Status: err }));
     }
   });
-  res.send("Reset Password");
 });
 
 // @desc    Register a new user

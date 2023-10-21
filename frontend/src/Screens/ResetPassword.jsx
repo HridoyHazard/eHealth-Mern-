@@ -4,11 +4,16 @@ import { useParams } from "react-router-dom";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
+  const { id, token } = useParams();
 
   const [updatePassword, { isLoading }] = useResetPasswordMutation();
 
   const handleSubmit = async () => {
-    await updatePassword({ password: password });
+    await updatePassword({
+      password: password,
+      id: id,
+      token: token,
+    });
   };
 
   return (
