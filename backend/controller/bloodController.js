@@ -6,8 +6,13 @@ import Blood from "../models/bloodModel.js";
 // @access  Public
 const getBloods = asyncHandler(async (req, res) => {
   const keyword = req.query.keyword
-    ? { name: { $regex: req.query.keyword, $options: "i" } } || {
-        group: { $regex: req.query.keyword, $options: "i" },
+    ? {
+        $or: [
+          { name: { $regex: req.query.keyword, $options: "i" } },
+          {
+            group: { $regex: req.query.keyword, $options: "i" },
+          },
+        ],
       }
     : {};
 
@@ -87,6 +92,5 @@ const deleteBlood = asyncHandler(async (req, res) => {
     throw new Error("Donor not found");
   }
 });
-
 
 export { getBloods, getBloodById, createBlood, updateBlood, deleteBlood };
