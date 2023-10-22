@@ -10,22 +10,28 @@ const Blood = ({ blood }) => {
         className="imgBx"
         to={`/blood/${blood._id}`}
       >
-        <img className="img-fluid" src={blood.image} />
+        <img
+          className="img-fluid"
+          style={{ height: "240px", width: "100%" }}
+          src={blood.image}
+        />
       </Link>
-      <div className="contentBx">
+      <div className="text-center name">
         <Link style={{ textDecoration: "none" }} to={`/blood/${blood._id}`}>
-          <h5>{blood.name}</h5>
+          <span>{blood.name}</span>
         </Link>
-        <div className="group mt-2">
-          <strong>
-            <span className="text-danger">{blood.group}</span>
-          </strong>
-        </div>
-        <div className="age">
-          <strong>
-            <span className="text-success text-center">{blood.age}</span>
-          </strong>
-        </div>
+      </div>
+      <div className="group text-center">
+        <strong>
+          <span>
+            Group : <span className="text-danger">{blood.group}</span>
+          </span>
+        </strong>
+        <strong>
+          <p>
+            Age : <span className="text-success">{blood.age}</span>
+          </p>
+        </strong>
       </div>
     </div>
   );

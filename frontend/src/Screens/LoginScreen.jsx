@@ -183,12 +183,15 @@ const LoginScreen = () => {
               <div className="text-light text-center">
                 <Link
                   className="text-light"
-                  to={redirect ? `/forgetpassword?redirect=${redirect}` : "/forgetpassword"}
+                  to={
+                    redirect
+                      ? `/forgetpassword?redirect=${redirect}`
+                      : "/forgetpassword"
+                  }
                 >
                   Forget Password?
                 </Link>
               </div>
-              
             </div>
           </div>
         </div>

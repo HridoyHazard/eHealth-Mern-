@@ -15,39 +15,21 @@ import { Box } from "@material-ui/core";
 import { toast } from "react-toastify";
 
 const ForgetPassword = () => {
-  const [resetEmail, { isLoading }] = useForgetPasswordMutation();
+  const [resetEmail] = useForgetPasswordMutation();
   const [email, setEmail] = useState("");
 
-  const submitHandler = async () => {
-    await resetEmail({ email: email });
-    toast.success("Email Sent Successfully");
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      await resetEmail({ email: email }).unwrap();
+      toast.success("Email Sent Successfully");
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   return (
     <>
-      {/* <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
-        <div className="bg-white p-3 rounded w-25">
-          <h4>Forgot Password</h4>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="email">
-                <strong>Email</strong>
-              </label>
-              <input
-                type="email"
-                placeholder="Enter Email"
-                autoComplete="off"
-                name="email"
-                className="form-control rounded-0"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <button type="submit" className="btn btn-success w-100 rounded-0">
-              Send
-            </button>
-          </form>
-        </div>
-      </div> */}
       <MDBContainer className="py-5 mt-5 h-100">
         <MDBRow className="d-flex justify-content-center align-items-center h-80">
           <MDBCol lg="8" className="mb-4 mb-lg-0">
@@ -86,12 +68,7 @@ const ForgetPassword = () => {
                       marginTop="1.5rem"
                       marginBottom="1.5rem"
                     >
-                      <Button
-                        disabled={isLoading}
-                        type="submit"
-                        color="primary"
-                        variant="primary"
-                      >
+                      <Button type="submit" color="primary" variant="primary">
                         Send
                       </Button>
                     </Box>

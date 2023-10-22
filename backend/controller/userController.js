@@ -32,11 +32,12 @@ const authUser = asyncHandler(async (req, res) => {
 // @access  Public
 const forgetPassword = asyncHandler(async (req, res) => {
   const { email } = req.body;
+  console.log(email)
   const user = await User.findOne({ email: email });
 
   if (!user) {
-    console.log("User not existed");
-    return res.send({ Status: "User not existed" });
+    res.status(401);
+    throw new Error("User Not Found!");
   }
   const token = jwt.sign({ id: user._id }, "jwt_secret_key", {
     expiresIn: "1d",
@@ -60,7 +61,7 @@ const forgetPassword = asyncHandler(async (req, res) => {
 
   var mailOptions = {
     from: "fardeenazwad12@gmail.com",
-    to: "hridoyhazard47@gmail.com",
+    to: email,
     subject: "Reset Password Link",
     text: `http://localhost:3000/resetpassword/${user._id}/${token}`,
   };
@@ -75,6 +76,9 @@ const forgetPassword = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc    forget user password & get token
+// @route   POST /api/users/resetpassword/:id/:token
+// @access  Public
 const resetPassword = asyncHandler(async (req, res) => {
   const { id, token } = req.params;
   const { password } = req.body;

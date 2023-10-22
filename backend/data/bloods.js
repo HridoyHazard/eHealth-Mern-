@@ -10,7 +10,7 @@ const bloods = [
   },
   {
     name: "Gourav Debnath",
-    image: "/images/hridoy.jpg",
+    image: "/images/gourob.jpeg",
     group: "A+",
     age: 25,
     lastdonate: "January",
@@ -19,7 +19,7 @@ const bloods = [
   },
   {
     name: "Noor Mohammed",
-    image: "/images/hridoy.jpg",
+    image: "/images/marjan.jpg",
     group: "B+",
     age: 25,
     lastdonate: "March",
@@ -28,7 +28,7 @@ const bloods = [
   },
   {
     name: "Hasibul Islam",
-    image: "/images/hridoy.jpg",
+    image: "/images/hasib.jpg",
     group: "AB+",
     age: 23,
     lastdonate: "January",
@@ -36,8 +36,8 @@ const bloods = [
     contact: "01749571666",
   },
   {
-    name: "Jubayer Chowdhury",
-    image: "/images/hridoy.jpg",
+    name: "Foyzur Rahman",
+    image: "/images/foyzur.jpg",
     group: "AB+",
     age: 24,
     lastdonate: "June",
@@ -46,7 +46,7 @@ const bloods = [
   },
   {
     name: "Mahin Chowdhury",
-    image: "/images/hridoy.jpg",
+    image: "/images/mahin.jpg",
     group: "O-",
     age: 24,
     lastdonate: "July",
@@ -55,7 +55,7 @@ const bloods = [
   },
   {
     name: "Mosarof Hossain",
-    image: "/images/hridoy.jpg",
+    image: "/images/musa.jpg",
     group: "B-",
     age: 27,
     lastdonate: "April",
@@ -64,7 +64,7 @@ const bloods = [
   },
   {
     name: "Zahin Bhuiyan",
-    image: "/images/hridoy.jpg",
+    image: "/images/zahin.jpg",
     group: "AB+",
     age: 21,
     lastdonate: "December",
@@ -73,7 +73,7 @@ const bloods = [
   },
   {
     name: "Mamun Ahmed",
-    image: "/images/hridoy.jpg",
+    image: "/images/mamun.jpg",
     group: "B+",
     age: 24,
     lastdonate: "February",
@@ -82,7 +82,7 @@ const bloods = [
   },
   {
     name: "Nahid Ahmed",
-    image: "/images/hridoy.jpg",
+    image: "/images/nahid.jpg",
     group: "O-",
     age: 24,
     lastdonate: "October",
