@@ -3,7 +3,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
-import FormContainer from "../../components/FormContainer";
 import { toast } from "react-toastify";
 import {
   useUpdateMedicineMutation,
@@ -169,7 +168,7 @@ const MedicineEditScreen = () => {
                   <textarea
                     class="form-control"
                     id="exampleFormControlTextarea1"
-                    rows="5"
+                    rows="3"
                     type="text"
                     placeholder="Enter description"
                     value={description}

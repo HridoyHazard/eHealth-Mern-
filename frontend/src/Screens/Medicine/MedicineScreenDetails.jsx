@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   ListGroupItem,
   ListGroup,
@@ -26,8 +26,6 @@ const MedicineScreenDetails = () => {
   const { id: medId } = useParams();
 
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
@@ -62,13 +60,17 @@ const MedicineScreenDetails = () => {
   };
 
   const addToCartHandler = () => {
-    dispatch(addToCart({ ...med, qty }));
-    toast.success("Item added to cart");
+    if (!userInfo) {
+      toast.error("You Need To Login First");
+    } else {
+      dispatch(addToCart({ ...med, qty }));
+      toast.success("Item added to cart");
+    }
   };
 
   return (
     <>
-      <Link className="btn btn-light my-3" to="/Medicine">
+      <Link className="btn btn-light mx-3 my-3" to="/Medicine">
         Go Back
       </Link>
       {isLoading ? (

@@ -28,7 +28,7 @@ const Heading = () => {
                   </h1>
                   <p>We are here for your care 24/7. Any help just call us.</p>
 
-                  <Link className="btnlink" to="/appointmentbook">
+                  <Link className="btnlink" to="/Doctor">
                     <Button variant="contained" color="secondary">
                       Make An Appointment
                     </Button>

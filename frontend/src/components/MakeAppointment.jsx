@@ -12,17 +12,16 @@ const MakeAppointment = () => {
               <img src={doctor} alt="" />
             </div>
             <div className="col-md-7 text-white py-5 front">
-              <h5 className="text-uppercase my-2">Appointment</h5>
+              <h5 className="text-uppercase my-2">Medicines</h5>
               <h1 className="my-4">
-                Make an Appointment <br /> Today
+                Purchase Medicines <br /> Today
               </h1>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque
-                magnam ad consequuntur assumenda saepe hic.
+                All kind of medicines are available here at best price. You can purchase
               </p>
               <Link
                 variant="contained"
-                to="/appointmentbook"
+                to="/Medicine"
                 className=" contact1-form-btn1"
               >
                 Now

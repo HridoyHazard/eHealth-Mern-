@@ -22,7 +22,6 @@ import {
 } from "../../slices/choiceSlice";
 import AppointmentSteps from "../../components/AppointmentSteps";
 import FormContainer from "../../components/FormContainer";
-import { List } from "@material-ui/core";
 
 const PlaceAppointmentScreen = () => {
   const navigate = useNavigate();
@@ -199,6 +198,18 @@ const PlaceAppointmentScreen = () => {
                   >
                     Place Appointment
                   </Button>
+                  <Button 
+                    type="button"
+                    className="btn-block"
+                    onClick={() => {
+                      dispatch(clearAddress());
+                      dispatch(cleardoctorInfo());
+                      dispatch(clearDateNTime());
+                      navigate("/Doctor");
+                    }}
+                    >
+                      Cancel Appointment
+                    </Button>
                   {isLoading && <Loader />}
                 </ListGroup.Item>
               </ListGroup>

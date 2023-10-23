@@ -6,7 +6,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
-import images01 from "../images/icon/eHealth.svg";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);

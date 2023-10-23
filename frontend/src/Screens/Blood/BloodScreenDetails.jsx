@@ -1,15 +1,5 @@
 import { Link, useParams } from "react-router-dom";
 import {
-  ListGroupItem,
-  ListGroup,
-  Col,
-  Row,
-  Card,
-  Button,
-  Image,
-  Container,
-} from "react-bootstrap";
-import {
   MDBCol,
   MDBContainer,
   MDBRow,
@@ -38,7 +28,8 @@ const BloodScreenDetails = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
+        // vh-100
+        <section style={{ backgroundColor: "#f4f5f7", height: "55rem" }}>
           <Link className="btn btn-dark mx-3 my-3" to="/Blood">
             Go Back
           </Link>
@@ -62,7 +53,6 @@ const BloodScreenDetails = () => {
                         style={{ width: "100%", height: "100%" }}
                         fluid
                       />
-
                     </MDBCol>
                     <MDBCol md="8">
                       <MDBCardBody className="p-4">
@@ -72,31 +62,41 @@ const BloodScreenDetails = () => {
                         <hr className="mt-0 mb-1" />
                         <MDBRow className="pt-0">
                           <MDBCol size="6" className="mb-3">
-                            <MDBTypography tag="h6" className="mb-2">Name</MDBTypography>
+                            <MDBTypography tag="h6" className="mb-2">
+                              Name
+                            </MDBTypography>
                             <MDBCardText className="text-muted">
                               {blood.name}
                             </MDBCardText>
                           </MDBCol>
                           <MDBCol size="6" className="mb-3">
-                            <MDBTypography tag="h6"className="mb-2">Phone</MDBTypography>
+                            <MDBTypography tag="h6" className="mb-2">
+                              Phone
+                            </MDBTypography>
                             <MDBCardText className="text-muted">
                               {blood.contact}
                             </MDBCardText>
                           </MDBCol>
                           <MDBCol size="6" className="mb-3">
-                            <MDBTypography tag="h6" className="mb-2" >Blood Group</MDBTypography>
+                            <MDBTypography tag="h6" className="mb-2">
+                              Blood Group
+                            </MDBTypography>
                             <MDBCardText className="text-muted">
                               {blood.group}
                             </MDBCardText>
                           </MDBCol>
                           <MDBCol size="6" className="mb-3">
-                            <MDBTypography tag="h6"className="mb-2">Age</MDBTypography>
+                            <MDBTypography tag="h6" className="mb-2">
+                              Age
+                            </MDBTypography>
                             <MDBCardText className="text-muted">
                               {blood.age}
                             </MDBCardText>
                           </MDBCol>
                           <MDBCol size="6" className="mb-3">
-                            <MDBTypography tag="h6"className="mb-2">Address</MDBTypography>
+                            <MDBTypography tag="h6" className="mb-2">
+                              Address
+                            </MDBTypography>
                             <MDBCardText className="text-muted">
                               {blood.address}
                             </MDBCardText>
