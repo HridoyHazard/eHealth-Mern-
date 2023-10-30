@@ -10,25 +10,6 @@ import {
 
 const Doctor = ({ doctor }) => {
   return (
-    // <Card className='my-3 p-3 rounded'>
-    //   <Link to={`/doctor/${doctor._id}`}>
-    //     <Card.Img src={doctor.image} variant='top' />
-    //   </Link>
-
-    //   <Card.Body>
-    //     <Link to={`/doctor/${doctor._id}`}>
-    //       <Card.Title as='div' className='doctor-title'>
-    //         <strong>{doctor.name}</strong>
-    //       </Card.Title>
-    //     </Link>
-
-    //     <Card.Text as='div'>
-    //     <strong>{doctor.degree}</strong>
-    //     </Card.Text>
-
-    //     <Card.Text as='h3'>${doctor.specialist}</Card.Text>
-    //   </Card.Body>
-    // </Card>
     <div className="col-lg-3 col-md-3 pb-5 ">
       <div className="card cardxx">
         <div className="card-body">

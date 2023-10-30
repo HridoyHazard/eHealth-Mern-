@@ -1,11 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const appointmentSchema = mongoose.Schema(
   {
+    time: { type: Date },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: "User",
     },
     appointmentItems: [
       {
@@ -18,7 +19,7 @@ const appointmentSchema = mongoose.Schema(
         doctor: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
-          ref: 'Doctor',
+          ref: "Doctor",
         },
       },
     ],
@@ -40,6 +41,6 @@ const appointmentSchema = mongoose.Schema(
   }
 );
 
-const Appointment = mongoose.model('Appointment', appointmentSchema);
+const Appointment = mongoose.model("Appointment", appointmentSchema);
 
 export default Appointment;

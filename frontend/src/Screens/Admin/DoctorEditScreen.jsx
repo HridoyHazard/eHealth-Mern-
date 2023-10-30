@@ -138,7 +138,7 @@ const DoctorEditScreen = () => {
                   <Form.Label>Specialist</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter countInStock"
+                    placeholder="Enter Specialist"
                     value={specialist}
                     onChange={(e) => setSpecialist(e.target.value)}
                   ></Form.Control>

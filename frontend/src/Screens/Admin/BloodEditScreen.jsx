@@ -136,7 +136,7 @@ const BloodEditScreen = () => {
                   <Form.Label>lastdonate</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter countInStock"
+                    placeholder="Enter Last Donation "
                     value={lastdonate}
                     onChange={(e) => setLastdonate(e.target.value)}
                   ></Form.Control>

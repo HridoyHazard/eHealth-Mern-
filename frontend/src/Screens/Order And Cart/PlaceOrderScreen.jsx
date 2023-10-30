@@ -9,7 +9,6 @@ import {
   Image,
   Card,
   Container,
-  Form,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
@@ -23,6 +22,8 @@ const PlaceOrderScreen = () => {
   const navigate = useNavigate();
 
   const cart = useSelector((state) => state.cart);
+
+  console.log(cart)
 
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 

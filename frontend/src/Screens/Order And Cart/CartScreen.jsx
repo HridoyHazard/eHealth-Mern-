@@ -46,7 +46,7 @@ const CartScreen = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
+        <section style={{ backgroundColor: "#eee", height:"50rem" }}>
           <MDBContainer className="py-5 h-100">
             <MDBRow className="justify-content-center align-items-center h-100">
               <MDBCol size="12">

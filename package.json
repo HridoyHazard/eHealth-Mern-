@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "axios": "^1.6.0",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -11,7 +13,8 @@
     "nodemailer": "^6.9.6",
     "react-multi-carousel": "^2.8.4",
     "react-router-dom": "^6.10.0",
-    "socket.io": "^4.7.2"
+    "socket.io": "^4.7.2",
+    "uuid": "^9.0.1"
   },
   "name": "ehealth",
   "version": "2.0.0",

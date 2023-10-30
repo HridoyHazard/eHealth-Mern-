@@ -1,5 +1,8 @@
 import asyncHandler from "../middleware/asyncHandler.js";
+import Medicine from "../models/medModel.js";
 import Order from "../models/orderModel.js";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -13,6 +16,31 @@ const addOrderItems = asyncHandler(async (req, res) => {
     shippingPrice,
     totalPrice,
   } = req.body;
+
+  let medId = "";
+  let stock = 0;
+
+  orderItems.map((x) => {
+    medId = x._id;
+    stock = x.countInStock - x.qty;
+  });
+
+  console.log(medId);
+  console.log(stock);
+
+  const medicine = await Medicine.findById(medId);
+
+  if (medicine) {
+    medicine.countInStock = stock;
+    medicine.save();
+  }
+
+  // orderItems.map((x) => {
+  //   {x.countInStock = x.countInStock - x.qty}
+  //   console.log(x.countInStock);
+  // });
+
+  // console.log("pore", orderItems)
 
   if (orderItems && orderItems.length === 0) {
     res.status(400);
@@ -31,6 +59,9 @@ const addOrderItems = asyncHandler(async (req, res) => {
       shippingPrice,
       totalPrice,
     });
+
+    console.log(order);
+    console.log(medicine);
 
     const createdOrder = await order.save();
 
@@ -67,7 +98,6 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @route   PUT /api/orders/:id/pay
 // @access  Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
-
   const order = await Order.findById(req.params.id);
 
   if (order) {
@@ -104,7 +134,7 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
     res.json(updatedOrder);
   } else {
     res.status(404);
-    throw new Error('Order not found');
+    throw new Error("Order not found");
   }
 });
 
@@ -112,13 +142,89 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
 // @route   GET /api/orders
 // @access  Private/Admin
 const getOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.find({}).populate('user', 'id name');
+  const orders = await Order.find({}).populate("user", "id name");
   res.json(orders);
+});
+
+const MakePayment = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+  const id = req.params.id;
+  const formData = {
+    cus_name: order.shippingAddress.name,
+    cus_email: "aamarpaytest@gmail.com",
+    cus_phone: order.shippingAddress.contact,
+    amount: order.totalPrice,
+    tran_id: uuidv4(),
+    signature_key: "dbb74894e82415a2f7ff0ec3a97e4183",
+    store_id: "aamarpaytest",
+    currency: "BDT",
+    desc: order.orderItems[0].name,
+    cus_add1: order.shippingAddress.address,
+    cus_add2: "Dhaka",
+    cus_city: "Dhaka",
+    cus_country: "Bangladesh",
+    opt_a: id,
+    success_url: "http://localhost:5000/api/orders/callback",
+    fail_url: "http://localhost:5000/api/orders/callback",
+    cancel_url: "http://localhost:5000/api/orders/callback",
+    type: "json", //This is must required for JSON request
+  };
+
+  const { data } = await axios.post(
+    "https://sandbox.aamarpay.com/jsonpost.php",
+    formData
+  );
+
+  console.log(formData);
+
+  if (data.result !== "true") {
+    let errorMessage = "";
+    for (let key in data) {
+      errorMessage += data[key] + ". ";
+    }
+    return res.render("error", {
+      title: "Error",
+      errorMessage,
+    });
+  }
+  res.json(data);
+});
+
+const callback = asyncHandler(async (req, res) => {
+  const {
+    pay_status,
+    cus_name,
+    cus_phone,
+    cus_email,
+    currency,
+    pay_time,
+    amount,
+    opt_a,
+  } = req.body;
+
+  const order = await Order.findById(opt_a);
+
+  if (order && pay_status === "Successful") {
+    order.isPaid = true;
+    order.paidAt = Date.now();
+    
+    await order.save();
+  } else {
+    res.status(404);
+    throw new Error("Order not found");
+  }
+
+  let baseUrl = "http://localhost:3000";
+  let url = "/success";
+  let queryParams = `?cus_name=${cus_name}&pay_time=${pay_time}&amount=${amount}&pay_status=${pay_status}&cus_phone=${cus_phone}&currency=${currency}&opt_a=${opt_a}`;
+  res.redirect(301, `${baseUrl}${url}/${queryParams}`);
 });
 
 export {
   addOrderItems,
   getMyOrders,
+  MakePayment,
+  callback,
   getOrderById,
   updateOrderToPaid,
   updateOrderToDelivered,

@@ -29,7 +29,7 @@ const BloodScreenDetails = () => {
         </Message>
       ) : (
         // vh-100
-        <section style={{ backgroundColor: "#f4f5f7", height: "55rem" }}>
+        <section style={{ backgroundColor: "#f4f5f7", height: "50rem" }}>
           <Link className="btn btn-dark mx-3 my-3" to="/Blood">
             Go Back
           </Link>

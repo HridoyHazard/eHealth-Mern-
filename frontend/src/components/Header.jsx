@@ -1,11 +1,19 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Container, Badge } from "react-bootstrap";
-import { FaUser, FaCapsules, FaStethoscope,FaAddressBook,FaTty } from "react-icons/fa";
+import {
+  FaUser,
+  FaCapsules,
+  FaStethoscope,
+  FaAddressBook,
+  FaTty,
+  FaToggle
+} from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
+import logo from "../images/ehealth.svg";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -21,8 +29,6 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      // NOTE: here we need to reset cart state for when a user logs out so the next
-      // user doesn't inherit the previous users cart and shipping
       navigate("/login");
     } catch (err) {
       console.error(err);
@@ -31,17 +37,20 @@ const Header = () => {
   return (
     <header>
       <Navbar
+        variant="dark"
         style={{
           background:
             "linear-gradient(170deg, rgb(0, 198, 167), rgb(30, 77, 146))",
         }}
-        variant="dark"
-        expand="md"
+        expand="lg"
         collapseOnSelect
       >
-        <Container>
+        <Container fluid style={{ margin: "0rem 2rem" }}>
           <LinkContainer to="/">
-            <Navbar.Brand>eHealth</Navbar.Brand>
+            <Navbar.Brand>
+              <img alt="logo" src={logo} width="28px" />
+              eHealth
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -68,7 +77,7 @@ const Header = () => {
               </LinkContainer>
               <LinkContainer to="/Aboutus">
                 <Nav.Link>
-                  <FaAddressBook/> About Us
+                  <FaAddressBook /> About Us
                 </Nav.Link>
               </LinkContainer>
               {!userInfo ? (

@@ -34,6 +34,7 @@ import RequestBloodListScreen from "./Screens/Admin/RequestBloodListScreen";
 
 import ContactUS from "./Screens/ContactUS";
 import AboutUs from "./Screens/AboutUs";
+import Success from "./Screens/Success";
 
 import CartScreen from "./Screens/Order And Cart/CartScreen";
 
@@ -96,6 +97,7 @@ const router = createBrowserRouter(
 
       //All Private Routes
       <Route path="" element={<PrivateRoute />}>
+        <Route path="/success" element={<Success />} />
         <Route path="/shipping" element={<ShippingScreen />} />
         <Route path="/payment" element={<PaymentScreen />} />
         <Route path="/placeorder" element={<PlaceOrderScreen />} />
@@ -107,6 +109,7 @@ const router = createBrowserRouter(
         <Route path="/appointment/:id" element={<AppointmentScreen />} />
         <Route path="/requestblood" element={<RequestBlood />} />
         <Route path="/request/:id" element={<RequestBloodScreen />} />
+
 
       </Route>
       //All Admin Routes

@@ -17,12 +17,13 @@ const PaymentScreen = () => {
     }
   }, [navigate, shippingAddress]);
 
-  const [paymentMethod, setPaymentMethod] = useState('PayPal');
+  const [paymentMethod, setPaymentMethod] = useState("");
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(paymentMethod)
     dispatch(savePaymentMethod(paymentMethod));
     navigate('/placeorder');
   };
@@ -42,7 +43,15 @@ const PaymentScreen = () => {
               id='PayPal'
               name='paymentMethod'
               value='PayPal'
-              checked
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            ></Form.Check>
+            <Form.Check
+              className='my-2'
+              type='radio'
+              label='AamarPay'
+              id='PayPal'
+              name='paymentMethod'
+              value='AamarPay'
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
           </Col>

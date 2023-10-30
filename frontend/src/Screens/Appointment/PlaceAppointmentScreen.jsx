@@ -38,24 +38,27 @@ const PlaceAppointmentScreen = () => {
     }
   }, [choice.Address.address, navigate]);
 
-  const placeAppointmentHandler = async () => {
-    try {
-      const res = await createAppointment({
-        appointmentItems: choice.doctorInfo,
-        address: choice.Address,
-      }).unwrap();
-      dispatch(clearDateNTime(), dispatch(cleardoctorInfo()));
-      navigate(`/appointment/${res._id}`);
-    } catch (err) {
-      toast.error(err);
-    }
-  };
-
+  
   const currentHour = new Date(choice.DateTime.selectedTime);
   const startHour = new Date();
   startHour.setHours(17, 59, 0);
   const endHour = new Date();
   endHour.setHours(23, 30, 0);
+
+  const placeAppointmentHandler = async () => {
+    try {
+      const res = await createAppointment({
+        appointmentItems: choice.doctorInfo,
+        address: choice.Address,
+        time: currentHour,
+      }).unwrap();
+      dispatch(clearDateNTime(), dispatch(cleardoctorInfo()));
+      navigate(`/appointment/${res._id}`);
+    } catch (err) {
+      toast.error("Time Slot Is Already Booked. Plz Select Another Time");
+    }
+  };
+
 
   // console.log(currentHour.getHours());
   // console.log(startHour.getHours());

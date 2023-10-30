@@ -12,14 +12,12 @@ import {
 import { MDBCardBody, MDBCard } from "mdb-react-ui-kit";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import {
   useGetOrderDetailsQuery,
-  useGetPaypalClientIdQuery,
-  usePayOrderMutation,
   useDeliverOrderMutation,
+  useMakePaymentMutation,
 } from "../../slices/ordersApiSlice";
 
 const OrderScreen = () => {
@@ -32,70 +30,25 @@ const OrderScreen = () => {
     error,
   } = useGetOrderDetailsQuery(orderId);
 
-  const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+  const [makePayment, {isLoading: loadingPayment}] = useMakePaymentMutation();
 
   const [deliverOrder, { isLoading: loadingDeliver }] =
     useDeliverOrderMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
-
-  const {
-    data: paypal,
-    isLoading: loadingPayPal,
-    error: errorPayPal,
-  } = useGetPaypalClientIdQuery();
-
-  useEffect(() => {
-    if (!errorPayPal && !loadingPayPal && paypal.clientId) {
-      const loadPaypalScript = async () => {
-        paypalDispatch({
-          type: "resetOptions",
-          value: {
-            "client-id": paypal.clientId,
-            currency: "USD",
-          },
-        });
-        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
-      };
-      if (order && !order.isPaid) {
-        if (!window.paypal) {
-          loadPaypalScript();
-        }
-      }
-    }
-  }, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
-
-  function onApprove(data, actions) {
-    return actions.order.capture().then(async function (details) {
-      try {
-        await payOrder({ orderId, details });
-        refetch();
-        toast.success("Payment Successfull");
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
-      }
-    });
-  }
-
-  function onError(err) {
-    toast.error(err.message);
-  }
-
-  function createOrder(data, actions) {
-    return actions.order
-      .create({
-        purchase_units: [
-          {
-            amount: { value: order.totalPrice },
-          },
-        ],
-      })
-      .then((orderID) => {
-        return orderID;
+  const paymentHandler = async () => {
+    try {
+      await makePayment({
+        orderId,
+      }).then((res) => {
+        window.location.replace(res.data.payment_url);
+        console.log(res.data.payment_url);
       });
-  }
+    } catch (err) {
+      toast.error(err);
+    }
+  };
 
   const deliverHandler = async () => {
     await deliverOrder(orderId);
@@ -217,25 +170,20 @@ const OrderScreen = () => {
                         <Col>৳{order.totalPrice}</Col>
                       </Row>
                     </ListGroup.Item>
+
                     {!order.isPaid && !userInfo.isAdmin && (
                       <ListGroup.Item>
-                        {loadingPay && <Loader />}
-
-                        {isPending ? (
-                          <Loader />
-                        ) : (
-                          <div>
-                            <div>
-                              <PayPalButtons
-                                createOrder={createOrder}
-                                onApprove={onApprove}
-                                onError={onError}
-                              ></PayPalButtons>
-                            </div>
-                          </div>
-                        )}
+                        <Button
+                          type="button"
+                          className="btn btn-block"
+                          onClick={paymentHandler}
+                        >
+                          Make Payment
+                        </Button>
+                        {loadingPayment && <Loader />}
                       </ListGroup.Item>
                     )}
+
                     {loadingDeliver && <Loader />}
 
                     {userInfo &&
