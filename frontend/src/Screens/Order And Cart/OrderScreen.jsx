@@ -10,12 +10,15 @@ import {
   Container,
 } from "react-bootstrap";
 import { MDBCardBody, MDBCard } from "mdb-react-ui-kit";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import {
   useGetOrderDetailsQuery,
+  useGetPaypalClientIdQuery,
+  usePayOrderMutation,
   useDeliverOrderMutation,
   useMakePaymentMutation,
 } from "../../slices/ordersApiSlice";
@@ -30,7 +33,9 @@ const OrderScreen = () => {
     error,
   } = useGetOrderDetailsQuery(orderId);
 
-  const [makePayment, {isLoading: loadingPayment}] = useMakePaymentMutation();
+  console.log(order);
+
+  const [makePayment, { isLoading: loadingPayment }] = useMakePaymentMutation();
 
   const [deliverOrder, { isLoading: loadingDeliver }] =
     useDeliverOrderMutation();
@@ -55,6 +60,68 @@ const OrderScreen = () => {
     refetch();
     toast.success("Delivered Successfull");
   };
+
+  //For Paypal
+
+  const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+
+  const {
+    data: paypal,
+    isLoading: loadingPayPal,
+    error: errorPayPal,
+  } = useGetPaypalClientIdQuery();
+
+  useEffect(() => {
+    if (!errorPayPal && !loadingPayPal && paypal.clientId) {
+      const loadPaypalScript = async () => {
+        paypalDispatch({
+          type: "resetOptions",
+          value: {
+            "client-id": paypal.clientId,
+            currency: "USD",
+          },
+        });
+        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
+      };
+      if (order && !order.isPaid) {
+        if (!window.paypal) {
+          loadPaypalScript();
+        }
+      }
+    }
+  }, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
+
+  function onApprove(data, actions) {
+    return actions.order.capture().then(async function (details) {
+      try {
+        await payOrder({ orderId, details });
+        refetch();
+        toast.success("Payment Successfull");
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    });
+  }
+
+  function onError(err) {
+    toast.error(err.message);
+  }
+
+  function createOrder(data, actions) {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: { value: order.totalPrice },
+          },
+        ],
+      })
+      .then((orderID) => {
+        return orderID;
+      });
+  }
 
   return isLoading ? (
     <Loader />
@@ -173,14 +240,29 @@ const OrderScreen = () => {
 
                     {!order.isPaid && !userInfo.isAdmin && (
                       <ListGroup.Item>
-                        <Button
-                          type="button"
-                          className="btn btn-block"
-                          onClick={paymentHandler}
-                        >
-                          Make Payment
-                        </Button>
-                        {loadingPayment && <Loader />}
+                        {order.paymentMethod === "Paypal" ? (
+                          <>
+                            {loadingPayPal && <Loader />}
+                            {isPending && <Loader />}
+                            <div>
+                              <div>
+                                <PayPalButtons
+                                  createOrder={createOrder}
+                                  onApprove={onApprove}
+                                  onError={onError}
+                                ></PayPalButtons>
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <Button
+                            type="button"
+                            className="btn btn-block"
+                            onClick={paymentHandler}
+                          >
+                            Make Payment
+                          </Button>
+                        )}
                       </ListGroup.Item>
                     )}
 

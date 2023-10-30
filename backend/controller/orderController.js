@@ -35,13 +35,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
     medicine.save();
   }
 
-  // orderItems.map((x) => {
-  //   {x.countInStock = x.countInStock - x.qty}
-  //   console.log(x.countInStock);
-  // });
-
-  // console.log("pore", orderItems)
-
   if (orderItems && orderItems.length === 0) {
     res.status(400);
     throw new Error("No order items");
@@ -146,6 +139,9 @@ const getOrders = asyncHandler(async (req, res) => {
   res.json(orders);
 });
 
+// @desc    pay orders
+// @route   GET /api/orders/:id/payment
+// @access  Private
 const MakePayment = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id);
   const id = req.params.id;
@@ -190,6 +186,9 @@ const MakePayment = asyncHandler(async (req, res) => {
   res.json(data);
 });
 
+// @desc    callback payment
+// @route   GET /api/orders/callback
+// @access  Private
 const callback = asyncHandler(async (req, res) => {
   const {
     pay_status,
