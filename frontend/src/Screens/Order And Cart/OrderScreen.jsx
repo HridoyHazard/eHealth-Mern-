@@ -240,7 +240,7 @@ const OrderScreen = () => {
 
                     {!order.isPaid && !userInfo.isAdmin && (
                       <ListGroup.Item>
-                        {order.paymentMethod === "Paypal" ? (
+                        {order.paymentMethod === "PayPal" || order.paymentMethod == "Paypal" ? (
                           <>
                             {loadingPayPal && <Loader />}
                             {isPending && <Loader />}
