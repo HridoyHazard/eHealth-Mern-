@@ -37,7 +37,7 @@ const MedicineListScreen = () => {
     if (window.confirm("Are you sure you want to create a new product?")) {
       try {
         const medicine = await createMedicine();
-        navigate(`/admin/med/${medicine.data._id}/edit`);
+        navigate(`/admin/med/${medicine.data._id}/create`);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }

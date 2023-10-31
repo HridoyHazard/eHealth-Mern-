@@ -1,6 +1,8 @@
 import nodemailer from "nodemailer";
 
 const SendEmailUtility = async (EmailTo, EmailText, EmailSubject) => {
+
+  console.log( "dukse")
   let transporter = nodemailer.createTransport({
     host: "mail.teamrabbil.com",
     port: 25,
@@ -13,6 +15,8 @@ const SendEmailUtility = async (EmailTo, EmailText, EmailSubject) => {
       rejectUnauthorized: false,
     },
   });
+
+  console.log()
 
   let mailOptions = {
     from: "Task Manager MERN <info@teamrabbil.com>",

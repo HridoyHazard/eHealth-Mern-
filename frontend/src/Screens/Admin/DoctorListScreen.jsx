@@ -26,7 +26,7 @@ const DoctorListScreen = () => {
     if (window.confirm("Are you sure you want to create a new Doctor?")) {
       try {
         const doctor = await createDoctor();       
-        navigate(`/admin/doctor/${doctor.data._id}/edit`);
+        navigate(`/admin/doctor/${doctor.data._id}/create`);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -82,7 +82,7 @@ const DoctorListScreen = () => {
                 <tr key={doctor._id}>
                   <td>{doctor._id}</td>
                   <td>{doctor.name}</td>
-                  <td>${doctor.degree}</td>
+                  <td>{doctor.degree}</td>
                   <td>{doctor.specialist}</td>
                   <td>{doctor.chamber}</td>
                   <td>{doctor.available}</td>

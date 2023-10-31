@@ -48,11 +48,11 @@ const forgetPassword = asyncHandler(async (req, res) => {
   console.log(token);
   console.log(req.body);
 
-  // let subject = "Reset Password Link";
-  // let text = `http://localhost:3000/resetpassword/${user._id}/${token}`;
-  // let emailTo = email;
+  let EmailSubject = "Reset Password Link";
+  let EmailText = `http://localhost:3000/resetpassword/${user._id}/${token}`;
+  let EmailTo = email;
 
-  // await SendEmailUtility(emailTo, text, subject);
+  await SendEmailUtility(EmailTo, EmailText, EmailSubject);
 
   // var transporter = nodemailer.createTransport({
   //   service: "gmail",
@@ -82,33 +82,32 @@ const forgetPassword = asyncHandler(async (req, res) => {
   //   }
   // });
 
-  let transporter = nodemailer.createTransport({
-    host: "mail.teamrabbil.com",
-    port: 25,
-    secure: false,
-    auth: {
-      user: "info@teamrabbil.com",
-      pass: "~sR4[bhaC[Qs",
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-  });
+  //   let transporter = nodemailer.createTransport({
+  //     host: "mail.teamrabbil.com",
+  //     port: 25,
+  //     secure: false,
+  //     auth: {
+  //       user: "info@teamrabbil.com",
+  //       pass: "~sR4[bhaC[Qs",
+  //     },
+  //     tls: {
+  //       rejectUnauthorized: false,
+  //     },
+  //   });
 
-  let mailOptions = {
-    from: "info@teamrabbil.com",
-    to: email,
-    subject: "Reset Password Link",
-    text: `http://localhost:3000/resetpassword/${user._id}/${token}`,
-  };
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent" + info.response);
-      return res.send({ Status: "Success" });
-    }
-  });
+  //   let mailOptions = {
+  //     from: "info@teamrabbil.com",
+  //     to: email,
+  //     subject: "Reset Password Link",
+  //     text: `http://localhost:3000/resetpassword/${user._id}/${token}`,
+  //   };
+  //   transporter.sendMail(mailOptions, function (error, info) {
+  //     if (error) {
+  //       console.log(error);
+  //     } else {
+  //       console.log("Email sent" + info.response);
+  //       return res.send({ Status: "Success" });
+  //     }
 });
 
 // @desc    forget user password & get token

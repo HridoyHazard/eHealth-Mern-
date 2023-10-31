@@ -26,7 +26,7 @@ const BloodListScreen = () => {
     if (window.confirm("Are you sure you want to create a new Donor?")) {
       try {
         const blood = await createBlood();
-        navigate(`/admin/blood/${blood.data._id}/edit`);
+        navigate(`/admin/blood/${blood.data._id}/create`);
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }

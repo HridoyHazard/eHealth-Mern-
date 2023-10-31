@@ -28,6 +28,7 @@ import DoctorScreenDetails from "./Screens/Doctor/DoctorScreenDetails";
 
 import BloodScreen from "./Screens/Blood/BloodScreen";
 import BloodScreenDetails from "./Screens/Blood/BloodScreenDetails";
+import BloodCreateScreen from "./Screens/Admin/BloodCreateScreen";
 import RequestBlood from "./Screens/Blood/RequestBlood";
 import RequestBloodScreen from "./Screens/Blood/RequestBloodScreen";
 import RequestBloodListScreen from "./Screens/Admin/RequestBloodListScreen";
@@ -57,6 +58,7 @@ import OrderListScreen from "./Screens/Admin/OrderListScreen";
 //Medicine
 import MedicineListScreen from "./Screens/Admin/MedicineListScreen";
 import MedicineEditScreen from "./Screens/Admin/MedicineEditScreen";
+import MedicineCreateScreen from "./Screens/Admin/MedicineCreateScreen";
 
 import UserListScreen from "./Screens/Admin/UserListScreen";
 import UserEditScreen from "./Screens/Admin/UserEditScreen";
@@ -65,6 +67,7 @@ import HomeScreen from "./Screens/HomeScreen";
 
 import DoctorListScreen from "./Screens/Admin/DoctorListScreen";
 import DoctorEditScreen from "./Screens/Admin/DoctorEditScreen";
+import DoctorCreateScreen from "./Screens/Admin/DoctorCreateScreen";
 
 import BloodListScreen from "./Screens/Admin/BloodListScreen";
 import BloodEditScreen from "./Screens/Admin/BloodEditScreen";
@@ -125,12 +128,15 @@ const router = createBrowserRouter(
         />
         <Route path="/admin/medicinelist" element={<MedicineListScreen />} />
         <Route path="/admin/med/:id/edit" element={<MedicineEditScreen />} />
+        <Route path="/admin/med/:id/create" element={<MedicineCreateScreen />} />
         <Route path="/admin/userlist" element={<UserListScreen />} />
         <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
         <Route path="/admin/doctorlist" element={<DoctorListScreen />} />
         <Route path="/admin/doctor/:id/edit" element={<DoctorEditScreen />} />
+        <Route path="/admin/doctor/:id/create" element={<DoctorCreateScreen />} />
         <Route path="/admin/bloodlist" element={<BloodListScreen />} />
         <Route path="/admin/blood/:id/edit" element={<BloodEditScreen />} />
+        <Route path="/admin/blood/:id/create" element={<BloodCreateScreen />} />
         <Route path="/admin/chat" element={<ChatScreen />} />
         <Route path="/admin/profile" element={<AdminProfile />} />
       </Route>
