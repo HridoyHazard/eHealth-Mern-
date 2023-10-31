@@ -1,9 +1,10 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
-import nodemailer from "nodemailer";
+import SendEmailUtility from "../utils/sendEmailUtility.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import nodemailer from "nodemailer";
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -32,7 +33,7 @@ const authUser = asyncHandler(async (req, res) => {
 // @access  Public
 const forgetPassword = asyncHandler(async (req, res) => {
   const { email } = req.body;
-  console.log(email)
+  console.log(email);
   const user = await User.findOne({ email: email });
 
   if (!user) {
@@ -47,25 +48,59 @@ const forgetPassword = asyncHandler(async (req, res) => {
   console.log(token);
   console.log(req.body);
 
-  var transporter = nodemailer.createTransport({
-    service: "gmail",
-    requireTLS: true,
+  // let subject = "Reset Password Link";
+  // let text = `http://localhost:3000/resetpassword/${user._id}/${token}`;
+  // let emailTo = email;
+
+  // await SendEmailUtility(emailTo, text, subject);
+
+  // var transporter = nodemailer.createTransport({
+  //   service: "gmail",
+  //   requireTLS: true,
+  //   auth: {
+  //     user: "fardeenazwad12@gmail.com",
+  //     pass: "wqgm svpt txub wzns",
+  //   },
+  //   tls: {
+  //     rejectUnauthorized: false,
+  //   },
+  // });
+
+  // var mailOptions = {
+  //   from: "fardeenazwad12@gmail.com",
+  //   to: email,
+  //   subject: "Reset Password Link",
+  //   text: `http://localhost:3000/resetpassword/${user._id}/${token}`,
+  // };
+
+  // transporter.sendMail(mailOptions, function (error, info) {
+  //   if (error) {
+  //     console.log(error);
+  //   } else {
+  //     console.log("Email sent" + info.response);
+  //     return res.send({ Status: "Success" });
+  //   }
+  // });
+
+  let transporter = nodemailer.createTransport({
+    host: "mail.teamrabbil.com",
+    port: 25,
+    secure: false,
     auth: {
-      user: "fardeenazwad12@gmail.com",
-      pass: "wqgm svpt txub wzns",
+      user: "info@teamrabbil.com",
+      pass: "~sR4[bhaC[Qs",
     },
     tls: {
       rejectUnauthorized: false,
     },
   });
 
-  var mailOptions = {
-    from: "fardeenazwad12@gmail.com",
+  let mailOptions = {
+    from: "info@teamrabbil.com",
     to: email,
     subject: "Reset Password Link",
     text: `http://localhost:3000/resetpassword/${user._id}/${token}`,
   };
-
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);

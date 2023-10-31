@@ -95,6 +95,14 @@ const BloodScreenDetails = () => {
                           </MDBCol>
                           <MDBCol size="6" className="mb-3">
                             <MDBTypography tag="h6" className="mb-2">
+                              Last Donation
+                            </MDBTypography>
+                            <MDBCardText className="text-muted">
+                              {blood.lastdonate}
+                            </MDBCardText>
+                          </MDBCol>
+                          <MDBCol size="6" className="mb-3">
+                            <MDBTypography tag="h6" className="mb-2">
                               Address
                             </MDBTypography>
                             <MDBCardText className="text-muted">

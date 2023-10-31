@@ -1,41 +1,40 @@
 #home-icon {
-    margin-top: 100px;
-    margin-left: 100px;
-    margin-right: 100px;
-  }
-  .box {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    color: black;
-    background-color: #ffffff;
-    text-align: center;
-    height: 100%;
-    width: 400px;
-    margin-top: -60px;
-    margin-bottom: 10rem;
-  }
-  
-  p {
-    font-size: 15px;
-  }
-  h3 {
-    font-size: 19.29px;
-  }
-  
-  .info-iccon {
-    font-size: 2em;
-    margin-top: 20px;
-  }
-  .personal {
-    height: 110px;
-    width: 110px;
-  }
-  .btnlink {
-    color: white;
-  }
-  .btnlink:hover {
-    color: white;
-    text-decoration: none;
-  }
-  
+  margin-top: 100px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.box {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: black;
+  background-color: #ffffff;
+  text-align: center;
+  height: 100%;
+  width: 400px;
+  margin-top: -60px;
+  margin-bottom: 10rem;
+}
+
+p {
+  font-size: 15px;
+}
+h3 {
+  font-size: 19.29px;
+}
+
+.info-iccon {
+  font-size: 2em;
+  margin-top: 20px;
+}
+.personal {
+  height: 110px;
+  width: 110px;
+}
+.btnlink {
+  color: white;
+}
+.btnlink:hover {
+  color: white;
+  text-decoration: none;
+}

@@ -50,7 +50,7 @@ const LoginScreen = () => {
       <Grid style={{ paddingTop: "100px" }}>
         <div className="login container mt-8 pb-5">
           <div className="row justify-content-center">
-            <div className="col-md-5">
+            {/* <div className="col-md-5">
               <img
                 src={images01}
                 alt=""
@@ -62,42 +62,27 @@ const LoginScreen = () => {
                   //   "up-down 2s ease-in-out infinite alternate-reverse both",
                 }}
               />
-            </div>
+            </div> */}
             <div className="col-lg-5 col-md-7">
               <div className="card login2 border-0 mb-0">
-                <div className="card-header bg-transparent pb-5">
-                  <div className="text-muted text-center mt-2 mb-3">
-                    <small>Sign in with</small>
-                  </div>
-                  <div className="btn-wrapper text-center">
-                    <Box component="span">
-                      <Button
-                        // onClick={handleSignIn}
-                        className="materialButton"
-                      >
-                        <Box component="span" marginRight="4px">
-                          {/* <FaGoogle></FaGoogle> */}
-                        </Box>
-
-                        <Box component="span" marginLeft=".75rem">
-                          <strong>GOOGLE</strong>
-                        </Box>
-                      </Button>
-
-                      <Button className="materialButton">
-                        <Box component="span" style={{ paddingRight: "4px" }}>
-                          {/* <FaFacebookF></FaFacebookF> */}
-                        </Box>
-                        <Box component="span" marginLeft=".75rem">
-                          <strong>Facebook</strong>
-                        </Box>
-                      </Button>
-                    </Box>
+                <div className="card-headerbg-transparent">
+                  <div className="text-center mt-2 mb-3">
+                    <img
+                      src={images01}
+                      alt=""
+                      width={400}
+                      style={{
+                        borderRadius: "10px 10px 10px 10px",
+                        paddingTop: "2.5rem",
+                        // animation:
+                        //   "up-down 2s ease-in-out infinite alternate-reverse both",
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="card-body px-lg-5 py-lg-5">
                   <div className="text-center text-muted mb-4">
-                    <small>Or sign in with credentials</small>
+                    <small>sign in with credentials</small>
                   </div>
                   <Form onSubmit={submitHandler}>
                     <Form.Group className="my-2" controlId="email">

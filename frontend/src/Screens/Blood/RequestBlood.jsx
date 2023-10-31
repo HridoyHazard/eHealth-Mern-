@@ -89,6 +89,7 @@ const RequestBlood = () => {
                         size="lg"
                         id="form1"
                         type="text"
+                        required
                         value={Name}
                         onChange={(e) => setName(e.target.value)}
                       />
@@ -102,6 +103,7 @@ const RequestBlood = () => {
                         label="Age"
                         size="lg"
                         id="form3"
+                        required
                         type="text"
                         value={Age}
                         onChange={(e) => setAge(e.target.value)}
@@ -116,6 +118,7 @@ const RequestBlood = () => {
                         label="Date"
                         size="lg"
                         id="form3"
+                        required
                         type="date"
                         value={Date}
                         onChange={(e) => setDate(e.target.value)}
@@ -131,6 +134,7 @@ const RequestBlood = () => {
                         size="lg"
                         type="text"
                         wrapperClass="mb-3"
+                        required
                         value={Group}
                         onChange={(e) => setGroup(e.target.value)}
                       >
@@ -154,6 +158,7 @@ const RequestBlood = () => {
                         size="lg"
                         id="form4"
                         type="text"
+                        required
                         value={Contact}
                         onChange={(e) => setContact(e.target.value)}
                       />
@@ -168,6 +173,7 @@ const RequestBlood = () => {
                         size="lg"
                         id="form5"
                         type="text"
+                        required
                         value={Unit}
                         onChange={(e) => setUnit(e.target.value)}
                       />
@@ -181,6 +187,7 @@ const RequestBlood = () => {
                         size="lg"
                         id="form6"
                         type="text"
+                        required
                         value={Hospital}
                         onChange={(e) => setHospital(e.target.value)}
                       />

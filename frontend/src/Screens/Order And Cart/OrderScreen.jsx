@@ -257,10 +257,10 @@ const OrderScreen = () => {
                         ) : (
                           <Button
                             type="button"
-                            className="btn btn-block"
+                            className="btn btn-danger btn-block text-capitalize fw-bold fs-5 p-3 text-black"
                             onClick={paymentHandler}
                           >
-                            Make Payment
+                            AamarPay
                           </Button>
                         )}
                       </ListGroup.Item>

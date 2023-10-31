@@ -45,7 +45,7 @@ const Header = () => {
         expand="lg"
         collapseOnSelect
       >
-        <Container fluid style={{ margin: "0rem 2rem" }}>
+        <Container fluid style={{ margin: "0rem 4rem" }}>
           <LinkContainer to="/">
             <Navbar.Brand>
               <img alt="logo" src={logo} width="28px" />
@@ -96,7 +96,6 @@ const Header = () => {
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>
-
                   <NavDropdown title="Admin" id="adminmenu">
                     <LinkContainer to="/admin/medicinelist">
                       <NavDropdown.Item>Medicines</NavDropdown.Item>
@@ -123,7 +122,7 @@ const Header = () => {
                       <NavDropdown.Item>Chat</NavDropdown.Item>
                     </LinkContainer>
                   </NavDropdown>
-                </>
+                  </>
               ) : (
                 userInfo &&
                 !userInfo.isAdmin && (

@@ -9,19 +9,55 @@ const addAppointmentItems = asyncHandler(async (req, res) => {
 
   const desiredTime = new Date(time);
 
-  desiredTime.setSeconds(0,0);
+  desiredTime.setSeconds(0, 0);
 
-  console.log(desiredTime)
-  console.log(typeof(desiredTime));
+  console.log(appointmentItems);
+
+  let Drname = "";
+
+  appointmentItems.map((x) => {
+    Drname = x.name;
+  });
+
+  console.log(Drname);
+
+  // console.log(desiredTime)
+  // console.log(typeof(desiredTime));
   // console.log(address)
   // console.log(typeof(address));
   // console.log(appointmentItems)
   // console.log(typeof(appointmentItems));
 
-  const isSlotTaken = await Appointment.findOne({ time: desiredTime });
-  if (isSlotTaken) {
-    res.status(404);
-    throw new Error("Time Slot Is Already Booked");
+  const isDoctorSame = await Appointment.find({
+    "appointmentItems.name": Drname,
+  });
+console.log(isDoctorSame.length)
+  if (isDoctorSame.length > 0) {
+    const isSlotTaken = await Appointment.findOne({ time: desiredTime });
+    if (isSlotTaken) {
+      res.status(404);
+      throw new Error("Time Slot Is Already Booked");
+    } else {
+      if (appointmentItems && appointmentItems.length === 0) {
+        res.status(400);
+        throw new Error("No appointment items");
+      } else {
+        const appointment = new Appointment({
+          appointmentItems: appointmentItems.map((x) => ({
+            ...x,
+            doctor: x._id,
+            _id: undefined,
+          })),
+          time: desiredTime,
+          user: req.user._id,
+          address,
+        });
+
+        const createdAppointment = await appointment.save();
+
+        res.status(201).json(createdAppointment);
+      }
+    }
   } else {
     if (appointmentItems && appointmentItems.length === 0) {
       res.status(400);

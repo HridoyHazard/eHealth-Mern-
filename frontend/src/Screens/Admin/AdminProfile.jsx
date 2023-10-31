@@ -74,7 +74,7 @@ const AdminProfile = () => {
           style={{ borderRadius: "15px" }}
         >
           <MDBCardBody>
-            <h2>User Profile</h2>
+            <h2>{userInfo.name} Profile</h2>
 
             <Form onSubmit={submitHandler}>
               <Form.Group className="my-2" controlId="name">

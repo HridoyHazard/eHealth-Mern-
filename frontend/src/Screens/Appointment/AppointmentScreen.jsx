@@ -45,8 +45,7 @@ const AppointmentScreen = () => {
   ) : (
     <>
       <Container>
-        <h6>Appointment Id: {appointment._id}</h6>
-        <MDBCard className="mb-5">
+        <MDBCard className="mt-5 mb-5">
           <MDBCardBody>
             <Row>
               <Col md={8}>
@@ -146,6 +145,11 @@ const AppointmentScreen = () => {
                         <Row>
                           <Col>Specialist</Col>
                           <Col>{item.specialist}</Col>
+                        </Row>
+                        <br />
+                        <Row>
+                          <Col>Appointment ID</Col>
+                          <Col>{appointment._id}</Col>
                         </Row>
                       </ListGroup.Item>
                     ))}

@@ -12,11 +12,11 @@ import { Link } from "react-router-dom";
 const Features = () => {
   return (
     <div>
-      <section id="home-icon" className="pb-5 text-center">
-        <div className="content pb-3"></div>
+      <section id="home-icon" className="pb-3 text-center">
+        <div className="content pb-5"></div>
         <div className="containerx text-center">
           <div className="row align-self-center">
-            <div className="col-md-4">
+            <div className="col-md-4 d-flex flex-column justify-content-center align-items-center">
               <div id="box-1" className="box col-md-4 ">
                 <img style={{ height: "80px" }} src={images02} alt="" />
                 <h3 className="my-2">Emergency Care</h3>
@@ -29,7 +29,7 @@ const Features = () => {
                 </Button>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 d-flex flex-column justify-content-center align-items-center">
               <div id="box-2" className="box  col-md-4">
                 <img style={{ height: "80px" }} src={images04} alt="" />
                 <h3 className="my-2">Openning Hours</h3>
@@ -43,7 +43,7 @@ const Features = () => {
                 </Button>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 d-flex flex-column justify-content-center align-items-center">
               <div id="box-3" className="box col-md-4 ">
                 <img style={{ height: "80px" }} src={images01} alt="" />
                 <h3 className="my-2">Blood Donation</h3>
@@ -56,7 +56,7 @@ const Features = () => {
                 </Button>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 d-flex flex-column justify-content-center align-items-center">
               <div id="box-4" className="box col-md-4 ">
                 <img style={{ height: "80px" }} src={images05} alt="" />
                 <h3 className="my-2">Chat With Doctors</h3>
@@ -69,7 +69,7 @@ const Features = () => {
                 </Button>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 d-flex flex-column justify-content-center align-items-center">
               <div id="box-5" className="box col-md-4 ">
                 <img style={{ height: "80px" }} src={images06} alt="" />
                 <h3 className="my-2">Get Appointment</h3>
@@ -82,7 +82,7 @@ const Features = () => {
                 </Button>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="col-md-4 d-flex flex-column justify-content-center align-items-center">
               <div id="box-6" className="box  col-md-4">
                 <img style={{ height: "80px" }} src={images03} alt="" />
                 <h3 className="my-2">24 Hours Service</h3>

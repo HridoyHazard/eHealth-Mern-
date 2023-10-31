@@ -38,12 +38,13 @@ const PlaceAppointmentScreen = () => {
     }
   }, [choice.Address.address, navigate]);
 
-  
   const currentHour = new Date(choice.DateTime.selectedTime);
   const startHour = new Date();
   startHour.setHours(17, 59, 0);
   const endHour = new Date();
   endHour.setHours(23, 30, 0);
+
+  let check = false;
 
   const placeAppointmentHandler = async () => {
     try {
@@ -58,7 +59,6 @@ const PlaceAppointmentScreen = () => {
       toast.error("Time Slot Is Already Booked. Plz Select Another Time");
     }
   };
-
 
   // console.log(currentHour.getHours());
   // console.log(startHour.getHours());
@@ -95,16 +95,20 @@ const PlaceAppointmentScreen = () => {
               </ListGroup.Item>
               <ListGroup.Item>
                 {currentHour.getHours() >= startHour.getHours() &&
-                currentHour.getHours() < endHour.getHours() ? (
-                  <Message variant="success">
-                    Your Appointment is between Doctor Schedule You Can Take The
-                    Appointment
-                  </Message>
-                ) : (
-                  <Message variant="danger">
-                    Your Appointment is not between Doctor Schedule
-                  </Message>
-                )}
+                currentHour.getHours() < endHour.getHours()
+                  ? ((check = true),
+                    (
+                      <Message variant="success">
+                        Your Appointment is between Doctor Schedule You Can Take
+                        The Appointment
+                      </Message>
+                    ))
+                  : ((check = false),
+                    (
+                      <Message variant="danger">
+                        Your Appointment is not between Doctor Schedule
+                      </Message>
+                    ))}
               </ListGroup.Item>
               <ListGroup.Item>
                 <h2>Doctor Information</h2>
@@ -191,30 +195,31 @@ const PlaceAppointmentScreen = () => {
                 {error && (
                   <Message variant="danger">{error.data.message}</Message>
                 )}
-
-                <ListGroup.Item>
-                  <Button
-                    type="button"
-                    className="btn-block"
-                    disabled={choice.doctorInfo.length === 0}
-                    onClick={placeAppointmentHandler}
-                  >
-                    Place Appointment
-                  </Button>
-                  <Button 
-                    type="button"
-                    className="btn-block"
-                    onClick={() => {
-                      dispatch(clearAddress());
-                      dispatch(cleardoctorInfo());
-                      dispatch(clearDateNTime());
-                      navigate("/Doctor");
-                    }}
+                {check === true && (
+                  <ListGroup.Item>
+                    <Button
+                      type="button"
+                      className="btn-block"
+                      disabled={choice.doctorInfo.length === 0}
+                      onClick={placeAppointmentHandler}
+                    >
+                      Place Appointment
+                    </Button>
+                    <Button
+                      type="button"
+                      className="btn-block"
+                      onClick={() => {
+                        dispatch(clearAddress());
+                        dispatch(cleardoctorInfo());
+                        dispatch(clearDateNTime());
+                        navigate("/Doctor");
+                      }}
                     >
                       Cancel Appointment
                     </Button>
-                  {isLoading && <Loader />}
-                </ListGroup.Item>
+                    {isLoading && <Loader />}
+                  </ListGroup.Item>
+                )}
               </ListGroup>
             </Card>
           </Col>
