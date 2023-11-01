@@ -10,7 +10,7 @@ import {
   useDeleteBloodMutation,
 } from "../../slices/bloodsApiSlice";
 import { useParams, useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 import { MDBCard } from "mdb-react-ui-kit";
 
 const BloodListScreen = () => {
@@ -24,27 +24,45 @@ const BloodListScreen = () => {
 
   const [deleteBlood, { isLoading: loadingDelete }] = useDeleteBloodMutation();
 
-  const createBloodHandler = async () => {
-    if (window.confirm("Are you sure you want to create a new Donor?")) {
-      try {
-        const blood = await createBlood();
-        navigate(`/admin/blood/${blood.data._id}/create`);
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+  const createBloodHandler = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const blood = await createBlood();
+          navigate(`/admin/blood/${blood.data._id}/create`);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
       }
-    }
+    });
   };
 
-  const deleteHandler = async (id) => {
-    if (window.confirm("Are you sure")) {
-      try {
-        await deleteBlood(id);
-        toast.success("Donor Deleted");
-        refetch();
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+  const deleteHandler = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await deleteBlood(id);
+          toast.success("Donor Deleted");
+          refetch();
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
       }
-    }
+    });
   };
 
   return (

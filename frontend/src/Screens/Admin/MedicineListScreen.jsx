@@ -11,6 +11,7 @@ import {
   useDeleteMedicineMutation,
 } from "../../slices/medsApiSlice";
 import { MDBCard } from "mdb-react-ui-kit";
+import Swal from "sweetalert2";
 
 const MedicineListScreen = () => {
   const navigate = useNavigate();
@@ -22,27 +23,45 @@ const MedicineListScreen = () => {
   const [deleteMedicine, { isLoading: loadingDelete }] =
     useDeleteMedicineMutation();
 
-  const deleteHandler = async (id) => {
-    if (window.confirm("Are you sure")) {
-      try {
-        await deleteMedicine(id);
-        toast.success("Medicine Deleted");
-        refetch();
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+  const deleteHandler = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await deleteMedicine(id);
+          toast.success("Medicine Deleted");
+          refetch();
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
       }
-    }
+    });
   };
 
   const createMedicineHandler = async () => {
-    if (window.confirm("Are you sure you want to create a new product?")) {
-      try {
-        const medicine = await createMedicine();
-        navigate(`/admin/med/${medicine.data._id}/create`);
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const medicine = await createMedicine();
+          navigate(`/admin/med/${medicine.data._id}/create`);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
       }
-    }
+    });
   };
 
   return (

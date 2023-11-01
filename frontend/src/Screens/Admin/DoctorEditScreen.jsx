@@ -39,6 +39,7 @@ const DoctorEditScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    console.log(tag);
     try {
       await updateDoctor({
         doctorId,
@@ -77,7 +78,9 @@ const DoctorEditScreen = () => {
       setDegree(doctor.degree);
       setSpecialist(doctor.specialist);
       setChamber(doctor.chamber);
+      console.log(doctor.chamber)
       setTag(doctor.tag);
+      console.log(doctor.tag)
       setAvailable(doctor.available);
     }
   }, [doctor]);
@@ -112,7 +115,7 @@ const DoctorEditScreen = () => {
                   <Form.Label>Image</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter image url"
+                    placeholder="Enter image"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
                   ></Form.Control>
@@ -128,7 +131,7 @@ const DoctorEditScreen = () => {
                   <Form.Label>Degree</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter brand"
+                    placeholder="Enter Degree"
                     value={degree}
                     onChange={(e) => setDegree(e.target.value)}
                   ></Form.Control>
@@ -148,7 +151,7 @@ const DoctorEditScreen = () => {
                   <Form.Label>Chamber</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter category"
+                    placeholder="Enter Chamber"
                     value={chamber}
                     onChange={(e) => setChamber(e.target.value)}
                   ></Form.Control>
@@ -157,7 +160,7 @@ const DoctorEditScreen = () => {
                   <Form.Label>Tag</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter category"
+                    placeholder="Enter Tag"
                     value={tag}
                     onChange={(e) => setTag(e.target.value)}
                   ></Form.Control>
@@ -167,7 +170,7 @@ const DoctorEditScreen = () => {
                   <Form.Label>Available</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Enter description"
+                    placeholder="Enter Available"
                     value={available}
                     onChange={(e) => setAvailable(e.target.value)}
                   ></Form.Control>

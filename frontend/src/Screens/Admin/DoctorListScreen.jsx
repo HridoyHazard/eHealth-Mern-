@@ -11,6 +11,7 @@ import {
 } from "../../slices/doctorsApiSlice";
 import { useNavigate } from "react-router-dom";
 import { MDBCard } from "mdb-react-ui-kit";
+import Swal from "sweetalert2";
 
 const DoctorListScreen = () => {
   const { data: doctors, isLoading, error, refetch } = useGetDoctorsQuery();
@@ -23,27 +24,45 @@ const DoctorListScreen = () => {
   const [deleteDoctor, { isLoading: loadingDelete }] =
     useDeleteDoctorMutation();
 
-  const createDoctorHandler = async () => {
-    if (window.confirm("Are you sure you want to create a new Doctor?")) {
-      try {
-        const doctor = await createDoctor();       
-        navigate(`/admin/doctor/${doctor.data._id}/create`);
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+  const createDoctorHandler = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const doctor = await createDoctor();
+          navigate(`/admin/doctor/${doctor.data._id}/create`);
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
       }
-    }
+    });
   };
 
-  const deleteHandler = async (id) => {
-    if (window.confirm("Are you sure")) {
-      try {
-        await deleteDoctor(id);
-        toast.success("Doctor Deleted");
-        refetch();
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+  const deleteHandler = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await deleteDoctor(id);
+          toast.success("Doctor Deleted");
+          refetch();
+        } catch (err) {
+          toast.error(err?.data?.message || err.error);
+        }
       }
-    }
+    });
   };
 
   return (
@@ -66,46 +85,46 @@ const DoctorListScreen = () => {
         <Message variant="danger">{error.data.message}</Message>
       ) : (
         <>
-        <MDBCard className="mx-4">
-          <Table striped bordered hover responsive className="table-sm">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>Degree</th>
-                <th>Specialist</th>
-                <th>Chamber</th>
-                <th>Available</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {doctors.map((doctor) => (
-                <tr key={doctor._id}>
-                  <td>{doctor._id}</td>
-                  <td>{doctor.name}</td>
-                  <td>{doctor.degree}</td>
-                  <td>{doctor.specialist}</td>
-                  <td>{doctor.chamber}</td>
-                  <td>{doctor.available}</td>
-                  <td>
-                    <LinkContainer to={`/admin/doctor/${doctor._id}/edit`}>
-                      <Button variant="light" className="btn-sm mx-2">
-                        <FaEdit style={{ color: "green" }} />
-                      </Button>
-                    </LinkContainer>
-                    <Button
-                      variant="danger"
-                      className="btn-sm"
-                      onClick={() => deleteHandler(doctor._id)}
-                    >
-                      <FaTrash style={{ color: "white" }} />
-                    </Button>
-                  </td>
+          <MDBCard className="mx-4">
+            <Table striped bordered hover responsive className="table-sm">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>Degree</th>
+                  <th>Specialist</th>
+                  <th>Chamber</th>
+                  <th>Available</th>
+                  <th></th>
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {doctors.map((doctor) => (
+                  <tr key={doctor._id}>
+                    <td>{doctor._id}</td>
+                    <td>{doctor.name}</td>
+                    <td>{doctor.degree}</td>
+                    <td>{doctor.specialist}</td>
+                    <td>{doctor.chamber}</td>
+                    <td>{doctor.available}</td>
+                    <td>
+                      <LinkContainer to={`/admin/doctor/${doctor._id}/edit`}>
+                        <Button variant="light" className="btn-sm mx-2">
+                          <FaEdit style={{ color: "green" }} />
+                        </Button>
+                      </LinkContainer>
+                      <Button
+                        variant="danger"
+                        className="btn-sm"
+                        onClick={() => deleteHandler(doctor._id)}
+                      >
+                        <FaTrash style={{ color: "white" }} />
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
           </MDBCard>
         </>
       )}

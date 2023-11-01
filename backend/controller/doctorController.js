@@ -45,7 +45,7 @@ const createDoctor = asyncHandler(async (req, res) => {
 // @route   PUT /api/doctors/:id
 // @access  Private/Admin
 const updateDoctor = asyncHandler(async (req, res) => {
-  const { name, image, degree, specialist, chamber, available } = req.body;
+  const { name, image, degree, specialist, chamber, tag, available } = req.body;
 
   const doctor = await Doctor.findById(req.params.id);
 
@@ -55,6 +55,7 @@ const updateDoctor = asyncHandler(async (req, res) => {
     doctor.degree = degree;
     doctor.specialist = specialist;
     doctor.chamber = chamber;
+    doctor.tag = tag;
     doctor.available = available;
 
     const updatedDoctor = await doctor.save();
