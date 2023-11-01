@@ -10,6 +10,7 @@ import {
   useCreateMedicineMutation,
   useDeleteMedicineMutation,
 } from "../../slices/medsApiSlice";
+import { MDBCard } from "mdb-react-ui-kit";
 
 const MedicineListScreen = () => {
   const navigate = useNavigate();
@@ -46,9 +47,9 @@ const MedicineListScreen = () => {
 
   return (
     <>
-      <Row className="align-items-center">
+      <Row className="align-items-center my-5 mx-3">
         <Col>
-          <h1>Products</h1>
+          <h1>Medicines</h1>
         </Col>
         <Col className="text-end">
           <Button className="my-3" onClick={createMedicineHandler}>
@@ -64,43 +65,45 @@ const MedicineListScreen = () => {
         <Message variant="danger">{error.data.message}</Message>
       ) : (
         <>
-          <Table striped bordered hover responsive className="table-sm">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th>BRAND</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {meds.map((med) => (
-                <tr key={med._id}>
-                  <td>{med._id}</td>
-                  <td>{med.name}</td>
-                  <td>${med.price}</td>
-                  <td>{med.category}</td>
-                  <td>{med.brand}</td>
-                  <td>
-                    <LinkContainer to={`/admin/med/${med._id}/edit`}>
-                      <Button variant="light" className="btn-sm mx-2">
-                        <FaEdit style={{ color: "green" }} />
-                      </Button>
-                    </LinkContainer>
-                    <Button
-                      variant="danger"
-                      className="btn-sm"
-                      onClick={() => deleteHandler(med._id)}
-                    >
-                      <FaTrash style={{ color: "white" }} />
-                    </Button>
-                  </td>
+          <MDBCard className="mx-4">
+            <Table striped bordered hover responsive className="table-sm">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>NAME</th>
+                  <th>PRICE</th>
+                  <th>CATEGORY</th>
+                  <th>BRAND</th>
+                  <th></th>
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {meds.map((med) => (
+                  <tr key={med._id}>
+                    <td>{med._id}</td>
+                    <td>{med.name}</td>
+                    <td>${med.price}</td>
+                    <td>{med.category}</td>
+                    <td>{med.brand}</td>
+                    <td>
+                      <LinkContainer to={`/admin/med/${med._id}/edit`}>
+                        <Button variant="light" className="btn-sm mx-2">
+                          <FaEdit style={{ color: "green" }} />
+                        </Button>
+                      </LinkContainer>
+                      <Button
+                        variant="danger"
+                        className="btn-sm"
+                        onClick={() => deleteHandler(med._id)}
+                      >
+                        <FaTrash style={{ color: "white" }} />
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </MDBCard>
         </>
       )}
     </>

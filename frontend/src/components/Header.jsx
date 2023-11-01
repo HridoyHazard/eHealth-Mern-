@@ -45,7 +45,7 @@ const Header = () => {
         expand="lg"
         collapseOnSelect
       >
-        <Container fluid style={{ margin: "0rem 4rem" }}>
+        <Container fluid style={{ margin: "0rem 4.8rem" }}>
           <LinkContainer to="/">
             <Navbar.Brand>
               <img alt="logo" src={logo} width="28px" />

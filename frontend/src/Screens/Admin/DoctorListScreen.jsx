@@ -10,6 +10,7 @@ import {
   useDeleteDoctorMutation,
 } from "../../slices/doctorsApiSlice";
 import { useNavigate } from "react-router-dom";
+import { MDBCard } from "mdb-react-ui-kit";
 
 const DoctorListScreen = () => {
   const { data: doctors, isLoading, error, refetch } = useGetDoctorsQuery();
@@ -47,7 +48,7 @@ const DoctorListScreen = () => {
 
   return (
     <>
-      <Row className="align-items-center">
+      <Row className="align-items-center my-5 mx-3">
         <Col>
           <h1>Doctors</h1>
         </Col>
@@ -65,6 +66,7 @@ const DoctorListScreen = () => {
         <Message variant="danger">{error.data.message}</Message>
       ) : (
         <>
+        <MDBCard className="mx-4">
           <Table striped bordered hover responsive className="table-sm">
             <thead>
               <tr>
@@ -104,6 +106,7 @@ const DoctorListScreen = () => {
               ))}
             </tbody>
           </Table>
+          </MDBCard>
         </>
       )}
     </>
