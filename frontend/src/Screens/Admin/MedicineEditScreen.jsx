@@ -89,7 +89,7 @@ const MedicineEditScreen = () => {
       <div className="d-flex justify-content-center">
         <div className="MedicineEditCard mb-5">
           <div className="MedicineBx">
-            <h1>Edit Product</h1>
+            <h1>Edit Medicine</h1>
             {loadingUpdate && <Loader />}
             {isLoading ? (
               <Loader />

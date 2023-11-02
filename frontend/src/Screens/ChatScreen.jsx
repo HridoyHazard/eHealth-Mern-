@@ -71,6 +71,11 @@ const ChatScreen = () => {
   function handleChange(e) {
     setMessage(e.target.value);
   }
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      sendMessage(e);
+    }
+  }
 
   function selectFile(e) {
     setMessage(e.target.files[0].name);
@@ -111,17 +116,23 @@ const ChatScreen = () => {
   }
   return (
     <Page>
-      <h1>Chat</h1>
+      <h1 className="pt-2">Chat</h1>
       <Container>{messages.map(renderMessage)}</Container>
       <Form onSubmit={sendMessage}>
         <TextArea
           value={message}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
           placeholder="write text here..."
         />
         <Input type="file" onChange={selectFile} />
         <Button>Send</Button>
       </Form>
+
+      {/* <div class="textarea-container">
+        <textarea class="form-control my-textarea"></textarea>
+        <button class="btn btn-primary my-button">Button</button>
+      </div> */}
     </Page>
   );
 };

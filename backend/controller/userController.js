@@ -44,15 +44,17 @@ const forgetPassword = asyncHandler(async (req, res) => {
     expiresIn: "1d",
   });
 
-  console.log(user);
-  console.log(token);
-  console.log(req.body);
+  // console.log(user);
+  // console.log(token);
+  // console.log(req.body);
 
   let EmailSubject = "Reset Password Link";
-  let EmailText = `http://localhost:3000/resetpassword/${user._id}/${token}`;
+  let EmailText = `<p> Hi ${user.name} </p>
+  <br> Please <a href="http://localhost:3000/resetpassword/${user._id}/${token}">Click Here</a> To  Reset Your Password </br>`;
   let EmailTo = email;
 
-  await SendEmailUtility(EmailTo, EmailText, EmailSubject);
+ await SendEmailUtility(EmailTo, EmailText, EmailSubject);
+
 
   // var transporter = nodemailer.createTransport({
   //   service: "gmail",
@@ -94,20 +96,6 @@ const forgetPassword = asyncHandler(async (req, res) => {
   //       rejectUnauthorized: false,
   //     },
   //   });
-
-  //   let mailOptions = {
-  //     from: "info@teamrabbil.com",
-  //     to: email,
-  //     subject: "Reset Password Link",
-  //     text: `http://localhost:3000/resetpassword/${user._id}/${token}`,
-  //   };
-  //   transporter.sendMail(mailOptions, function (error, info) {
-  //     if (error) {
-  //       console.log(error);
-  //     } else {
-  //       console.log("Email sent" + info.response);
-  //       return res.send({ Status: "Success" });
-  //     }
 });
 
 // @desc    forget user password & get token

@@ -1,30 +1,31 @@
 import nodemailer from "nodemailer";
 
 const SendEmailUtility = async (EmailTo, EmailText, EmailSubject) => {
+  console.log(EmailTo, EmailText, EmailSubject);
+  try {
+    let transporter = nodemailer.createTransport({
+      host: "mail.teamrabbil.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: "info@teamrabbil.com",
+        pass: "~sR4[bhaC[Qs",
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
 
-  console.log( "dukse")
-  let transporter = nodemailer.createTransport({
-    host: "mail.teamrabbil.com",
-    port: 25,
-    secure: false,
-    auth: {
-      user: "info@teamrabbil.com",
-      pass: "~sR4[bhaC[Qs",
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-  });
-
-  console.log()
-
-  let mailOptions = {
-    from: "Task Manager MERN <info@teamrabbil.com>",
-    to: EmailTo,
-    subject: EmailSubject,
-    text: EmailText,
-  };
-
-  return await transporter.sendMail(mailOptions);
+    let mail = await transporter.sendMail({
+      from: "info@teamrabbil.com",
+      to: EmailTo,
+      subject: EmailSubject,
+      text: "Hello world?",
+      html: EmailText,
+    });
+    console.log("send mail success");
+  } catch (error) {
+    console.log(error);
+  }
 };
 export default SendEmailUtility;

@@ -10,10 +10,7 @@ const ContactUS = () => {
           <img className="animated" src={images01} alt="" />
         </div>
 
-        <form
-          
-          className="contact1-form validate-form"
-        >
+        <form className="contact1-form validate-form">
           <span className="contact1-form-title">Contact Us</span>
 
           <div className="wrap-input1 validate-input">
@@ -54,6 +51,7 @@ const ContactUS = () => {
             </button>
           </div>
         </form>
+
       </div>
     </div>
   );

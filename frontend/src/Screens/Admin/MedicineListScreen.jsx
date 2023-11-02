@@ -101,7 +101,7 @@ const MedicineListScreen = () => {
                   <tr key={med._id}>
                     <td>{med._id}</td>
                     <td>{med.name}</td>
-                    <td>${med.price}</td>
+                    <td>৳{med.price}</td>
                     <td>{med.category}</td>
                     <td>{med.brand}</td>
                     <td>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const Page = styled.div`
   display: flex;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   align-items: center;
   // background-color: #46516e;
@@ -90,7 +90,6 @@ export const Container = styled.div`
   border: 1px solid lightgray;
   border-radius: 10px;
   padding-bottom: 10px;
-  margin-top: 25px;
 `;
 
 export const TextArea = styled.textarea`
