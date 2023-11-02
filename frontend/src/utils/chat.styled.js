@@ -66,6 +66,22 @@ export const FName = styled.div`
   top: 25.5rem;
   margin-right: 10px;
 `;
+export const Upload = styled.div`
+  position: relative;
+  left: 40rem;
+  width: 157px;
+  height: 57px;
+  background: url(https://lh6.googleusercontent.com/-dqTIJRTqEAQ/UJaofTQm3hI/AAAAAAAABHo/w7ruR1SOIsA/s157/upload.png);
+  overflow: hidden;
+`;
+export const Input = styled.input`
+  display: block !important;
+  width: 120px !important;
+  height: 57px !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+`;
+
 export const PartnerFName = styled.div`
   font-size: 12px;
   display: inline-flex;
@@ -73,11 +89,6 @@ export const PartnerFName = styled.div`
   position: absolute;
   top: 25.5rem;
   margin-left: 10px;
-`;
-export const Input = styled.input`
-  margin-top: 10px;
-  padding-top: 10px;
-  display: block;
 `;
 
 export const Container = styled.div`
@@ -94,7 +105,7 @@ export const Container = styled.div`
 
 export const TextArea = styled.textarea`
   width: 800px;
-  height: 60px;
+  height: 100px;
   border-radius: 10px;
   margin-top: 10px;
   padding-top: 10px;
@@ -114,7 +125,11 @@ export const Button = styled.button`
   background-color: #04aa6d;
   border: none;
   color: white;
-  padding: 16px 32px;
+  position: absolute;
+  top: 50rem;
+  right: 33.5rem;
+  padding: 10px 32px;
+  border-radius: 10px;
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;

@@ -13,6 +13,7 @@ import {
   PartnerMessage,
   PartnerRow,
   Input,
+  Upload,
   FName,
   MyName,
   PartnerName,
@@ -125,14 +126,11 @@ const ChatScreen = () => {
           onKeyDown={handleKeyDown}
           placeholder="write text here..."
         />
-        <Input type="file" onChange={selectFile} />
+        <Upload>
+          <Input type="file" onChange={selectFile} />
+        </Upload>
         <Button>Send</Button>
       </Form>
-
-      {/* <div class="textarea-container">
-        <textarea class="form-control my-textarea"></textarea>
-        <button class="btn btn-primary my-button">Button</button>
-      </div> */}
     </Page>
   );
 };
