@@ -36,6 +36,7 @@ import RequestBloodListScreen from "./Screens/Admin/RequestBloodListScreen";
 import ContactUS from "./Screens/ContactUS";
 import AboutUs from "./Screens/AboutUs";
 import Success from "./Screens/Success";
+import Active from "./Screens/Active";
 
 import CartScreen from "./Screens/Order And Cart/CartScreen";
 
@@ -97,6 +98,7 @@ const router = createBrowserRouter(
       <Route path="/blood/:id" element={<BloodScreenDetails />} />
       <Route path="/forgetpassword" element={<ForgetPassword />} />
       <Route path="/resetpassword/:id/:token" element={<ResetPassword />} />
+      <Route path="/active/:token" element={<Active />} />
 
       //All Private Routes
       <Route path="" element={<PrivateRoute />}>

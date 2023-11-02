@@ -6,6 +6,7 @@ import {
   getUserProfile,
   updateUserProfile,
   getUsers,
+  activeUser,
   deleteUser,
   forgetPassword,
   resetPassword,
@@ -30,5 +31,6 @@ router
   .delete(protect, admin, deleteUser)
   .get(protect, admin, getUserById)
   .put(protect, admin, updateUser);
+router.route("/active/:token").get(activeUser);
 
 export default router;

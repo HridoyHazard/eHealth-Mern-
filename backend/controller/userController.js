@@ -4,7 +4,6 @@ import generateToken from "../utils/generateToken.js";
 import SendEmailUtility from "../utils/sendEmailUtility.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import nodemailer from "nodemailer";
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -36,6 +35,8 @@ const forgetPassword = asyncHandler(async (req, res) => {
   console.log(email);
   const user = await User.findOne({ email: email });
 
+  console.log(user);
+
   if (!user) {
     res.status(401);
     throw new Error("User Not Found!");
@@ -53,8 +54,7 @@ const forgetPassword = asyncHandler(async (req, res) => {
   <br> Please <a href="http://localhost:3000/resetpassword/${user._id}/${token}">Click Here</a> To  Reset Your Password </br>`;
   let EmailTo = email;
 
- await SendEmailUtility(EmailTo, EmailText, EmailSubject);
-
+  await SendEmailUtility(EmailTo, EmailText, EmailSubject);
 
   // var transporter = nodemailer.createTransport({
   //   service: "gmail",
@@ -157,6 +157,47 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Invalid user data");
   }
+  const token = jwt.sign({ id: user._id }, "jwt_secret_key", {
+    expiresIn: "1d",
+  });
+
+  user.isToken = token;
+  await user.save();
+
+  let EmailSubject = "Active Account Link";
+  let EmailText = `<p> Hi ${user.name} </p>
+  <br> Please <a href="http://localhost:3000/active/${token}">Click Here</a> To  Active Your Account </br>`;
+  let EmailTo = email;
+
+  await SendEmailUtility(EmailTo, EmailText, EmailSubject);
+});
+
+// @desc    Active user account
+// @route   Get /api/users/active/:token
+// @access  Public
+
+const activeUser = asyncHandler(async (req, res) => {
+  const { token } = req.params;
+  console.log(token);
+  try {
+    const user = await User.findOne({ isToken: token });
+    if (user) {
+      user.isVerified = true;
+      user.isToken = "";
+      await user.save();
+      console.log("verified");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  // if (token) {
+  //   console.log("token paise");
+  //   const user = await User.findByIdAndUpdate(
+  //     { _id: token.id },
+  //     { isVerified: true }
+  //   );
+  // }
 });
 
 // @desc    Logout user / clear cookie
@@ -288,6 +329,7 @@ export {
   resetPassword,
   registerUser,
   logoutUser,
+  activeUser,
   getUserProfile,
   updateUserProfile,
   getUsers,

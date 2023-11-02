@@ -31,6 +31,12 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: { password },
       }),
     }),
+    activeUser: builder.mutation({
+      query: (token) => ({
+        url: `${USERS_URL}/active/${token}`,
+        method: "GET",
+      }),
+    }),
 
     logout: builder.mutation({
       query: () => ({
@@ -83,6 +89,7 @@ export const {
   useRegisterMutation,
   useProfileMutation,
   useGetUsersQuery,
+  useActiveUserMutation,
   useDeleteUserMutation,
   useGetUserDetailsQuery,
   useUpdateUserMutation,
