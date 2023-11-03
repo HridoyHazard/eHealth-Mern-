@@ -28,7 +28,8 @@
     "chat": "nodemon backend/socket",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run chat\"",
     "data:import": "node backend/seeder",
-    "data:destroy": "node backend/seeder.js -d"
+    "data:destroy": "node backend/seeder.js -d",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",
