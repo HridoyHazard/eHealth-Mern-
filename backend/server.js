@@ -23,11 +23,6 @@ const app = express();
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.get("/", (req, res) => {
-  res.send("Api is running...");
-});
-
 app.use(cookieParser());
 
 app.use("/api/meds", medicineRoutes);
