@@ -255,6 +255,7 @@ const OrderScreen = () => {
                             </div>
                           </>
                         ) : (
+                          <>
                           <Button
                             type="button"
                             className="btn btn-danger btn-block text-capitalize fw-bold fs-5 p-3 text-black"
@@ -262,6 +263,8 @@ const OrderScreen = () => {
                           >
                             AamarPay
                           </Button>
+                          {loadingPayment && <Loader />}
+                          </>
                         )}
                       </ListGroup.Item>
                     )}

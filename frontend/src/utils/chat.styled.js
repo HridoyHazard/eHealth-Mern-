@@ -127,7 +127,7 @@ export const Button = styled.button`
   color: white;
   position: absolute;
   top: 50rem;
-  right: 33.5rem;
+  right: 35rem;
   padding: 10px 32px;
   border-radius: 10px;
   text-decoration: none;
