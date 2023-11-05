@@ -22,7 +22,7 @@ const RequestBloodScreen = () => {
   const {
     data: request,
     refetch,
-    isLoading,
+    isLoading : loadingDonor,
     error,
   } = useGetRequestDetailsQuery(requestId);
 
@@ -38,7 +38,7 @@ const RequestBloodScreen = () => {
     toast.success("Approved Successfull");
   };
 
-  return isLoading ? (
+  return loadingDonor ? (
     <Loader />
   ) : error ? (
     <Message variant="danger">{error.data.message}</Message>

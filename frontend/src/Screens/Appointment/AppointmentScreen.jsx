@@ -24,7 +24,7 @@ const AppointmentScreen = () => {
   const {
     data: appointment,
     refetch,
-    isLoading,
+    isLoading : loadingAppointment,
     error,
   } = useGetAppointmentDetailsQuery(appointmentId);
 
@@ -38,7 +38,7 @@ const AppointmentScreen = () => {
     refetch();
     toast.success("Approved Successfull");
   };
-  return isLoading ? (
+  return loadingAppointment ? (
     <Loader />
   ) : error ? (
     <Message variant="danger">{error.data.message}</Message>

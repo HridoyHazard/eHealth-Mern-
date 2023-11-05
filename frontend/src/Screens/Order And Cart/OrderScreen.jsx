@@ -29,7 +29,7 @@ const OrderScreen = () => {
   const {
     data: order,
     refetch,
-    isLoading,
+    isLoading: loadingOrder,
     error,
   } = useGetOrderDetailsQuery(orderId);
 
@@ -123,7 +123,7 @@ const OrderScreen = () => {
       });
   }
 
-  return isLoading ? (
+  return loadingOrder ? (
     <Loader />
   ) : error ? (
     <Message variant="danger">{error.data.message}</Message>
@@ -240,7 +240,8 @@ const OrderScreen = () => {
 
                     {!order.isPaid && !userInfo.isAdmin && (
                       <ListGroup.Item>
-                        {order.paymentMethod === "PayPal" || order.paymentMethod == "Paypal" ? (
+                        {order.paymentMethod === "PayPal" ||
+                        order.paymentMethod == "Paypal" ? (
                           <>
                             {loadingPayPal && <Loader />}
                             {isPending && <Loader />}
@@ -256,14 +257,14 @@ const OrderScreen = () => {
                           </>
                         ) : (
                           <>
-                          <Button
-                            type="button"
-                            className="btn btn-danger btn-block text-capitalize fw-bold fs-5 p-3 text-black"
-                            onClick={paymentHandler}
-                          >
-                            AamarPay
-                          </Button>
-                          {loadingPayment && <Loader />}
+                            <Button
+                              type="button"
+                              className="btn btn-danger btn-block text-capitalize fw-bold fs-5 p-3 text-black"
+                              onClick={paymentHandler}
+                            >
+                              AamarPay
+                            </Button>
+                            {loadingPayment && <Loader />}
                           </>
                         )}
                       </ListGroup.Item>
