@@ -35,7 +35,7 @@ const PlaceOrderScreen = () => {
 
   const dispatch = useDispatch();
 
-  let updatedprice = 0;
+  let updatedprice = cart.totalPrice;
 
   const placeOrderHandler = async () => {
     try {
@@ -133,7 +133,7 @@ const PlaceOrderScreen = () => {
                   </Row>
                 </ListGroup.Item>
                 {cart.promo === "NewUser" ? (
-                  updatedprice = cart.totalPrice - 100,
+                  updatedprice = updatedprice - 100,
                   <ListGroup.Item>
                     <Row>
                       <Col>Promo Off</Col>
@@ -146,7 +146,7 @@ const PlaceOrderScreen = () => {
                   <Row>
                     <Col>Total</Col>
                     {cart.promo === "NewUser" ? (
-                      <Col>৳{cart.totalPrice - 100}</Col>
+                      <Col>৳{updatedprice}</Col>
                     ) : (
                       <Col>৳{cart.totalPrice}</Col>
                     )}
