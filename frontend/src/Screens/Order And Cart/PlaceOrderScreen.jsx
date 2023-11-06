@@ -23,8 +23,6 @@ const PlaceOrderScreen = () => {
 
   const cart = useSelector((state) => state.cart);
 
-  console.log(cart)
-
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
   useEffect(() => {
@@ -36,7 +34,9 @@ const PlaceOrderScreen = () => {
   }, [cart.paymentMethod, cart.shippingAddress.address, navigate]);
 
   const dispatch = useDispatch();
-  
+
+  let updatedprice = 0;
+
   const placeOrderHandler = async () => {
     try {
       const res = await createOrder({
@@ -45,7 +45,7 @@ const PlaceOrderScreen = () => {
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
-        totalPrice: cart.totalPrice,
+        totalPrice: updatedprice,
       }).unwrap();
       dispatch(clearCartItems());
       navigate(`/order/${res._id}`);
@@ -132,11 +132,24 @@ const PlaceOrderScreen = () => {
                     <Col>৳{cart.shippingPrice}</Col>
                   </Row>
                 </ListGroup.Item>
+                {cart.promo === "NewUser" ? (
+                  updatedprice = cart.totalPrice - 100,
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Promo Off</Col>
+                      <Col>৳100</Col>
+                    </Row>
+                  </ListGroup.Item>
+                ) : null}
 
                 <ListGroup.Item>
                   <Row>
                     <Col>Total</Col>
-                    <Col>৳{cart.totalPrice}</Col>
+                    {cart.promo === "NewUser" ? (
+                      <Col>৳{cart.totalPrice - 100}</Col>
+                    ) : (
+                      <Col>৳{cart.totalPrice}</Col>
+                    )}
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>

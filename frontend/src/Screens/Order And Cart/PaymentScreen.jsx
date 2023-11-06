@@ -44,6 +44,7 @@ const PaymentScreen = () => {
                   type="radio"
                   label="PayPal or Credit Card"
                   id="PayPal"
+                  required
                   name="paymentMethod"
                   value="PayPal"
                   onChange={(e) => setPaymentMethod(e.target.value)}
@@ -53,6 +54,7 @@ const PaymentScreen = () => {
                   type="radio"
                   label="AamarPay"
                   id="PayPal"
+                  required
                   name="paymentMethod"
                   value="AamarPay"
                   onChange={(e) => setPaymentMethod(e.target.value)}

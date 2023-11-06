@@ -12,6 +12,7 @@ import { saveDateTime } from "../../slices/choiceSlice";
 import DateFnsUtils from "@date-io/date-fns";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const AppointmentDate = () => {
   const choice = useSelector((state) => state.choice);
@@ -27,9 +28,14 @@ const AppointmentDate = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveDateTime({ selectedDate, selectedTime }));
-    console.log(selectedDate, selectedTime);
-    navigate("/appointmentaddress");
+    if (!selectedDate || !selectedTime) {
+      toast.warning("Please select both date and time");
+      return;
+    } else {
+      dispatch(saveDateTime({ selectedDate, selectedTime }));
+      console.log(selectedDate, selectedTime);
+      navigate("/appointmentaddress");
+    }
   };
 
   const handleDateChange = (date) => {
@@ -66,6 +72,8 @@ const AppointmentDate = () => {
                     onChange={(date) => handleDateChange(date)}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
+                      required: true,
+                      variant: "outlined",
                     }}
                   />
                 </Grid>

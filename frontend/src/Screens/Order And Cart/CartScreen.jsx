@@ -15,12 +15,15 @@ import { Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import Message from "../../components/Message";
-import { addToCart, removeFromCart } from "../../slices/cartSlice";
+import { addToCart, removeFromCart,savePromo } from "../../slices/cartSlice";
 import Loader from "../../components/Loader";
+import { useState } from "react";
 
 const CartScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [promo, setPromo] = useState("");
 
   const cart = useSelector((state) => state.cart);
   const { cartItems, isLoading, error } = cart;
@@ -34,6 +37,7 @@ const CartScreen = () => {
   };
 
   const checkoutHandler = () => {
+    dispatch(savePromo( promo ));
     navigate("/login?redirect=/shipping");
   };
 
@@ -46,7 +50,7 @@ const CartScreen = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <section style={{ backgroundColor: "#eee", height:"50rem" }}>
+        <section style={{ backgroundColor: "#eee", height: "50rem" }}>
           <MDBContainer className="py-5 h-100">
             <MDBRow className="justify-content-center align-items-center h-100">
               <MDBCol size="12">
@@ -209,7 +213,14 @@ const CartScreen = () => {
                           </MDBTypography>
 
                           <div className="mb-5">
-                            <MDBInput size="lg" label="Enter your code" />
+                            <MDBInput
+                              size="lg"
+                              label="Enter your code"
+                              type="text"
+                              required
+                              value={promo}
+                              onChange={(e) => setPromo(e.target.value)}
+                            />
                           </div>
 
                           <hr className="my-4" />

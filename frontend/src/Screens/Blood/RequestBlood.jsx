@@ -14,6 +14,7 @@ import { useCreateRequestMutation } from "../../slices/requestbloodSlice";
 import images1 from "../../images/BloodDonation/bloodrequest.jpeg";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader";
+import { toast } from "react-toastify";
 
 const RequestBlood = () => {
   const navigate = useNavigate();
@@ -39,24 +40,29 @@ const RequestBlood = () => {
   };
 
   const submitbutton = async () => {
-    try {
-      const res = await createRequest({
-        requestItems: [
-          {
-            name: Name,
-            age: Age,
-            date: Date,
-            group: Group,
-            contact: Contact,
-            unit: Unit,
-            hospital: Hospital,
-          },
-        ],
-      }).unwrap();
-      resetbutton();
-      navigate(`/request/${res._id}`);
-    } catch (err) {
-      console.log(err);
+    if (!Name || !Age || !Date || !Group || !Contact || !Unit || !Hospital) {
+      toast.warning("Please fill all the fields");
+      return;
+    } else {
+      try {
+        const res = await createRequest({
+          requestItems: [
+            {
+              name: Name,
+              age: Age,
+              date: Date,
+              group: Group,
+              contact: Contact,
+              unit: Unit,
+              hospital: Hospital,
+            },
+          ],
+        }).unwrap();
+        resetbutton();
+        navigate(`/request/${res._id}`);
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
