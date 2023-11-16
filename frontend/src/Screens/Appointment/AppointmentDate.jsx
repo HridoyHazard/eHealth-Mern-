@@ -63,6 +63,7 @@ const AppointmentDate = () => {
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container-fluid>
                   <KeyboardDatePicker
+                    disablePast
                     disableToolbar
                     margin="normal"
                     id="date-picker-dialog"

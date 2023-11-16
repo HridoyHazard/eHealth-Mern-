@@ -2,6 +2,7 @@ import asyncHandler from "../middleware/asyncHandler.js";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 import SendEmailUtility from "../utils/sendEmailUtility.js";
+import axios from "axios";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
@@ -10,16 +11,36 @@ import bcrypt from "bcryptjs";
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+  let data = {};
 
   const user = await User.findOne({ email });
   if (user.isVerified === true) {
     if (user && (await user.matchPassword(password))) {
+      try {
+        const r = await axios.get("https://api.chatengine.io/users/me/", {
+          headers: {
+            "Project-ID": "62473f79-e6d1-4edc-b491-cce29f68da41",
+            "User-Name": user.name,
+            "User-Secret": password,
+          },
+        }) .then((r) => {
+          let data = { ...r.data };
+          if (data.hasOwnProperty("secret")) {
+            data.secret = password;
+          }
+          return data;
+        });
+        data =  r;
+      } catch (e) {
+        console.log(e);
+      }
       generateToken(res, user._id);
-      res.json({
+      res.json({  
         _id: user._id,
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
+        ...data,
       });
     } else {
       res.status(401);
@@ -29,8 +50,6 @@ const authUser = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Please active your account");
   }
-
-  res.send("Auth user");
 });
 
 // @desc    forget user password & get token
@@ -61,47 +80,6 @@ const forgetPassword = asyncHandler(async (req, res) => {
   let EmailTo = email;
 
   await SendEmailUtility(EmailTo, EmailText, EmailSubject);
-
-  // var transporter = nodemailer.createTransport({
-  //   service: "gmail",
-  //   requireTLS: true,
-  //   auth: {
-  //     user: "fardeenazwad12@gmail.com",
-  //     pass: "wqgm svpt txub wzns",
-  //   },
-  //   tls: {
-  //     rejectUnauthorized: false,
-  //   },
-  // });
-
-  // var mailOptions = {
-  //   from: "fardeenazwad12@gmail.com",
-  //   to: email,
-  //   subject: "Reset Password Link",
-  //   text: `http://localhost:3000/resetpassword/${user._id}/${token}`,
-  // };
-
-  // transporter.sendMail(mailOptions, function (error, info) {
-  //   if (error) {
-  //     console.log(error);
-  //   } else {
-  //     console.log("Email sent" + info.response);
-  //     return res.send({ Status: "Success" });
-  //   }
-  // });
-
-  //   let transporter = nodemailer.createTransport({
-  //     host: "mail.teamrabbil.com",
-  //     port: 25,
-  //     secure: false,
-  //     auth: {
-  //       user: "info@teamrabbil.com",
-  //       pass: "~sR4[bhaC[Qs",
-  //     },
-  //     tls: {
-  //       rejectUnauthorized: false,
-  //     },
-  //   });
 });
 
 // @desc    forget user password & get token
@@ -138,6 +116,11 @@ const resetPassword = asyncHandler(async (req, res) => {
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
+  const username = name;
+  const secret = password;
+  const first_name = name;
+  const last_name = "";
+
   const userExists = await User.findOne({ email });
 
   if (userExists) {
@@ -153,6 +136,25 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (user) {
     generateToken(res, user._id);
+    try {
+      const r = await axios
+        .post(
+          "https://api.chatengine.io/users/",
+          { username, secret, email, first_name, last_name },
+          { headers: { "PRIVATE-KEY": "8f2bfa20-9e3c-47ad-ab24-267d6c868d56" } }
+        )
+        .then((r) => {
+          let data = { ...r.data };
+          if (data.hasOwnProperty("secret")) {
+            data.secret = password;
+          }
+          console.log(data);
+          return data;
+        });
+      console.log("register data:", r);
+    } catch (e) {
+      console.log(e);
+    }
     res.status(201).json({
       _id: user._id,
       name: user.name,

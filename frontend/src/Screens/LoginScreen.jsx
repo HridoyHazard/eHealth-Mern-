@@ -50,19 +50,6 @@ const LoginScreen = () => {
       <Grid style={{ paddingTop: "100px" }}>
         <div className="login container mt-8 pb-5">
           <div className="row justify-content-center">
-            {/* <div className="col-md-5">
-              <img
-                src={images01}
-                alt=""
-                width={600}
-                style={{
-                  borderRadius: "30px",
-                  paddingTop: "2.5rem",
-                  // animation:
-                  //   "up-down 2s ease-in-out infinite alternate-reverse both",
-                }}
-              />
-            </div> */}
             <div className="col-lg-5 col-md-7">
               <div className="card login2 border-0 mb-0">
                 <div className="card-headerbg-transparent">
@@ -74,8 +61,6 @@ const LoginScreen = () => {
                       style={{
                         borderRadius: "10px 10px 10px 10px",
                         paddingTop: "2.5rem",
-                        // animation:
-                        //   "up-down 2s ease-in-out infinite alternate-reverse both",
                       }}
                     />
                   </div>

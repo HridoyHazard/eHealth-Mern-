@@ -2,6 +2,7 @@ import React from "react";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import ReactDOM from "react-dom/client";
+import { useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -86,10 +87,9 @@ const router = createBrowserRouter(
       <Route path="/Medicine" element={<MedicineScreen />} />
       <Route path="/med/:id" element={<MedicineScreenDetails />} />
       <Route path="/cart" element={<CartScreen />} />
-      <Route path="/login" element={<LoginScreen />} />
+      <Route path="/login" element={<LoginScreen setAuthenticated={true} />} />
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/Doctor" element={<DoctorScreen />} />
-      <Route path="/doctor/:id/chat" element={<ChatScreen />} />
       <Route path="/doctor/:id" element={<DoctorScreenDetails />} />
       <Route path="/Blood" element={<BloodScreen />} />
       <Route path="/Contactus" element={<ContactUS />} />
@@ -99,7 +99,6 @@ const router = createBrowserRouter(
       <Route path="/forgetpassword" element={<ForgetPassword />} />
       <Route path="/resetpassword/:id/:token" element={<ResetPassword />} />
       <Route path="/active/:token" element={<Active />} />
-
       //All Private Routes
       <Route path="" element={<PrivateRoute />}>
         <Route path="/success" element={<Success />} />
@@ -114,8 +113,7 @@ const router = createBrowserRouter(
         <Route path="/appointment/:id" element={<AppointmentScreen />} />
         <Route path="/requestblood" element={<RequestBlood />} />
         <Route path="/request/:id" element={<RequestBloodScreen />} />
-
-
+        <Route path="/chat" element={<ChatScreen />} />
       </Route>
       //All Admin Routes
       <Route path="" element={<AdminRoute />}>
@@ -124,18 +122,21 @@ const router = createBrowserRouter(
           path="/admin/appointmentlist"
           element={<AppointmentListScreen />}
         />
-        <Route
-          path="/admin/requestlist"
-          element={<RequestBloodListScreen />}
-        />
+        <Route path="/admin/requestlist" element={<RequestBloodListScreen />} />
         <Route path="/admin/medicinelist" element={<MedicineListScreen />} />
         <Route path="/admin/med/:id/edit" element={<MedicineEditScreen />} />
-        <Route path="/admin/med/:id/create" element={<MedicineCreateScreen />} />
+        <Route
+          path="/admin/med/:id/create"
+          element={<MedicineCreateScreen />}
+        />
         <Route path="/admin/userlist" element={<UserListScreen />} />
         <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
         <Route path="/admin/doctorlist" element={<DoctorListScreen />} />
         <Route path="/admin/doctor/:id/edit" element={<DoctorEditScreen />} />
-        <Route path="/admin/doctor/:id/create" element={<DoctorCreateScreen />} />
+        <Route
+          path="/admin/doctor/:id/create"
+          element={<DoctorCreateScreen />}
+        />
         <Route path="/admin/bloodlist" element={<BloodListScreen />} />
         <Route path="/admin/blood/:id/edit" element={<BloodEditScreen />} />
         <Route path="/admin/blood/:id/create" element={<BloodCreateScreen />} />
@@ -147,12 +148,12 @@ const router = createBrowserRouter(
 );
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <PayPalScriptProvider deferLoading={true}>
         <RouterProvider router={router} />
       </PayPalScriptProvider>
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 reportWebVitals();

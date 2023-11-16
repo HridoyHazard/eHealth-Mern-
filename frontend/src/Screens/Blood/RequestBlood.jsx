@@ -28,6 +28,7 @@ const RequestBlood = () => {
   const [Contact, setContact] = useState("");
   const [Unit, setUnit] = useState("");
   const [Hospital, setHospital] = useState("");
+  const today = new window.Date().toISOString().split("T")[0];
 
   const resetbutton = () => {
     setName("");
@@ -126,6 +127,7 @@ const RequestBlood = () => {
                         id="form3"
                         required
                         type="date"
+                        min={today}
                         value={Date}
                         onChange={(e) => setDate(e.target.value)}
                       />

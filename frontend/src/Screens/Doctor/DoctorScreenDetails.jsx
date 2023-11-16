@@ -132,15 +132,6 @@ const MedicineScreenDetails = () => {
                       Get Appoinment
                     </Button>
                   </ListGroup.Item>
-                  <ListGroup.Item className="mx-5">
-                    <Button
-                      className="btn-block"
-                      type="button"
-                      onClick={chatHandler}
-                    >
-                      Chat
-                    </Button>
-                  </ListGroup.Item>
                 </div>
               </Col>
 

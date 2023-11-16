@@ -13,7 +13,6 @@
     "nodemailer": "^6.9.6",
     "react-multi-carousel": "^2.8.4",
     "react-router-dom": "^6.10.0",
-    "socket.io": "^4.7.2",
     "uuid": "^9.0.1"
   },
   "name": "ehealth",
@@ -25,8 +24,7 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
-    "chat": "nodemon backend/socket",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run chat\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder.js -d",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"

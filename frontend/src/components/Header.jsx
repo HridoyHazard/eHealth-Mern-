@@ -159,6 +159,9 @@ const Header = () => {
                           )}
                         </NavDropdown.Item>
                       </LinkContainer>
+                      <LinkContainer to="/chat">
+                        <NavDropdown.Item>Chat</NavDropdown.Item>
+                      </LinkContainer>
                       <NavDropdown.Item onClick={logoutHandler}>
                         Logout
                       </NavDropdown.Item>
