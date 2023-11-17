@@ -22,7 +22,7 @@ const RequestBloodScreen = () => {
   const {
     data: request,
     refetch,
-    isLoading : loadingDonor,
+    isLoading: loadingDonor,
     error,
   } = useGetRequestDetailsQuery(requestId);
 
@@ -32,10 +32,20 @@ const RequestBloodScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   const approveAppointmentHandler = async () => {
-    await donorNumber({ availableDonor: DonorNumber, id: requestId });
-    await approveRequest(requestId);
-    refetch();
-    toast.success("Approved Successfull");
+    if (DonorNumber === "") {
+      toast.error("Please Enter Donor Number");
+      return;
+    } else {
+      if (DonorNumber.length < 11) {
+        toast.error("Please Enter Valid Donor Number");
+        return;
+      } else {
+        await donorNumber({ availableDonor: DonorNumber, id: requestId });
+        await approveRequest(requestId);
+        refetch();
+        toast.success("Approved Successfull");
+      }
+    }
   };
 
   return loadingDonor ? (

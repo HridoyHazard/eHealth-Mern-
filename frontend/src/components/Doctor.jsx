@@ -12,12 +12,15 @@ const Doctor = ({ doctor }) => {
   return (
     <div className="col-lg-3 col-md-3 pb-5 ">
       <div className="card cardxx">
+        
         <div className="card-body">
+        <Link to={`/doctor/${doctor._id}`}>
           <img
             src={doctor.image}
             alt=""
             className="img-fluid rounded-circle  mb-3"
           />
+          </Link>
           <Link to={`/doctor/${doctor._id}`}>
             <h3 className="doctorh3">
               <strong>{doctor.name}</strong>
