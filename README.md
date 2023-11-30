@@ -44,4 +44,37 @@ Everyone.
 - Responsive Layout.
 
 ## User Interface :
+<p align="center">
+  <b>Registration Form</b><br>
+    <img src="ss/title.JPG">
+   <b> User Login</b><br>
+    <img src="ss/login.jpg">
+    <b> After Login</b><br>
+    <img src="ss/logout.jpg">
+    <b> HomePage</b><br>
+    <img src="ss/home.jpg">
+    <b> Recipes</b><br>
+    <img src="ss/recipe.jpg">
+    <b> Gallery</b><br>
+    <img src="ss/gallery.jpg">
+    <b> Filter Dessert</b><br>
+    <img src="ss/filter.jpg">
+    <b> About Us</b><br>
+    <img src="ss/about%20us.jpg">
+    <b> Contact Us</b><br>
+    <img src="ss/contact us.jpg">
+    <b> Services</b><br>
+    <img src="ss/services.jpg">
+    <b> Add Services</b><br>
+    <img src="ss/add.jpg">
+    <b> Edit Services</b><br>
+    <img src="ss/edit.jpg">
+    <b> Delete Services</b><br>
+    <img src="ss/delete.jpg">
+    <b> Search</b><br>
+    <img src="ss/search.jpg">
+    <b> Pdf Receipt</b><br>
+    <img src="ss/pdf.jpg">
+
+</p>
 
