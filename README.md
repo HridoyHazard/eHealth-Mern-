@@ -32,7 +32,8 @@ Everyone.
 - Blood Info & Smart Search and Filter Option For Donors.
 - Request For Blood In Emergency Situation.
 - Chat with administrator regarding doctors and more.
-- **General Admin (Staff) Controls** 
+  
+**General Admin (Staff) Controls** 
 - Can See People Order.
 - Can Add Anything.
 - Can Update Anything.
