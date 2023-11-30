@@ -43,3 +43,5 @@ Everyone.
 - Category Pages Optimized for SEO.
 - Responsive Layout.
 
+## User Interface :
+
