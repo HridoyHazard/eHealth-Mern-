@@ -51,7 +51,7 @@ Everyone.
     <img src="ss/login.jpg">
     <img src="ss/reg.jpg">
     <img src="ss/forget.jpg">
-    <b> Medicine Info Page</b><br>
+    <br><b> Medicine Info Page</b><br>
     <img src="ss/medicine_page.jpg">
     <b> Medicine Page Details</b><br>
     <img src="ss/medicine_details.jpg">
