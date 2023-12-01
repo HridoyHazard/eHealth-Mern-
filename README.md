@@ -55,25 +55,24 @@ Everyone.
     <img src="ss/medicine_page.jpg">
     <b> Medicine Page Details</b><br>
     <img src="ss/medicine_details.jpg">
-    <b> Purchase Process</b><br>
+    <br><b> Purchase Process</b><br>
     <img src="ss/purchase 1.jpg">
     <img src="ss/purchase 2.jpg">
-    <b> About Us</b><br>
-    <img src="ss/about%20us.jpg">
-    <b> Contact Us</b><br>
-    <img src="ss/contact us.jpg">
-    <b> Services</b><br>
-    <img src="ss/services.jpg">
-    <b> Add Services</b><br>
-    <img src="ss/add.jpg">
-    <b> Edit Services</b><br>
-    <img src="ss/edit.jpg">
-    <b> Delete Services</b><br>
-    <img src="ss/delete.jpg">
-    <b> Search</b><br>
-    <img src="ss/search.jpg">
-    <b> Pdf Receipt</b><br>
-    <img src="ss/pdf.jpg">
+    <br><b> Select Payment</b><br>
+    <img src="ss/select_payment.jpg">
+    <b> AamarPay</b><br>
+    <img src="ss/amarpay.jpg">
+    <b> Paypal</b><br>
+    <img src="ss/paypal.jpg">
+    <b> Doctor Info</b><br>
+    <img src="ss/doctorInfo.jpg">
+    <b> Doctor Details</b><br>
+    <img src="ss/doctordetails.jpg">
+    <b> Appointment Process</b><br>
+    <img src="ss/selectdate.jpg">
+    <img src="ss/patientinfo.jpg">
+    <br><b> Appointment Confirm</b><br>
+    <img src="ss/appointment.jpg">
 
 </p>
 
