@@ -79,7 +79,31 @@ Everyone.
     <img src="ss/filterdonor.jpg">
     <br><b> Request Blood</b><br>
     <img src="ss/request_form.jpg">
-    <img src="ss/req_sumary.jpg">
+    <img src="ss/req_sumary.jpg"><br>
+    <b> Approving Request From Admin Panel</b><br>
+    <img src="ss/approving donor from admin.JPG">
+    <b> User Profile </b><br>
+    <img src="ss/userprofile.jpg">
+    <b> Admin Profile</b><br>
+    <img src="ss/adminprofile.jpg">
+    <b> Medicine Panel</b><br>
+    <img src="ss/medicinepanel.jpg">
+    <b> Create, Update and Delete Medicines</b><br>
+    <img src="ss/create update and del medicine.JPG">
+    <b> Doctor Panel</b><br>
+    <img src="ss/doctorpanel.jpg">
+    <b> Create, Update and Delete Doctors</b><br>
+    <img src="ss/create updaet and del doctor.JPG">
+    <b> Donor Panel</b><br>
+    <img src="ss/donorpanel.jpg">
+    <b> Create, Update and Delete Donors</b><br>
+    <img src="ss/create update and del donor.JPG">
+    <b> Users Panel</b><br>
+    <img src="ss/userpanel.jpg">
+    <b> Update and Delete Users</b><br>
+    <img src="ss/edit user and del.JPG">
+    <b> Appointments,Orders and Requests</b><br>
+    <img src="ss/appointment order and request.JPG">
 
 </p>
 
