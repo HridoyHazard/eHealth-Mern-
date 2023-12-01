@@ -51,14 +51,13 @@ Everyone.
     <img src="ss/login.jpg">
     <img src="ss/reg.jpg">
     <img src="ss/forget.jpg">
-    <b> HomePage</b><br>
-    <img src="ss/home.jpg">
-    <b> Recipes</b><br>
-    <img src="ss/recipe.jpg">
-    <b> Gallery</b><br>
-    <img src="ss/gallery.jpg">
-    <b> Filter Dessert</b><br>
-    <img src="ss/filter.jpg">
+    <b> Medicine Info Page</b><br>
+    <img src="ss/medicine_page.jpg">
+    <b> Medicine Page Details</b><br>
+    <img src="ss/medicine_details.jpg">
+    <b> Purchase Process</b><br>
+    <img src="ss/purchase 1.jpg">
+    <img src="ss/purchase 2.jpg">
     <b> About Us</b><br>
     <img src="ss/about%20us.jpg">
     <b> Contact Us</b><br>
