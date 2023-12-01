@@ -59,11 +59,11 @@ Everyone.
     <img src="ss/purchase 1.jpg">
     <img src="ss/purchase 2.jpg">
     <br><b> Select Payment</b><br>
-    <img src="ss/select_payment.jpg">
+    <img src="ss/select_payment.jpg"><br>
     <b> AamarPay</b><br>
-    <img src="ss/amarpay.jpg">
+    <img src="ss/amarpay.jpg"><br>
     <b> Paypal</b><br>
-    <img src="ss/paypal.jpg">
+    <img src="ss/paypal.jpg"><br>
     <b> Doctor Info</b><br>
     <img src="ss/doctorInfo.jpg">
     <b> Doctor Details</b><br>
