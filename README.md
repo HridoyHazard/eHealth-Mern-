@@ -45,12 +45,12 @@ Everyone.
 
 ## User Interface :
 <p align="center">
-  <b>Registration Form</b><br>
+  <b>Title</b><br>
     <img src="ss/title.JPG">
-   <b> User Login</b><br>
+   <b> Registration / User Login / Forget Password</b><br>
     <img src="ss/login.jpg">
-    <b> After Login</b><br>
-    <img src="ss/logout.jpg">
+    <img src="ss/reg.jpg">
+    <img src="ss/forget.jpg">
     <b> HomePage</b><br>
     <img src="ss/home.jpg">
     <b> Recipes</b><br>
