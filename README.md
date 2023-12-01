@@ -73,6 +73,13 @@ Everyone.
     <img src="ss/patientinfo.jpg">
     <br><b> Appointment Confirm</b><br>
     <img src="ss/appointment.jpg">
+    <br><b> Blood Donors</b><br>
+    <img src="ss/blooddonors.jpg">
+    <br><b> Filter Donor</b><br>
+    <img src="ss/filterdonor.jpg">
+    <br><b> Request Blood</b><br>
+    <img src="ss/request_form.jpg">
+    <img src="ss/req_sumary.jpg">
 
 </p>
 
